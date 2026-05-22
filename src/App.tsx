@@ -14,6 +14,7 @@ const CaseStudyModal = React.lazy(() => import('./components/CaseStudyModal').th
 const SkillConstellation = React.lazy(() => import('./components/SkillConstellation').then(module => ({ default: module.SkillConstellation })));
 const About = React.lazy(() => import('./components/About').then(module => ({ default: module.About })));
 const ExperienceTimeline = React.lazy(() => import('./components/ExperienceTimeline').then(module => ({ default: module.ExperienceTimeline })));
+const Certifications = React.lazy(() => import('./components/Certifications').then(module => ({ default: module.Certifications })));
 const FeaturedProjects = React.lazy(() => import('./components/FeaturedProjects').then(module => ({ default: module.FeaturedProjects })));
 const ObsidianMiniBrain = React.lazy(() => import('./components/ObsidianMiniBrain').then(module => ({ default: module.ObsidianMiniBrain })));
 const HireMe = React.lazy(() => import('./components/HireMe').then(module => ({ default: module.HireMe })));
@@ -36,6 +37,7 @@ function AppContent() {
           <SkillConstellation />
           <About />
           <ExperienceTimeline />
+          <Certifications />
           <FeaturedProjects />
           <ObsidianMiniBrain />
           <HireMe />

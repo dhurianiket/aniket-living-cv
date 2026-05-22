@@ -17,8 +17,7 @@ export function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 backdrop-blur-lg bg-brand-black/70 border-b border-white/5">
       <div className="font-display font-bold text-white tracking-widest text-xs sm:text-sm uppercase flex items-center gap-2">
         <span className={cn("w-2 h-2 rounded-full bg-brand-cyan shadow-[0_0_8px_#00f0ff] shrink-0", !reduceMotion && "animate-pulse")} />
-        <span className="hidden sm:inline">Aniket Dhuri</span>
-        <span className="sm:hidden">A.Dhuri</span>
+        <span>Aniket Dhuri</span>
       </div>
 
       <div className="hidden md:flex items-center gap-4">
@@ -68,7 +67,7 @@ export function Header() {
               key={m.id}
               onClick={() => setMode(m.id)}
               className={cn(
-                "flex items-center justify-center w-11 h-11 sm:w-10 sm:h-10 rounded-full text-xs transition-all duration-300",
+                "flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-xs transition-all duration-300",
                 mode === m.id
                   ? "bg-white/10 text-white shadow-[0_0_10px_rgba(255,255,255,0.05)]"
                   : "text-gray-500 hover:text-gray-300 hover:bg-white/5"
@@ -81,13 +80,13 @@ export function Header() {
 
         <button
             onClick={() => setReduceMotion(!reduceMotion)}
-            className="flex items-center justify-center w-11 h-11 sm:w-10 sm:h-10 rounded-full text-gray-500 hover:bg-white/5 transition-all"
+            className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-gray-500 hover:bg-white/5 transition-all"
         >
           {reduceMotion ? <MinusCircle className="w-4 h-4" /> : <Activity className="w-4 h-4" />}
         </button>
         <button
             onClick={() => setScanModalOpen(true)}
-            className="flex items-center justify-center w-11 h-11 sm:w-10 sm:h-10 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 hover:bg-brand-cyan/20 transition-all"
+            className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 hover:bg-brand-cyan/20 transition-all"
         >
           <Sparkles className="w-4 h-4" />
         </button>

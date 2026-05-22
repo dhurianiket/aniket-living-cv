@@ -1,4 +1,4 @@
-import { Experience, Project, PromptChip, Skill } from "./types";
+import { Experience, Project, PromptChip, Skill, Certification } from "./types";
 
 export const skillsData: Skill[] = [
   {
@@ -203,5 +203,78 @@ export const assistantPrompts: PromptChip[] = [
     id: "a6",
     text: "Where is he based?",
     response: "I am based in India. I operate globally, building remote AI systems, robust full-stack applications, and scaling digital platforms for modern audiences."
+  }
+];
+
+export const certificationsData: Certification[] = [
+  {
+    id: "c1",
+    name: "Digital Marketing",
+    issuer: "Internshala Trainings",
+    duration: "Sep 2021 - Oct 2021",
+    score: "63%",
+    details: "Building Web Presence, SEO, Digital Advertising with Google Ads, Social Media Marketing, Email Marketing, Inbound Marketing.",
+    icon: "marketing"
+  },
+  {
+    id: "c2",
+    name: "Programming With Python",
+    issuer: "Internshala Trainings",
+    duration: "May 2021 - Jun 2021",
+    score: "78%",
+    details: "Principles of Object-oriented Programming (OOP), Connecting to SQLite Database, Developing a GUI with PyQT.",
+    icon: "code"
+  },
+  {
+    id: "c3",
+    name: "Internship & Job Preparation",
+    issuer: "Internshala Trainings",
+    duration: "Apr 2021 - May 2021",
+    score: "90%",
+    details: "Getting Started with the Job Hunt, Building up your Gears and Going at the Front.",
+    icon: "briefcase"
+  },
+  {
+    id: "c4",
+    name: "Web Development",
+    issuer: "Internshala Trainings",
+    duration: "Mar 2021 - Apr 2021",
+    score: "63%",
+    details: "HTML & CSS, Bootstrap, SQL and PHP.",
+    icon: "web"
+  },
+  {
+    id: "c5",
+    name: "Ethical Hacking",
+    issuer: "Internshala Trainings",
+    duration: "Mar 2021 - Apr 2021",
+    score: "61%",
+    details: "Basics of Information Security and Computer Networking, Information Gathering, Web VAPT, OWASP and SQL Injections.",
+    icon: "shield"
+  },
+  {
+    id: "c6",
+    name: "Master Adobe Illustrator",
+    issuer: "Udemy",
+    duration: "Mar 2021 - May 2021",
+    details: "Advanced Illustrator tools and techniques, custom typography, design graphics, drawing from images.",
+    icon: "design"
+  },
+  {
+    id: "c7",
+    name: "Animation",
+    issuer: "Internshala Trainings",
+    duration: "Mar 2021 - Apr 2021",
+    score: "82%",
+    details: "Main Features of After Effects, Animation Foundations, Working in 3D, Integration with Other Applications.",
+    icon: "video"
+  },
+  {
+    id: "c8",
+    name: "Advance Video Editing",
+    issuer: "Editor Squad Media Ptv Ltd",
+    duration: "Jan 2020 - Mar 2020",
+    details: "Essentials of Video Shooting and Editing, Premiere Pro, Audio Editing, and Green Screen Editing & Exporting.",
+    icon: "video"
   }
 ];

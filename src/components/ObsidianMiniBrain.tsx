@@ -3,7 +3,7 @@ import { Terminal, Send, Sparkles, X } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 import { useAppState } from "../AppStateContext";
 import { useAnalytics } from "../hooks/useFirebase";
-import { assistantPrompts, skillsData, projectsData, experienceData } from "../data";
+import { assistantPrompts, skillsData, projectsData, experienceData, certificationsData } from "../data";
 
 interface Message {
   id: string;
@@ -69,6 +69,8 @@ export function ObsidianMiniBrain() {
             <div><span className="text-brand-violet mr-2">›</span>skills</div>
             <div><span className="text-brand-violet mr-2">›</span>projects</div>
             <div><span className="text-brand-violet mr-2">›</span>experience</div>
+            <div><span className="text-brand-violet mr-2">›</span>education</div>
+            <div><span className="text-brand-violet mr-2">›</span>certifications</div>
             <div><span className="text-brand-violet mr-2">›</span>contact</div>
             <div><span className="text-brand-violet mr-2">›</span>case-study aegis-health-ai</div>
           </div>
@@ -109,6 +111,21 @@ export function ObsidianMiniBrain() {
             <div className="text-xs italic">...and more earlier roles.</div>
           </div>
         );
+      } else if (lowerText === "certifications") {
+        response = (
+          <div className="font-mono text-sm space-y-3">
+            <div className="text-brand-cyan mb-1">CERTIFICATION DATA:</div>
+            {certificationsData.slice(0,3).map(c => (
+              <div key={c.id}>
+                <div className="text-brand-violet">{c.name}</div>
+                <div className="text-xs text-gray-500">{c.issuer}</div>
+              </div>
+            ))}
+            <div className="text-xs italic">...type 'help' for more commands.</div>
+          </div>
+        );
+      } else if (lowerText === "education") {
+        response = "I hold a Diploma in Electronics and Telecommunication Engineering (ETE) from S. H Jondhale Polytechnic. I also completed my Senior Secondary (Science) there in 2014.";
       } else if (lowerText === "contact") {
         response = "Initiate contact securely via dhurianiket@gmail.com";
       } else if (lowerText === "case-study aegis-health-ai") {
@@ -125,6 +142,26 @@ export function ObsidianMiniBrain() {
           response = "Greetings. How can I assist you in exploring Aniket's portfolio?";
         } else if (lowerText.includes("hire") || lowerText.includes("contact")) {
           response = "You can contact Aniket directly via dhurianiket@gmail.com, or scroll down to the Contact section for more options.";
+        } else if (lowerText.includes("bhojpuri") || lowerText.includes("matru")) {
+          response = "I handled pre/post-production for the Bhojpuri film 'Matru Devo Bhava', which starred Amrapali Dubey.";
+        } else if (lowerText.includes("beerbiceps") || lowerText.includes("skillhouse")) {
+          response = "I received a special invite from BeerBiceps via Skillhouse. I have a strong background in the film industry.";
+        } else if (lowerText.includes("hobby") || lowerText.includes("hobbies") || lowerText.includes("chess") || lowerText.includes("guitar")) {
+          response = "When I'm not coding or editing, I am an enthusiastic chess player and a guitar player.";
+        } else if (lowerText.includes("school") || lowerText.includes("degree") || lowerText.includes("college") || lowerText.includes("university")) {
+          response = "I completed my Diploma in Electronics and Telecommunication Engineering at S. H Jondhale Polytechnic. I also completed my secondary education there in 2014.";
+        } else if (lowerText.includes("deoyani")) {
+          response = "I worked at Deoyani Movies as a Sr. Video Editor & Digital Marketing Specialist, managing post-production, SEO, and YouTube growth for upcoming movie releases.";
+        } else if (lowerText.includes("shelax") || lowerText.includes("dubai")) {
+          response = "I worked at Shelax Worldwide FZE in Dubai as a Sr. Video Editor and Content Manager, editing music videos, managing app content, and handling AWS uploads.";
+        } else if (lowerText.includes("corona")) {
+          response = "During the pandemic (2021), I was a Video Making/Editing Intern for the Anti Corona Task Force in Delhi, assembling footage into cohesive campaign videos.";
+        } else if (lowerText.includes("travel") || lowerText.includes("tourism") || lowerText.includes("anamika")) {
+          response = "I have experience as a Travel & Tourism Manager for Anamika Tours, where I planned long-distance expeditions and managed group logistics.";
+        } else if (lowerText.includes("certificate") || lowerText.includes("certification")) {
+          response = "I have certifications in Digital Marketing, Python, Web Development, Ethical Hacking, Adobe Illustrator, and Advanced Video Editing. Type 'certifications' for a list.";
+        } else if (lowerText.includes("cv") || lowerText.includes("resume")) {
+          response = "My core experience lies in AI/Frontend development (Aegis Health AI) and cinematic video editing/marketing. Type 'experience', 'education', or 'skills' for specifics.";
         }
       }
 

@@ -30,6 +30,16 @@ export interface Project {
   category: string;
 }
 
+export interface Certification {
+  id: string;
+  name: string;
+  issuer: string;
+  duration: string;
+  details?: string;
+  score?: string;
+  icon?: string;
+}
+
 export interface PromptChip {
   id: string;
   text: string;
