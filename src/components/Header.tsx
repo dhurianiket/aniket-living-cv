@@ -1,3 +1,4 @@
+import React from "react";
 import { useAppState, ViewMode } from "../AppStateContext";
 import { Briefcase, Rocket, Palette, Sparkles, Activity, MinusCircle } from "lucide-react";
 import { cn } from "../utils";
@@ -67,7 +68,7 @@ export function Header() {
               key={m.id}
               onClick={() => setMode(m.id)}
               className={cn(
-                "flex items-center justify-center w-10 h-10 rounded-full text-xs transition-all duration-300",
+                "flex items-center justify-center w-11 h-11 sm:w-10 sm:h-10 rounded-full text-xs transition-all duration-300",
                 mode === m.id
                   ? "bg-white/10 text-white shadow-[0_0_10px_rgba(255,255,255,0.05)]"
                   : "text-gray-500 hover:text-gray-300 hover:bg-white/5"
@@ -80,13 +81,13 @@ export function Header() {
 
         <button
             onClick={() => setReduceMotion(!reduceMotion)}
-            className="flex items-center justify-center w-10 h-10 rounded-full text-gray-500 hover:bg-white/5 transition-all"
+            className="flex items-center justify-center w-11 h-11 sm:w-10 sm:h-10 rounded-full text-gray-500 hover:bg-white/5 transition-all"
         >
           {reduceMotion ? <MinusCircle className="w-4 h-4" /> : <Activity className="w-4 h-4" />}
         </button>
         <button
             onClick={() => setScanModalOpen(true)}
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 hover:bg-brand-cyan/20 transition-all"
+            className="flex items-center justify-center w-11 h-11 sm:w-10 sm:h-10 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 hover:bg-brand-cyan/20 transition-all"
         >
           <Sparkles className="w-4 h-4" />
         </button>

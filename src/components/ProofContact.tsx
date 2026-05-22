@@ -1,6 +1,6 @@
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import { Github, Linkedin, Mail, ExternalLink, Send } from "lucide-react";
-import { useState } from "react";
 import { useContact } from "../hooks/useFirebase";
 
 export function ProofContact() {

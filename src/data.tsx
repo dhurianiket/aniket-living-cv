@@ -72,6 +72,7 @@ export const experienceData: Experience[] = [
     id: "e1",
     role: "Founder & Lead Developer",
     company: "Aegis Health AI",
+    location: "India",
     duration: "2023 - Present",
     highlights: [
       "Architected and developed a full-stack platform transforming raw medical lab reports into structured, patient-friendly summaries using Gemini models.",
@@ -195,5 +196,10 @@ export const assistantPrompts: PromptChip[] = [
     id: "a5",
     text: "Can he help with AI products?",
     response: "Absolutely. I specialize in integrating LLMs into practical tools. Whether you need an intelligent assistant, complex data parser, or automated insights engine, I know how to prompt, orchestrate, and deploy AI models reliably into production."
+  },
+  {
+    id: "a6",
+    text: "Where is he based?",
+    response: "I am based in India. I operate globally, building remote AI systems, robust full-stack applications, and scaling digital platforms for modern audiences."
   }
 ];

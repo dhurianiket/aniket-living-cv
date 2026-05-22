@@ -6,39 +6,46 @@
 import React, { Suspense } from 'react';
 import { AppStateProvider } from './AppStateContext';
 import { Header } from './components/Header';
-import { ScanModal } from './components/ScanModal';
-import { BackgroundParticles } from './components/BackgroundParticles';
 import { Hero } from './components/Hero';
-import { SkillConstellation } from './components/SkillConstellation';
-import { About } from './components/About';
-import { ExperienceTimeline } from './components/ExperienceTimeline';
-import { FeaturedProjects } from './components/FeaturedProjects';
-import { ObsidianMiniBrain } from './components/ObsidianMiniBrain';
-import { HireMe } from './components/HireMe';
-import { ProofContact } from './components/ProofContact';
-import { AchievementTicker } from './components/AchievementTicker';
-import { CaseStudyModal } from './components/CaseStudyModal';
+
+const ScanModal = React.lazy(() => import('./components/ScanModal').then(module => ({ default: module.ScanModal })));
+const BackgroundParticles = React.lazy(() => import('./components/BackgroundParticles').then(module => ({ default: module.BackgroundParticles })));
+const CaseStudyModal = React.lazy(() => import('./components/CaseStudyModal').then(module => ({ default: module.CaseStudyModal })));
+const SkillConstellation = React.lazy(() => import('./components/SkillConstellation').then(module => ({ default: module.SkillConstellation })));
+const About = React.lazy(() => import('./components/About').then(module => ({ default: module.About })));
+const ExperienceTimeline = React.lazy(() => import('./components/ExperienceTimeline').then(module => ({ default: module.ExperienceTimeline })));
+const FeaturedProjects = React.lazy(() => import('./components/FeaturedProjects').then(module => ({ default: module.FeaturedProjects })));
+const ObsidianMiniBrain = React.lazy(() => import('./components/ObsidianMiniBrain').then(module => ({ default: module.ObsidianMiniBrain })));
+const HireMe = React.lazy(() => import('./components/HireMe').then(module => ({ default: module.HireMe })));
+const ProofContact = React.lazy(() => import('./components/ProofContact').then(module => ({ default: module.ProofContact })));
+const AchievementTicker = React.lazy(() => import('./components/AchievementTicker').then(module => ({ default: module.AchievementTicker })));
 
 function AppContent() {
   return (
     <div className="min-h-screen bg-brand-black text-white relative font-sans selection:bg-brand-cyan/30 selection:text-brand-cyan">
       <Header />
-      <ScanModal />
-      <BackgroundParticles />
-      <CaseStudyModal />
+      <Suspense fallback={null}>
+        <ScanModal />
+        <BackgroundParticles />
+        <CaseStudyModal />
+      </Suspense>
       
       <main className="relative z-10 flex flex-col">
         <Hero />
-        <SkillConstellation />
-        <About />
-        <ExperienceTimeline />
-        <FeaturedProjects />
-        <ObsidianMiniBrain />
-        <HireMe />
-        <ProofContact />
+        <Suspense fallback={<div className="min-h-[50vh]" />}>
+          <SkillConstellation />
+          <About />
+          <ExperienceTimeline />
+          <FeaturedProjects />
+          <ObsidianMiniBrain />
+          <HireMe />
+          <ProofContact />
+        </Suspense>
       </main>
       
-      <AchievementTicker />
+      <Suspense fallback={null}>
+        <AchievementTicker />
+      </Suspense>
       
       <footer className="relative z-10 py-12 pb-24 text-center border-t border-white/5 bg-brand-black flex flex-col items-center gap-6">
         <div className="flex items-center justify-center gap-4 sm:gap-6">

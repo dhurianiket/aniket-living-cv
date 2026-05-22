@@ -17,13 +17,13 @@ export function About() {
           transition={{ duration: 0.8 }}
           className="flex-1 space-y-8"
         >
-          <h2 className="font-display text-4xl font-bold tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight">
             The <span className="text-gradient-violet">Architecture</span> of<br/>a Builder.
           </h2>
           
-          <div className="space-y-6 text-gray-300 font-sans leading-relaxed text-lg">
+          <div className="space-y-6 text-gray-300 font-sans leading-relaxed text-base sm:text-lg">
             <p>
-              I am Aniket Dhuri. I operate at the intersection of complex software engineering and high-end creative storytelling. 
+              I am Aniket Dhuri, a Product Manager and GenAI Specialist based in India. I operate at the intersection of complex software engineering and high-end creative storytelling. 
               As a solo founder, I don't just write code—I build products that solve real, painful problems.
             </p>
             <p className={cn("transition-all duration-500", mode === "founder" && "text-brand-cyan")}>

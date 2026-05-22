@@ -164,9 +164,9 @@ export function ObsidianMiniBrain() {
                 <span className="hidden sm:inline-block font-mono text-xs text-brand-cyan tracking-widest">SYSTEM.ONLINE</span>
                 <button
                   onClick={() => setMiniBrainOpen(false)}
-                  className="p-2 text-gray-500 hover:text-white hover:bg-white/10 rounded-full transition-colors flex-shrink-0"
+                  className="p-3 bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white rounded-full transition-colors flex-shrink-0"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-6 h-6" />
                 </button>
               </div>
             </div>
@@ -235,9 +235,9 @@ export function ObsidianMiniBrain() {
                 <button
                   type="submit"
                   disabled={!inputVal.trim()}
-                  className="absolute right-2 p-2 text-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="absolute right-2 p-3 text-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  <Send className="w-5 h-5" />
+                  <Send className="w-6 h-6" />
                 </button>
               </form>
             </div>

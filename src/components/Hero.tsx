@@ -59,9 +59,9 @@ export function Hero() {
           and <span className={cn("transition-colors", mode === "creative" ? "text-gradient-cyan" : "text-gradient-violet")}>creative tech.</span>
         </h1>
         
-        <p className="font-sans text-lg sm:text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
-          I'm <span className="text-white font-medium">Aniket Dhuri</span> — a solo founder, full-stack AI builder, and digital strategist. 
-          I architect platforms like Aegis Health AI and craft high-end interactive systems.
+        <p className="font-sans text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mb-8 sm:mb-10 leading-relaxed">
+          I'm <span className="text-white font-medium">Aniket Dhuri</span> — a <span className="text-brand-cyan">Product Manager</span>, <span className="text-brand-violet">GenAI Specialist</span>, and solo founder based in India. 
+          I architect intelligent platforms like Aegis Health AI and craft high-end interactive systems.
         </p>
 
         <div className="flex flex-wrap gap-4 font-mono text-sm">

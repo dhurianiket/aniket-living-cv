@@ -43,12 +43,17 @@ export function CaseStudyModal() {
 
             <div className="p-6 sm:p-10 space-y-12 flex-1 overflow-y-auto hide-scrollbar z-0 relative">
               
-              {/* Image Placeholder */}
-              <div className="w-full aspect-video rounded-xl bg-gradient-to-br from-brand-cyan/20 to-brand-violet/20 border border-white/10 relative overflow-hidden flex items-center justify-center group">
-                <div className="absolute inset-0 bg-brand-black/40 group-hover:bg-brand-black/20 transition-colors" />
-                <div className="relative z-10 text-center space-y-2">
+              {/* Image / Video Placeholder */}
+              <div className="w-full aspect-video rounded-xl bg-gradient-to-br from-brand-cyan/20 to-brand-violet/20 border border-white/10 relative overflow-hidden flex items-center justify-center group relative z-10">
+                {/* 
+                  When adding the actual demo video, ensure you use the playsInline attribute:
+                  <video src="/demo.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> 
+                */}
+                <div className="absolute inset-0 bg-brand-black/40 group-hover:bg-brand-black/20 transition-colors pointer-events-none" />
+                <div className="relative z-10 text-center space-y-2 pointer-events-none">
                   <LayoutTemplate className="w-12 h-12 text-brand-cyan mx-auto opacity-80" />
-                  <p className="font-mono text-sm text-brand-cyan tracking-widest">DASHBOARD INTERFACE REVEAL</p>
+                  <p className="font-mono text-sm text-brand-cyan tracking-widest px-4">DASHBOARD INTERFACE REVEAL</p>
+                  <p className="font-mono text-xs text-gray-500 uppercase">Video will play inline on mobile</p>
                 </div>
               </div>
 
