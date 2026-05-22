@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { AppStateProvider } from './AppStateContext';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -21,33 +21,53 @@ const HireMe = React.lazy(() => import('./components/HireMe').then(module => ({ 
 const ProofContact = React.lazy(() => import('./components/ProofContact').then(module => ({ default: module.ProofContact })));
 const AchievementTicker = React.lazy(() => import('./components/AchievementTicker').then(module => ({ default: module.AchievementTicker })));
 
+// Defer component rendering until after initial paint to speed up initial load
+function Deferred({ children }: { children: React.ReactNode }) {
+  const [shouldRender, setShouldRender] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setShouldRender(true), 500); // Wait 500ms before mounting heavy sections
+    return () => clearTimeout(timer);
+  }, []);
+  return shouldRender ? <>{children}</> : <div className="min-h-screen" />;
+}
+
 function AppContent() {
   return (
     <div className="min-h-screen bg-brand-black text-white relative font-sans selection:bg-brand-cyan/30 selection:text-brand-cyan">
       <Header />
-      <Suspense fallback={null}>
-        <ScanModal />
-        <BackgroundParticles />
-        <CaseStudyModal />
-      </Suspense>
+      
+      {/* Background Particles deferred */}
+      <Deferred>
+        <Suspense fallback={null}>
+          <ScanModal />
+          <BackgroundParticles />
+          <CaseStudyModal />
+        </Suspense>
+      </Deferred>
       
       <main className="relative z-10 flex flex-col">
         <Hero />
-        <Suspense fallback={<div className="min-h-[50vh]" />}>
-          <SkillConstellation />
-          <About />
-          <ExperienceTimeline />
-          <Certifications />
-          <FeaturedProjects />
-          <ObsidianMiniBrain />
-          <HireMe />
-          <ProofContact />
-        </Suspense>
+        
+        {/* Main Content deferred to prioritize Hero loading */}
+        <Deferred>
+          <Suspense fallback={<div className="min-h-[50vh]" />}>
+            <SkillConstellation />
+            <About />
+            <ExperienceTimeline />
+            <Certifications />
+            <FeaturedProjects />
+            <ObsidianMiniBrain />
+            <HireMe />
+            <ProofContact />
+          </Suspense>
+        </Deferred>
       </main>
       
-      <Suspense fallback={null}>
-        <AchievementTicker />
-      </Suspense>
+      <Deferred>
+        <Suspense fallback={null}>
+          <AchievementTicker />
+        </Suspense>
+      </Deferred>
       
       <footer className="relative z-10 py-12 pb-24 text-center border-t border-white/5 bg-brand-black flex flex-col items-center gap-6">
         <div className="flex items-center justify-center gap-4 sm:gap-6">
