@@ -36,6 +36,9 @@ export function About() {
               and digital strategy for global brands across Mumbai and Dubai. I know how to make things work flawlessly under the hood, 
               and I know how to make them visually compelling on the surface.
             </p>
+            <p>
+              My academic foundation includes a <strong className="text-white">Diploma in Electronics and Telecommunication Engineering</strong>, combined with diverse certifications across Digital Marketing, Ethical Hacking, Python, Full-Stack Development, and Advanced Video Editing, giving me a multidimensional approach to complex problem-solving.
+            </p>
           </div>
         </motion.div>
 

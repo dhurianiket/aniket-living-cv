@@ -3,10 +3,10 @@ import { motion, useScroll, useTransform } from "motion/react";
 const achievements = [
   "🚀 Shipped MVP of Aegis Health AI in testing phase",
   "🧠 Integrated Google Gemini for Clinical Document Parsing",
-  "🎥 5+ Years Directing Cinematic Media & Digital Strategy",
+  "🎥 Pre/post-production for Bhojpuri film 'Matru Devo Bhava'",
+  "✉️ Special invite from BeerBiceps via Skillhouse",
   "⚡ Built Scalable React & Firebase Architectures",
-  "⚙️ Automated 15+ hrs/wk of Workflow Systems",
-  "📈 Boosted Organic Growth through targeted SEO Strategy",
+  "🎸 Guitar Player & Enthusiastic Chess Player",
 ];
 
 export function AchievementTicker() {

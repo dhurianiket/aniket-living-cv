@@ -3,67 +3,67 @@ import { Experience, Project, PromptChip, Skill } from "./types";
 export const skillsData: Skill[] = [
   {
     id: "s1",
-    name: "React & TypeScript",
+    name: "Frontend UI/UX",
     category: "AI / Development",
-    description: "Building scalable, interactive, and responsive frontend architectures.",
-    tools: ["React", "TypeScript", "Vite", "Tailwind CSS"],
-    level: 95,
+    description: "Building responsive architectures with modern and standard web technologies.",
+    tools: ["HTML", "CSS", "Bootstrap", "React", "Tailwind CSS"],
+    level: 90,
   },
   {
     id: "s2",
-    name: "Firebase & Backend",
+    name: "Backend & CMS",
     category: "AI / Development",
-    description: "Designing real-time databases and secure backend systems.",
-    tools: ["Firestore", "Firebase Auth", "Cloud Functions", "Node.js"],
-    level: 85,
+    description: "Designing database structures and managing content platforms.",
+    tools: ["PHP", "MySQL", "WordPress", "Firebase"],
+    level: 80,
   },
   {
     id: "s3",
-    name: "LLM Orchestration",
+    name: "AI & Vibe Coding",
     category: "AI / Development",
-    description: "Integrating LLMs to extract, structure, and synthesize complex unstructured data.",
-    tools: ["Google Gemini", "OpenAI", "Prompt Engineering"],
+    description: "Integrating Generative AI tools and orchestrating LLMs.",
+    tools: ["Generative AI Tools", "AI Video Generation", "AI Image Generation", "Google Gemini", "Vibe Coding"],
     level: 90,
   },
   {
     id: "s4",
-    name: "Medical Informatics",
-    category: "Healthcare Tech",
-    description: "Structuring medical lab reports into readable, actionable insights.",
-    tools: ["HL7/FHIR Concepts", "Data Parsing", "Aegis Health AI"],
-    level: 80,
+    name: "Cybersecurity",
+    category: "Automation / Systems",
+    description: "Security assessment and vulnerability testing.",
+    tools: ["Ethical Hacking", "Web VAPT", "OWASP"],
+    level: 75,
   },
   {
     id: "s5",
     name: "Video Editing",
     category: "Multimedia / Design",
     description: "High-end cinematic video editing, motion graphics, and post-production.",
-    tools: ["Premiere Pro", "After Effects", "DaVinci Resolve"],
+    tools: ["Adobe Premiere Pro", "Adobe After Effects", "Video Editing"],
     level: 95,
   },
   {
     id: "s6",
-    name: "Creative Direction",
+    name: "Graphic Design & Animation",
     category: "Multimedia / Design",
-    description: "Crafting compelling visual narratives and brand stories.",
-    tools: ["Figma", "Photoshop", "Storyboarding"],
+    description: "Crafting compelling visual narratives, animations, and vector graphics.",
+    tools: ["Adobe Photoshop", "Adobe Illustrator", "Animation"],
     level: 90,
   },
   {
     id: "s7",
-    name: "SEO & Digital Strategy",
-    category: "Marketing / Growth",
-    description: "Driving organic growth through keyword optimization and content architectures.",
-    tools: ["Ahrefs", "Google Analytics", "YouTube SEO"],
-    level: 85,
+    name: "3D Modeling",
+    category: "Multimedia / Design",
+    description: "Creating 3D environments, assets, and visual effects.",
+    tools: ["Blender 3D", "Cinema 4D"],
+    level: 80,
   },
   {
     id: "s8",
-    name: "Workflow Automation",
-    category: "Automation / Systems",
-    description: "Connecting discrete tools to build highly efficient, hands-off business processes.",
-    tools: ["Zapier", "Make", "Custom Scripts"],
-    level: 80,
+    name: "Additional Skills",
+    category: "Marketing / Growth",
+    description: "Diverse set of technical and creative abilities.",
+    tools: ["Music", "Digital Marketing", "SEO"],
+    level: 85,
   },
 ];
 
@@ -73,7 +73,7 @@ export const experienceData: Experience[] = [
     role: "Founder & Lead Developer",
     company: "Aegis Health AI",
     location: "India",
-    duration: "2023 - Present",
+    duration: "May 2026 - Present",
     highlights: [
       "Architected and developed a full-stack platform transforming raw medical lab reports into structured, patient-friendly summaries using Gemini models.",
       "Built a secure, real-time backend with Firebase and designed a responsive, interactive React/Vite frontend.",
@@ -85,34 +85,35 @@ export const experienceData: Experience[] = [
     role: "Sr. Video Editor & Digital Marketing Specialist",
     company: "Deoyani Movies",
     location: "Mumbai",
-    duration: "2021 - 2023",
+    duration: "Jun 2024 - Jan 2026",
     highlights: [
-      "Directed end-to-end video production, elevating brand visual identity across multiple campaigns.",
-      "Implemented SEO and digital marketing strategies that increased organic engagement.",
-      "Managed multimedia assets and optimized digital delivery pipelines."
+      "Managed post-production and delivery, spearheading end-to-end video editing workflows for films and promos.",
+      "Developed and executed digital strategy and social media marketing campaigns, scaling YouTube growth through SEO.",
+      "Partnered with production teams to align digital marketing initiatives with promotional goals."
     ]
   },
   {
     id: "e3",
     role: "Sr. Video Editor & Content Manager",
     company: "Shelax Worldwide FZE",
-    location: "Dubai",
-    duration: "2019 - 2021",
+    location: "Dubai - UAE, Virtual",
+    duration: "Dec 2021 - May 2024",
     highlights: [
-      "Led video content creation for a global audience, editing high-impact promotional materials.",
-      "Managed content strategy and distribution across international social platforms.",
-      "Collaborated with cross-functional teams to align video creative with broader marketing KPIs."
+      "Edited music videos and worked on audio quality improvements in existing videos.",
+      "Managed content for the app and transcribed files for the platform.",
+      "Uploaded and managed content on AWS servers for global distribution."
     ]
   },
   {
     id: "e4",
     role: "Video Making/Editing Intern",
     company: "Anti Corona Task Force",
-    location: "Delhi",
-    duration: "2020 - 2021",
+    location: "Delhi, Virtual",
+    duration: "May 2021 - Aug 2021",
     highlights: [
-      "Produced awareness campaigns and informational videos rapidly during a global crisis.",
-      "Streamlined remote editing workflows under tight deadlines."
+      "Took raw footage shot by a film crew and director and turned it into the final cohesive video or film.",
+      "Followed outlines, scripts, or shot lists to assemble footage.",
+      "Inputted graphics to enhance footage and final video quality."
     ]
   },
   {
@@ -120,10 +121,11 @@ export const experienceData: Experience[] = [
     role: "Travel & Tourism Manager",
     company: "Anamika Tours",
     location: "Mumbai",
-    duration: "2017 - 2019",
+    duration: "Jan 2018 - Present",
     highlights: [
-      "Designed and managed complex travel itineraries and logistical operations.",
-      "Led customer experience resulting in high retention and referral rates."
+      "Planned and conducted long distance expeditions, travel, and tours for groups or individuals.",
+      "Ensured travel ran smoothly from venue to venue without issues.",
+      "Verified the quality and amount of equipment prior to expeditions."
     ]
   }
 ];
