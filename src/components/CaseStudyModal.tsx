@@ -8,7 +8,7 @@ export function CaseStudyModal() {
   return (
     <AnimatePresence>
       {isCaseStudyOpen && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-8">
+        <div className="fixed inset-0 z-[110] flex items-end sm:items-center justify-center sm:p-8">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -21,10 +21,10 @@ export function CaseStudyModal() {
             initial={reduceMotion ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto hide-scrollbar glass-panel border-white/10 rounded-2xl shadow-2xl bg-brand-black hide-scrollbar"
+            className="relative w-full max-w-5xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto hide-scrollbar glass-panel border-white/10 rounded-t-3xl sm:rounded-2xl shadow-2xl bg-brand-black flex flex-col"
           >
             {/* Header Sticky */}
-            <div className="sticky top-0 z-10 px-6 sm:px-10 py-6 border-b border-white/10 bg-brand-black/80 backdrop-blur-md flex justify-between items-center">
+            <div className="sticky top-0 z-20 px-5 sm:px-10 py-5 sm:py-6 border-b border-white/10 bg-brand-black/90 backdrop-blur-md flex justify-between items-center shrink-0">
               <div>
                 <span className="font-mono text-xs tracking-widest text-brand-green uppercase bg-brand-green/10 px-2 py-1 rounded inline-block mb-2">
                   CASE STUDY
@@ -41,7 +41,7 @@ export function CaseStudyModal() {
               </button>
             </div>
 
-            <div className="p-6 sm:p-10 space-y-12">
+            <div className="p-6 sm:p-10 space-y-12 flex-1 overflow-y-auto hide-scrollbar z-0 relative">
               
               {/* Image Placeholder */}
               <div className="w-full aspect-video rounded-xl bg-gradient-to-br from-brand-cyan/20 to-brand-violet/20 border border-white/10 relative overflow-hidden flex items-center justify-center group">

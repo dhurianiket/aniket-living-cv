@@ -4,7 +4,7 @@ import { cn } from "../utils";
 import { useAppState } from "../AppStateContext";
 
 export function Hero() {
-  const { mode, setCaseStudyOpen, reduceMotion } = useAppState();
+  const { mode, setCaseStudyOpen, setMiniBrainOpen, reduceMotion } = useAppState();
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -23,12 +23,12 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-center px-6 sm:px-12 xl:px-24 pt-20 z-10 overflow-hidden">
+    <section id="hero" className="relative min-h-[100svh] flex flex-col justify-center px-6 sm:px-12 xl:px-24 pt-24 pb-24 z-10 overflow-hidden">
       
       {/* Hero Ambient Glow */}
       <motion.div 
         className={cn(
-          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] blur-[200px] rounded-full pointer-events-none -z-10 transition-colors duration-1000",
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] blur-[100px] md:blur-[200px] rounded-full pointer-events-none -z-10 transition-colors duration-1000",
           mode === "creative" || mode === "founder" ? "bg-brand-violet/20" : "bg-brand-cyan/20"
         )}
         animate={reduceMotion ? { opacity: 0.5, scale: 1 } : { 
@@ -54,7 +54,7 @@ export function Hero() {
           <span>INITIALIZING PROFILE...</span>
         </motion.div>
 
-        <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[1.1] transition-all">
+        <h1 className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[1.1] transition-all">
           I build <span className={cn("transition-colors", mode === "creative" ? "text-gradient-violet" : "text-gradient-cyan")}>Intelligent systems</span><br />
           and <span className={cn("transition-colors", mode === "creative" ? "text-gradient-cyan" : "text-gradient-violet")}>creative tech.</span>
         </h1>
@@ -86,10 +86,29 @@ export function Hero() {
           </button>
           
           <button 
-            onClick={() => scrollTo("assistant")}
-            className="px-6 py-3 glass-panel text-white rounded-md glass-panel-hover transition-all"
+            onClick={() => setMiniBrainOpen(true)}
+            className="group relative px-6 py-3 rounded-md overflow-hidden glass-panel border-white/5 hover:border-brand-violet/30 hover:shadow-[0_0_20px_rgba(138,43,226,0.2)] hover:bg-brand-violet/5 transition-all duration-300 flex items-center gap-3"
           >
-            Talk to the Mini Brain
+             <motion.div
+               animate={reduceMotion ? {} : { y: [0, -3, 0] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+             >
+                <div className="relative w-5 h-5 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-brand-violet/30 blur-[8px] rounded-full group-hover:bg-brand-cyan/40 transition-colors duration-500" />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="relative z-10 transition-transform duration-500 group-hover:rotate-[15deg] group-hover:scale-110">
+                    <path d="M12 2L18 9L12 22L6 9L12 2Z" fill="rgba(138,43,226,0.3)" stroke="url(#obsidian-gradient-hero)" strokeWidth="1.5" strokeLinejoin="round"/>
+                    <path d="M12 2L15 9L12 22M12 2L9 9L12 22M6 9H18" stroke="url(#obsidian-gradient-hero)" strokeWidth="1" strokeOpacity="0.7" strokeLinejoin="round"/>
+                    <defs>
+                      <linearGradient id="obsidian-gradient-hero" x1="6" y1="2" x2="18" y2="22" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#00f0ff" />
+                        <stop offset="0.5" stopColor="#8a2be2" />
+                        <stop offset="1" stopColor="#00ff66" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+             </motion.div>
+             <span className="font-mono text-sm tracking-widest text-gray-300 group-hover:text-white transition-colors duration-300 uppercase relative z-10">Mini Brain</span>
           </button>
         </div>
       </motion.div>
@@ -98,7 +117,7 @@ export function Hero() {
         initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className={cn("absolute bottom-10 left-6 sm:left-12 xl:left-24 flex items-center gap-2 text-gray-500 font-mono text-xs tracking-widest cursor-pointer hover:text-white transition-colors", !reduceMotion && "animate-pulse")}
+        className={cn("absolute bottom-6 sm:bottom-10 left-1/2 sm:left-12 xl:left-24 -translate-x-1/2 sm:translate-x-0 flex items-center gap-2 text-gray-500 font-mono text-xs tracking-widest cursor-pointer hover:text-white transition-colors whitespace-nowrap", !reduceMotion && "animate-pulse")}
         onClick={() => scrollTo("skills")}
       >
         <span>SCROLL TO EXPLORE</span>

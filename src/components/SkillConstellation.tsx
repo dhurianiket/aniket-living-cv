@@ -120,8 +120,8 @@ export function SkillConstellation() {
             ))}
           </div>
 
-          {/* Details Panel */}
-          <div className="lg:w-[400px] xl:w-[500px] relative">
+          {/* Details Panel - Shows first on mobile if a skill is active */}
+          <div className="w-full lg:w-[400px] xl:w-[500px] relative order-first lg:order-last min-h-[300px]">
              {activeSkill ? (
               <motion.div
                 key={activeSkill.id}

@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import { useAppState } from "../AppStateContext";
+import { useScanLog } from "../hooks/useFirebase";
 import { X, CheckCircle2, ScanFace, Target, Zap, Briefcase } from "lucide-react";
 
 const scanData = {
@@ -32,10 +33,13 @@ const scanData = {
 
 export function ScanModal() {
   const { mode, isScanModalOpen, setScanModalOpen, reduceMotion } = useAppState();
+  const { recordScan } = useScanLog();
   const [scanning, setScanning] = useState(true);
 
   useEffect(() => {
     if (isScanModalOpen) {
+      recordScan(mode, JSON.stringify(scanData[mode]));
+      
       if (reduceMotion) {
         setScanning(false);
         return;
@@ -51,7 +55,7 @@ export function ScanModal() {
   return (
     <AnimatePresence>
       {isScanModalOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center sm:p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -64,22 +68,22 @@ export function ScanModal() {
             initial={reduceMotion ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-2xl glass-panel border-white/10 rounded-2xl overflow-hidden shadow-2xl bg-brand-black/95"
+            className="relative w-full max-w-2xl max-h-[85vh] sm:max-h-[90vh] glass-panel border-white/10 rounded-t-3xl sm:rounded-2xl overflow-y-auto shadow-2xl bg-brand-black/95 flex flex-col"
           >
-            <div className="px-6 py-4 border-b border-white/5 flex justify-between items-center bg-white/5">
+            <div className="px-5 sm:px-6 py-4 border-b border-white/5 flex justify-between items-center bg-white/5 sticky top-0 z-10 backdrop-blur-md">
               <div className="flex items-center gap-3 text-brand-cyan">
                 <ScanFace className="w-5 h-5" />
                 <span className="font-mono text-sm tracking-widest uppercase">Profile Analysis : {mode}</span>
               </div>
               <button 
                 onClick={() => setScanModalOpen(false)}
-                className="p-1 hover:bg-white/10 rounded-md transition-colors text-gray-400 hover:text-white"
+                className="p-2 hover:bg-white/10 rounded-md transition-colors text-gray-400 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="p-8 relative min-h-[300px]">
+            <div className="p-6 sm:p-8 relative min-h-[300px] flex-1 overflow-y-auto">
               {scanning ? (
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <motion.div 

@@ -9,6 +9,8 @@ interface AppStateContextType {
   setScanModalOpen: (open: boolean) => void;
   isCaseStudyOpen: boolean;
   setCaseStudyOpen: (open: boolean) => void;
+  isMiniBrainOpen: boolean;
+  setMiniBrainOpen: (open: boolean) => void;
   reduceMotion: boolean;
   setReduceMotion: (reduce: boolean) => void;
 }
@@ -19,6 +21,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<ViewMode>("default");
   const [isScanModalOpen, setScanModalOpen] = useState(false);
   const [isCaseStudyOpen, setCaseStudyOpen] = useState(false);
+  const [isMiniBrainOpen, setMiniBrainOpen] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
@@ -39,6 +42,8 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         setScanModalOpen,
         isCaseStudyOpen,
         setCaseStudyOpen,
+        isMiniBrainOpen,
+        setMiniBrainOpen,
         reduceMotion,
         setReduceMotion,
       }}

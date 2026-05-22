@@ -1,0 +1,58 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // ----- Public Read, Admin Write -----
+    // Feature flags and future dynamic content like featured projects
+    match /featureFlags/{flagId} {
+      allow read: if true;
+      allow write: if false; // Only admin via SDK or console
+    }
+
+    // ----- Public Append Only (Controlled Writes) -----
+    
+    // Visitor Activity / Analytics
+    match /analytics/{docId} {
+      allow read: if false; // Only admin can read
+      allow create: if
+        request.resource.data.keys().hasOnly(['event', 'timestamp', 'userAgent', 'metadata']) &&
+        request.resource.data.keys().hasAll(['event', 'timestamp', 'userAgent']) &&
+        request.resource.data.event is string && request.resource.data.event.size() <= 100 &&
+        request.resource.data.userAgent is string && request.resource.data.userAgent.size() <= 300 &&
+        request.resource.data.timestamp == request.time &&
+        (request.resource.data.keys().hasAll(['metadata']) == false || request.resource.data.metadata is map);
+      allow update, delete: if false;
+    }
+
+    // Contact Form Submissions
+    match /contacts/{contactId} {
+      allow read: if false; // Only admin can read
+      allow create: if 
+        request.resource.data.keys().hasOnly(['email', 'message', 'createdAt']) &&
+        request.resource.data.keys().hasAll(['email', 'message', 'createdAt']) &&
+        request.resource.data.email is string && request.resource.data.email.size() <= 200 &&
+        request.resource.data.email.matches('^[^@]+@[^@]+\\.[a-zA-Z]{2,}$') &&
+        request.resource.data.message is string && request.resource.data.message.size() <= 5000 &&
+        request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+
+    // Scan Profile Data / AI Insights
+    match /scans/{scanId} {
+      allow read: if false; // Only admin
+      allow create: if 
+        request.resource.data.keys().hasOnly(['mode', 'scanResult', 'createdAt']) &&
+        request.resource.data.keys().hasAll(['mode', 'scanResult', 'createdAt']) &&
+        request.resource.data.mode is string && request.resource.data.mode.size() <= 50 &&
+        request.resource.data.scanResult is string && request.resource.data.scanResult.size() <= 2000 &&
+        request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+  }
+}

@@ -61,12 +61,12 @@ export function FeaturedProjects() {
                       <span className="font-mono text-xs tracking-widest text-brand-cyan uppercase bg-brand-cyan/5 px-2 py-1 rounded inline-block mb-3">
                         {project.category}
                       </span>
-                      <h3 className="font-display text-3xl font-bold text-white group-hover:text-brand-cyan transition-colors">
+                      <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-brand-cyan transition-colors">
                         {project.title}
                       </h3>
                     </div>
                     {project.link && (
-                      <a href={project.link} className="p-2 rounded-full bg-white/5 hover:bg-brand-cyan hover:text-black transition-colors">
+                      <a href={project.link} className="p-3 rounded-full bg-white/5 hover:bg-brand-cyan hover:text-black transition-colors shrink-0">
                         <ArrowUpRight className="w-5 h-5" />
                       </a>
                     )}
