@@ -127,7 +127,7 @@ export function ObsidianMiniBrain() {
       } else if (lowerText === "education") {
         response = "I hold a Diploma in Electronics and Telecommunication Engineering (ETE) from S. H Jondhale Polytechnic. I also completed my Senior Secondary (Science) there in 2014.";
       } else if (lowerText === "contact") {
-        response = "Initiate contact securely via dhurianiket@gmail.com";
+        response = "Initiate contact securely via dhurianiket@gmail.com (Personal) or aniket@aegishealthai.co.in (Work)";
       } else if (lowerText === "case-study aegis-health-ai") {
         response = "Opening secure case file...";
         setMiniBrainOpen(false);
@@ -141,7 +141,7 @@ export function ObsidianMiniBrain() {
         } else if (lowerText.includes("hello") || lowerText.includes("hi")) {
           response = "Greetings. How can I assist you in exploring Aniket's portfolio?";
         } else if (lowerText.includes("hire") || lowerText.includes("contact")) {
-          response = "You can contact Aniket directly via dhurianiket@gmail.com, or scroll down to the Contact section for more options.";
+          response = "You can contact Aniket directly via dhurianiket@gmail.com, aniket@aegishealthai.co.in, or via the Contact section below.";
         } else if (lowerText.includes("bhojpuri") || lowerText.includes("matru")) {
           response = "I handled pre/post-production for the Bhojpuri film 'Matru Devo Bhava', which starred Amrapali Dubey.";
         } else if (lowerText.includes("beerbiceps") || lowerText.includes("skillhouse")) {
