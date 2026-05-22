@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "aegis-health-app-90697"
+  },
+  "targets": {
+    "aegis-health-app-90697": {
+      "hosting": {
+        "cv": [
+          "aniket-living-cv"
+        ]
+      }
+    }
   }
 }

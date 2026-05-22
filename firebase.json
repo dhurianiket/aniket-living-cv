@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "aniket-cv",
+    "target": "cv",
     "public": "dist",
     "ignore": [
       "firebase.json",
