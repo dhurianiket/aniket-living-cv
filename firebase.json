@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "aniket-cv",
     "public": "dist",
     "ignore": [
       "firebase.json",
