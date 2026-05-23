@@ -85,7 +85,7 @@ function AppContent() {
              A
           </a>
         </div>
-        <p className="text-xs font-mono text-gray-500 uppercase tracking-widest">
+        <p className="text-xs font-mono text-gray-400 uppercase tracking-widest">
           &copy; {new Date().getFullYear()} Aniket Dhuri. All systems nominal.
         </p>
       </footer>

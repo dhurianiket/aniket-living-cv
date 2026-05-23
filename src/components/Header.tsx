@@ -26,6 +26,7 @@ export function Header() {
             <button
               key={m.id}
               onClick={() => setMode(m.id)}
+              aria-label={`Switch to ${m.label} mode`}
               className={cn(
                 "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono transition-all duration-300",
                 mode === m.id
@@ -45,6 +46,7 @@ export function Header() {
         <button
           onClick={() => setReduceMotion(!reduceMotion)}
           title={reduceMotion ? "Enable Motion" : "Reduce Motion"}
+          aria-label={reduceMotion ? "Enable Motion" : "Reduce Motion"}
           className="flex items-center justify-center p-2 rounded-full text-gray-500 hover:text-gray-300 hover:bg-white/5 transition-all"
         >
           {reduceMotion ? <MinusCircle className="w-4 h-4" /> : <Activity className="w-4 h-4" />}
@@ -52,6 +54,7 @@ export function Header() {
 
         <button
           onClick={() => setScanModalOpen(true)}
+          aria-label="Scan Profile"
           className="flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 hover:bg-brand-cyan/20 transition-all hover:shadow-[0_0_15px_rgba(0,240,255,0.2)]"
         >
           <Sparkles className="w-4 h-4" />
@@ -66,6 +69,7 @@ export function Header() {
             <button
               key={m.id}
               onClick={() => setMode(m.id)}
+              aria-label={`Switch to ${m.label} mode`}
               className={cn(
                 "flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-xs transition-all duration-300",
                 mode === m.id
@@ -80,12 +84,14 @@ export function Header() {
 
         <button
             onClick={() => setReduceMotion(!reduceMotion)}
+            aria-label={reduceMotion ? "Enable Motion" : "Reduce Motion"}
             className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-gray-500 hover:bg-white/5 transition-all"
         >
           {reduceMotion ? <MinusCircle className="w-4 h-4" /> : <Activity className="w-4 h-4" />}
         </button>
         <button
             onClick={() => setScanModalOpen(true)}
+            aria-label="Scan Profile"
             className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 hover:bg-brand-cyan/20 transition-all"
         >
           <Sparkles className="w-4 h-4" />

@@ -133,7 +133,7 @@ export function ProofContact() {
           </div>
 
           <div className="mt-12 pt-8 border-t border-white/5">
-            <div className="text-xs font-mono tracking-widest text-gray-600 uppercase">
+            <div className="text-xs font-mono tracking-widest text-gray-400 uppercase">
               STATUS: <span className="text-brand-green">AVAILABLE FOR OPPORTUNITIES</span>
             </div>
           </div>

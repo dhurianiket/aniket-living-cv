@@ -163,7 +163,7 @@ export function SkillConstellation() {
                 </div>
               </motion.div>
              ) : (
-              <div className="glass-panel p-8 rounded-xl h-full border-white/5 flex items-center justify-center text-gray-500 font-mono text-sm text-center">
+              <div className="glass-panel p-8 rounded-xl h-full border-white/5 flex items-center justify-center text-gray-400 font-mono text-sm text-center">
                 Select a node to view its neural data.
               </div>
              )}
