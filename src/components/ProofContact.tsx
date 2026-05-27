@@ -109,6 +109,7 @@ export function ProofContact() {
                 <input 
                   type="email" 
                   name="email"
+                  aria-label="Email address"
                   placeholder="your@email.com" 
                   required
                   className="w-full bg-white/5 border border-white/10 rounded-lg p-3 sm:p-4 focus:outline-none focus:border-brand-cyan/50 focus:ring-1 focus:ring-brand-cyan/50 text-white font-sans text-sm transition-all"
@@ -117,6 +118,7 @@ export function ProofContact() {
               <div>
                 <textarea 
                   name="message"
+                  aria-label="Message content"
                   placeholder="Initiate transmission..." 
                   required
                   className="w-full bg-white/5 border border-white/10 rounded-lg p-3 sm:p-4 min-h-[100px] focus:outline-none focus:border-brand-cyan/50 focus:ring-1 focus:ring-brand-cyan/50 text-white font-sans text-sm transition-all resize-y"

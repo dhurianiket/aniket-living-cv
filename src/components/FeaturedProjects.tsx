@@ -1,11 +1,11 @@
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Cpu } from "lucide-react";
 import { projectsData } from "../data";
 import { useAppState } from "../AppStateContext";
 import { cn } from "../utils";
 
 export function FeaturedProjects() {
-  const { mode, reduceMotion } = useAppState();
+  const { mode, reduceMotion, setCaseStudyOpen } = useAppState();
 
   const sortedProjects = [...projectsData].sort((a, b) => {
     if (mode === "recruiter") {
@@ -85,6 +85,14 @@ export function FeaturedProjects() {
                       <h4 className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-1">Impact</h4>
                       <p className="text-white text-sm font-medium">{project.result}</p>
                     </div>
+                    {project.id === "p1" && (
+                      <button
+                        onClick={() => setCaseStudyOpen(true)}
+                        className="mt-4 px-4 py-2 bg-brand-violet/10 hover:bg-brand-violet/20 border border-brand-violet/35 hover:border-brand-cyan/50 text-brand-cyan rounded-lg text-xs font-mono self-start flex items-center gap-1.5 transition-all duration-300 shadow-[0_0_15px_rgba(138,43,226,0.1)] cursor-pointer"
+                      >
+                        <Cpu className="w-3.5 h-3.5 text-brand-cyan" /> Playbook &amp; Architecture Manual
+                      </button>
+                    )}
                   </div>
 
                   <div className="pt-6 border-t border-white/10 flex flex-wrap gap-2 mt-auto">

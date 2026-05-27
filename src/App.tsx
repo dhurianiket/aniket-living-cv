@@ -16,6 +16,7 @@ const About = React.lazy(() => import('./components/About').then(module => ({ de
 const ExperienceTimeline = React.lazy(() => import('./components/ExperienceTimeline').then(module => ({ default: module.ExperienceTimeline })));
 const Certifications = React.lazy(() => import('./components/Certifications').then(module => ({ default: module.Certifications })));
 const FeaturedProjects = React.lazy(() => import('./components/FeaturedProjects').then(module => ({ default: module.FeaturedProjects })));
+const SelectedWriting = React.lazy(() => import('./components/SelectedWriting').then(module => ({ default: module.SelectedWriting })));
 const ObsidianMiniBrain = React.lazy(() => import('./components/ObsidianMiniBrain').then(module => ({ default: module.ObsidianMiniBrain })));
 const HireMe = React.lazy(() => import('./components/HireMe').then(module => ({ default: module.HireMe })));
 const ProofContact = React.lazy(() => import('./components/ProofContact').then(module => ({ default: module.ProofContact })));
@@ -56,6 +57,7 @@ function AppContent() {
             <ExperienceTimeline />
             <Certifications />
             <FeaturedProjects />
+            <SelectedWriting />
             <ObsidianMiniBrain />
             <HireMe />
             <ProofContact />

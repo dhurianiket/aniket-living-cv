@@ -77,6 +77,7 @@ export function ScanModal() {
               </div>
               <button 
                 onClick={() => setScanModalOpen(false)}
+                aria-label="Close Scan Modal"
                 className="p-3 hover:bg-white/10 rounded-md transition-colors text-gray-400 hover:text-white"
               >
                 <X className="w-6 h-6" />

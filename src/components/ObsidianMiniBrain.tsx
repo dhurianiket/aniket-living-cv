@@ -72,6 +72,8 @@ export function ObsidianMiniBrain() {
             <div><span className="text-brand-violet mr-2">›</span>education</div>
             <div><span className="text-brand-violet mr-2">›</span>certifications</div>
             <div><span className="text-brand-violet mr-2">›</span>contact</div>
+            <div><span className="text-brand-violet mr-2">›</span>survival-guide</div>
+            <div><span className="text-brand-violet mr-2">›</span>playbook</div>
             <div><span className="text-brand-violet mr-2">›</span>case-study aegis-health-ai</div>
           </div>
         );
@@ -128,6 +130,55 @@ export function ObsidianMiniBrain() {
         response = "I hold a Diploma in Electronics and Telecommunication Engineering (ETE) from S. H Jondhale Polytechnic. I also completed my Senior Secondary (Science) there in 2014.";
       } else if (lowerText === "contact") {
         response = "Initiate contact securely via dhurianiket@gmail.com (Personal) or aniket@aegishealthai.co.in (Work)";
+      } else if (lowerText === "survival-guide") {
+        response = (
+          <div className="space-y-3">
+            <span className="font-mono text-[10px] text-brand-cyan bg-brand-cyan/15 px-2 py-0.5 rounded tracking-widest uppercase">
+              TECHNICAL GUIDE
+            </span>
+            <div className="font-display font-bold text-base text-white">
+              Free-Tier AI Survival Guide
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed font-sans">
+              A comprehensive technical guide detailing provider-specific rate ceilings (RPM, TPM, RPD), fallback routes, adaptive rate limiting, and system prompt compression metrics valid as of May 2026. This manual is embedded directly in my selected technical writing section.
+            </p>
+            <button
+              onClick={() => {
+                setMiniBrainOpen(false);
+                setTimeout(() => {
+                  const el = document.getElementById("survival-guide");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              }}
+              className="px-4 py-2 bg-brand-cyan text-black font-semibold text-xs rounded-lg hover:bg-opacity-80 transition-all font-mono inline-block cursor-pointer"
+            >
+              Scroll to Survival Guide Section
+            </button>
+          </div>
+        );
+      } else if (lowerText === "playbook") {
+        response = (
+          <div className="space-y-3">
+            <span className="font-mono text-[10px] text-brand-violet bg-brand-violet/10 px-2 py-0.5 rounded tracking-widest uppercase">
+              ARCHITECTURAL MANUAL
+            </span>
+            <div className="font-display font-bold text-base text-white">
+              Aegis Multi-Agent Playbook
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed font-sans">
+              Our playbook covers serial database lock schemes, automatic failover model mappings, and prompt compression techniques which enable an autonomous team profile run on free APIs safely.
+            </p>
+            <button
+              onClick={() => {
+                setMiniBrainOpen(false);
+                setCaseStudyOpen(true);
+              }}
+              className="px-4 py-2 bg-brand-violet text-white font-semibold text-xs rounded-lg hover:bg-opacity-80 border border-brand-violet/30 transition-all font-mono inline-block cursor-pointer shadow-[0_0_15px_rgba(138,43,226,0.3)]"
+            >
+              Launch Architecture Playbook
+            </button>
+          </div>
+        );
       } else if (lowerText === "case-study aegis-health-ai") {
         response = "Opening secure case file...";
         setMiniBrainOpen(false);
@@ -136,12 +187,60 @@ export function ObsidianMiniBrain() {
       // General NLP Matches
       else {
         const match = assistantPrompts.find(p => lowerText.includes(p.text.toLowerCase()) || p.text.toLowerCase().includes(lowerText));
-        if (match) {
+        if (match && match.response) {
           response = match.response;
         } else if (lowerText.includes("hello") || lowerText.includes("hi")) {
           response = "Greetings. How can I assist you in exploring Aniket's portfolio?";
         } else if (lowerText.includes("hire") || lowerText.includes("contact")) {
           response = "You can contact Aniket directly via dhurianiket@gmail.com, aniket@aegishealthai.co.in, or via the Contact section below.";
+        } else if (lowerText.includes("survival") || lowerText.includes("guide") || lowerText.includes("limits") || lowerText.includes("token") || lowerText.includes("free-tier") || lowerText.includes("free tier") || lowerText.includes("rate limit")) {
+          response = (
+            <div className="space-y-3">
+              <span className="font-mono text-[10px] text-brand-cyan bg-brand-cyan/15 px-2 py-0.5 rounded tracking-widest uppercase">
+                AUTOMATED RESPONSE MATCH
+              </span>
+              <p className="text-xs text-gray-300 font-sans leading-relaxed">
+                I see you're interested in the rate limitations and models. Check out my hand-crafted verified free-tier survival specs including:
+              </p>
+              <ul className="text-xs text-gray-400 font-sans pl-4 list-disc space-y-1">
+                <li>RPM, TPM, and daily quotas for major providers</li>
+                <li>Dynamic backoff rate limiter and fallback router code block patterns</li>
+                <li>Heuristic string compression techniques</li>
+              </ul>
+              <button
+                onClick={() => {
+                  setMiniBrainOpen(false);
+                  setTimeout(() => {
+                    const el = document.getElementById("survival-guide");
+                    if (el) el.scrollIntoView({ behavior: "smooth" });
+                  }, 100);
+                }}
+                className="px-4 py-2 bg-brand-cyan text-black font-semibold text-xs rounded-lg hover:bg-opacity-80 transition-all font-mono inline-block cursor-pointer mt-1"
+              >
+                Go to Survival Guide
+              </button>
+            </div>
+          );
+        } else if (lowerText.includes("playbook") || lowerText.includes("architecture") || lowerText.includes("agent") || lowerText.includes("multi-agent") || lowerText.includes("wsl") || lowerText.includes("hermes")) {
+          response = (
+            <div className="space-y-3">
+              <span className="font-mono text-[10px] text-brand-[##8a2be2] bg-brand-violet/10 px-2 py-0.5 rounded tracking-widest uppercase">
+                AUTOMATED RESPONSE MATCH
+              </span>
+              <p className="text-xs text-gray-300 font-sans leading-relaxed">
+                I can present our multi-agent architecture setup for Aegis Health AI. It details deep structural state-queuing across providers, active context minimization, and provides an interactive terminal debugger run.
+              </p>
+              <button
+                onClick={() => {
+                  setMiniBrainOpen(false);
+                  setCaseStudyOpen(true);
+                }}
+                className="px-4 py-2 bg-brand-violet text-white font-semibold text-xs rounded-lg hover:bg-opacity-80 border border-brand-violet/35 transition-all font-mono inline-block cursor-pointer shadow-[0_0_15px_rgba(138,43,226,0.3)]"
+              >
+                Open Architecture Playbook
+              </button>
+            </div>
+          );
         } else if (lowerText.includes("bhojpuri") || lowerText.includes("matru")) {
           response = "I handled pre/post-production for the Bhojpuri film 'Matru Devo Bhava', which starred Amrapali Dubey.";
         } else if (lowerText.includes("beerbiceps") || lowerText.includes("skillhouse")) {
@@ -201,6 +300,7 @@ export function ObsidianMiniBrain() {
                 <span className="hidden sm:inline-block font-mono text-xs text-brand-cyan tracking-widest">SYSTEM.ONLINE</span>
                 <button
                   onClick={() => setMiniBrainOpen(false)}
+                  aria-label="Close Mini Brain"
                   className="p-3 bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white rounded-full transition-colors flex-shrink-0"
                 >
                   <X className="w-6 h-6" />
@@ -267,11 +367,13 @@ export function ObsidianMiniBrain() {
                   value={inputVal}
                   onChange={(e) => setInputVal(e.target.value)}
                   placeholder="Query the system..."
+                  aria-label="Query input"
                   className="w-full bg-white/5 border border-white/10 rounded-lg py-3 sm:py-4 pl-4 sm:pl-12 pr-12 focus:outline-none focus:border-brand-cyan/50 focus:ring-1 focus:ring-brand-cyan/50 text-white font-mono text-sm transition-all"
                 />
                 <button
                   type="submit"
                   disabled={!inputVal.trim()}
+                  aria-label="Send message"
                   className="absolute right-2 p-3 text-gray-400 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   <Send className="w-6 h-6" />

@@ -175,6 +175,16 @@ export const projectsData: Project[] = [
 
 export const assistantPrompts: PromptChip[] = [
   {
+    id: "a_survival",
+    text: "Survival Rate Guide",
+    response: "" // Handled dynamically in NLP match
+  },
+  {
+    id: "a_playbook",
+    text: "Multi-Agent Playbook",
+    response: "" // Handled dynamically in NLP match
+  },
+  {
     id: "a1",
     text: "What can he build?",
     response: "I build full-stack web applications, AI-integrated platforms (like Aegis Health AI), intelligent dashboards, and complex workflow automations. I handle frontend architecture (React/TS), backend setup (Firebase), and LLM integrations (Gemini)."
