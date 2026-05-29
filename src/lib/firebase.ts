@@ -37,3 +37,17 @@ try {
 export const app = firebaseConfig && firebaseConfig.projectId ? initializeApp(firebaseConfig) : null;
 export const db = app ? getFirestore(app, firebaseConfig.firestoreDatabaseId) : null;
 export const auth = app ? getAuth(app) : null;
+
+export const isFirebaseConfigured = !!(firebaseConfig && firebaseConfig.projectId && firebaseConfig.apiKey);
+export const getFirebaseConfigStatus = () => {
+  const missing = [];
+  if (!firebaseConfig?.projectId) missing.push("VITE_FIREBASE_PROJECT_ID");
+  if (!firebaseConfig?.apiKey) missing.push("VITE_FIREBASE_API_KEY");
+  if (!firebaseConfig?.authDomain) missing.push("VITE_FIREBASE_AUTH_DOMAIN");
+  if (!firebaseConfig?.appId) missing.push("VITE_FIREBASE_APP_ID");
+  return {
+    isConfigured: isFirebaseConfigured,
+    missingKeys: missing,
+    configSource: firebaseConfig && firebaseConfig.projectId ? "firebase-applet-config.json" : "Environment variables"
+  };
+};
