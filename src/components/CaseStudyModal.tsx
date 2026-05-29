@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useAppState } from "../AppStateContext";
 import { 
@@ -19,7 +19,10 @@ import {
   ArrowUpRight, 
   BookOpen, 
   Fingerprint, 
-  ListOrdered
+  ListOrdered,
+  Play,
+  Pause,
+  SkipForward
 } from "lucide-react";
 
 export function CaseStudyModal() {
@@ -34,6 +37,10 @@ export function CaseStudyModal() {
     "Ready. Click 'Initiate Heartbeat Run' to simulate the autonomous execution loop."
   ]);
   const [isSimulating, setIsSimulating] = useState<boolean>(false);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
+
+  // PostgreSQL Interactive Lock State
+  const [dbLockState, setDbLockState] = useState<"locked" | "cleared">("locked");
 
   // Simulation steps data
   const simSteps = [
@@ -71,18 +78,54 @@ export function CaseStudyModal() {
     }
   ];
 
-  const handleRunSimulation = async () => {
-    if (isSimulating) return;
-    setIsSimulating(true);
-    setSimStep(0);
-    setSimLogs(["[SYSTEM INIT] Booting Paperclip Agent Orchestrator..."]);
-    
-    for (let i = 0; i < simSteps.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, reduceMotion ? 100 : 1200));
-      setSimStep(i + 1);
-      setSimLogs(prev => [...prev, simSteps[i].log, `✔ ${simSteps[i].detail}`]);
+  // Drive active simulation loop in React effect
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isSimulating && !isPaused) {
+      if (simStep < simSteps.length) {
+        timer = setTimeout(() => {
+          setSimLogs(prev => [...prev, simSteps[simStep].log, `✔ ${simSteps[simStep].detail}`]);
+          setSimStep(prev => prev + 1);
+        }, reduceMotion ? 150 : 1500);
+      } else {
+        setIsSimulating(false);
+      }
     }
-    setIsSimulating(false);
+    return () => clearTimeout(timer);
+  }, [isSimulating, isPaused, simStep, reduceMotion]);
+
+  const handleRunSimulation = () => {
+    setSimStep(0);
+    setSimLogs(["[SYSTEM INIT - AUTO FLOW] Booting Paperclip Agent Orchestrator..."]);
+    setIsSimulating(true);
+    setIsPaused(false);
+  };
+
+  const handlePauseSimulation = () => {
+    setIsPaused(true);
+  };
+
+  const handleResumeSimulation = () => {
+    setIsPaused(false);
+  };
+
+  const handleSingleStep = () => {
+    if (simStep >= simSteps.length) {
+      setSimStep(0);
+      setSimLogs(["[SYSTEM INIT - MANUAL STEP MODE] Booting Paperclip Agent Orchestrator..."]);
+      setIsSimulating(true);
+      setIsPaused(true);
+      return;
+    }
+    if (!isSimulating) {
+      setSimStep(0);
+      setSimLogs(["[SYSTEM INIT - MANUAL STEP MODE] Booting Paperclip Agent Orchestrator..."]);
+      setIsSimulating(true);
+      setIsPaused(true);
+      // Let's defer current tick or logs
+    }
+    setSimLogs(prev => [...prev, simSteps[simStep].log, `✔ ${simSteps[simStep].detail}`]);
+    setSimStep(prev => prev + 1);
   };
 
   const architectureNodes: Record<string, { title: string; subtitle: string; desc: string; role: string }> = {
@@ -530,6 +573,116 @@ export function CaseStudyModal() {
                         </p>
                       </div>
                     </div>
+
+                    {/* PostgreSQL Database Lock Schema Visualizer */}
+                    <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-brand-cyan/20 bg-brand-black/90 space-y-6">
+                      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-white/5 pb-4">
+                        <div>
+                          <span className="font-mono text-[10px] text-brand-cyan uppercase bg-brand-cyan/15 px-2.5 py-0.5 rounded tracking-widest">
+                            INTERACTIVE TRANSACTION CONTROL
+                          </span>
+                          <h4 className="font-display text-lg font-bold text-white mt-1">
+                            PostgreSQL Advisory Lock Simulator (pg_try_advisory_lock)
+                          </h4>
+                          <p className="text-xs text-gray-400">
+                            Observe record lock status fields transition in real-time to shield multi-agent pipelines.
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2 shrink-0">
+                          <span className="text-xs font-mono text-gray-400">Active Register ID:</span>
+                          <code className="text-xs font-mono text-brand-cyan bg-white/5 px-2 py-1 rounded">0x7f90ef78</code>
+                        </div>
+                      </div>
+
+                      {/* Schema Fields and State Displays */}
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-mono">
+                        {[
+                          { field: "task_identifier", val: "AEG-21", type: "varchar(10)", desc: "Selected work ID in progress" },
+                          { field: "concurrency_token", val: "aegis_hb_active_88x", type: "varchar(64)", desc: "Central monitoring hash" },
+                          { 
+                            field: "execution_locked_at", 
+                            val: dbLockState === "locked" ? "2026-05-29T18:43:54Z" : "NULL", 
+                            type: "timestamp", 
+                            desc: dbLockState === "locked" ? "Blocked from secondary updates" : "Free to acquire",
+                            highlight: dbLockState === "locked"
+                          },
+                          { 
+                            field: "lock_status", 
+                            val: dbLockState === "locked" ? "DB_EXCLUSIVE_LOCK_ACTIVE" : "RELEASED_STANDBY", 
+                            type: "enum_locking", 
+                            desc: "Central lock state flag",
+                            state: dbLockState
+                          }
+                        ].map((col, index) => (
+                          <div key={index} className="p-4 bg-white/[0.02] border border-white/5 rounded-xl flex flex-col justify-between space-y-3 relative overflow-hidden">
+                            {col.highlight && (
+                              <div className="absolute top-0 right-0 w-24 h-24 bg-red-500/10 blur-xl rounded-full" />
+                            )}
+                            <div>
+                              <div className="flex justify-between text-[10px] text-gray-500 mb-1">
+                                <span>{col.field}</span>
+                                <span>{col.type}</span>
+                              </div>
+                              <div className={`text-xs sm:text-sm font-bold truncate ${
+                                col.state === "locked" ? "text-red-400" :
+                                col.state === "cleared" ? "text-brand-green" :
+                                col.highlight ? "text-red-400" : "text-white"
+                              }`}>
+                                {col.val}
+                              </div>
+                            </div>
+                            <span className="text-[10px] text-gray-400 leading-normal">{col.desc}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Interactive Visual Graph representation */}
+                      <div className="p-5 bg-black/40 rounded-xl border border-white/5 flex flex-col lg:flex-row items-center justify-between gap-6">
+                        <div className="flex items-center gap-4">
+                          <div className={`w-12 h-12 rounded-full border flex items-center justify-center text-lg shrink-0 ${
+                            dbLockState === "locked" 
+                              ? "bg-red-500/10 border-red-500/50 text-red-400 animate-pulse" 
+                              : "bg-brand-green/10 border-brand-green/50 text-brand-green"
+                          }`}>
+                            <Database className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-mono text-gray-300 font-bold">
+                              Current Transaction Mode: {dbLockState === "locked" ? "MUTEX LOCK ACTIVE" : "LOCK CLEARED - DISPATCH READY"}
+                            </div>
+                            <p className="text-[11px] text-gray-400 max-w-xl">
+                              {dbLockState === "locked" 
+                                ? "Advisory lockout is operational. If other specialists boot up simultaneously, they will find this lock active and idle voluntarily to completely safeguard daily credit quotas on Groq." 
+                                : "No locking bounds. Specialist agent loops can safely secure the next workflow task and set locks before launching active inference."
+                              }
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex gap-2 shrink-0">
+                          <button
+                            onClick={() => setDbLockState("locked")}
+                            className={`px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${
+                              dbLockState === "locked" 
+                                ? "bg-red-500/15 border-red-500/50 text-red-400 shadow-[0_0_10px_rgba(239,68,68,0.2)]" 
+                                : "bg-white/5 border-white/5 text-gray-400 hover:text-white"
+                            }`}
+                          >
+                            Acquire Row Lock
+                          </button>
+                          <button
+                            onClick={() => setDbLockState("cleared")}
+                            className={`px-3 py-1.5 rounded-lg border text-xs font-mono transition-all cursor-pointer ${
+                              dbLockState === "cleared" 
+                                ? "bg-brand-green/15 border-brand-green/50 text-brand-green shadow-[0_0_10px_rgba(0,255,102,0.2)]" 
+                                : "bg-white/5 border-white/5 text-gray-400 hover:text-white"
+                            }`}
+                          >
+                            Release Row Lock
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Step-by-Step Simulator Terminal */}
@@ -539,7 +692,7 @@ export function CaseStudyModal() {
                         <Terminal className="text-brand-violet w-5 h-5" /> Orchestrator Heartbeat Simulator
                       </h3>
                       <p className="text-sm font-mono text-gray-400">
-                        Trigger a simulated sequential execution turn inside WSL2 to view the heartbeat scheduler in action.
+                        Observe a live terminal run. Pause the execution flow or use manual discrete ticks to inspect agent states step-by-step.
                       </p>
                     </div>
 
@@ -552,7 +705,15 @@ export function CaseStudyModal() {
                           <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                           <span className="text-gray-400 ml-2 font-mono text-[10px]">ubuntu_wsl2: ~/paperclip-platform</span>
                         </div>
-                        <span className="text-gray-500 text-[10px]">Active Node: Cerebras+Groq cluster</span>
+                        <div className="flex items-center gap-3">
+                          <span className="text-gray-500 text-[10px]">Active Node: Cerebras+Groq cluster</span>
+                          {isSimulating && (
+                            <span className="flex items-center gap-1.5 text-[9px] uppercase px-2 py-0.5 rounded bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/20">
+                              <span className={`w-1 h-1 rounded-full bg-brand-cyan ${isPaused ? "" : "animate-ping"}`} />
+                              {isPaused ? "Paused" : "Simulating"}
+                            </span>
+                          )}
+                        </div>
                       </div>
 
                       {/* Terminal View area */}
@@ -581,23 +742,49 @@ export function CaseStudyModal() {
                           <span>|</span>
                           <span>Auto-locks: Enforced</span>
                         </div>
-                        <div className="flex gap-2 w-full sm:w-auto">
+                        <div className="flex flex-wrap gap-2 w-full sm:w-auto">
                           <button
                             onClick={() => {
                               setSimStep(0);
-                              setSimLogs(["[SYSTEM CAPTURED] Logs flushed. Press 'Trigger Heartbeat' to re-verify."]);
+                              setIsSimulating(false);
+                              setIsPaused(false);
+                              setSimLogs(["[SYSTEM LOGS FLUSHED] Waiting for activation. Initiate run or tick manual."]);
                             }}
-                            className="flex-1 sm:flex-initial px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 rounded-lg transition-colors border border-white/5"
+                            className="flex-1 sm:flex-initial px-3 py-1.5 bg-white/5 hover:bg-white/10 text-gray-300 rounded-lg transition-colors border border-white/5 text-xs font-mono cursor-pointer"
                           >
-                            Reset Console
+                            Reset
                           </button>
+
+                          {isSimulating ? (
+                            isPaused ? (
+                              <button
+                                onClick={handleResumeSimulation}
+                                className="flex-1 sm:flex-initial px-4 py-1.5 bg-brand-green/25 text-brand-green border border-brand-green/30 hover:bg-brand-green/30 rounded-lg text-xs font-mono flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                              >
+                                <Play className="w-3.5 h-3.5" /> Resume
+                              </button>
+                            ) : (
+                              <button
+                                onClick={handlePauseSimulation}
+                                className="flex-1 sm:flex-initial px-4 py-1.5 bg-brand-amber/20 text-brand-amber border border-brand-amber/30 hover:bg-brand-amber/35 rounded-lg text-xs font-mono flex items-center justify-center gap-1.5 transition-all cursor-pointer"
+                              >
+                                <Pause className="w-3.5 h-3.5" /> Pause
+                              </button>
+                            )
+                          ) : (
+                            <button
+                              onClick={handleRunSimulation}
+                              className="flex-1 sm:flex-initial px-4 py-1.5 bg-brand-violet hover:bg-brand-violet/85 text-white rounded-lg text-xs font-semibold font-mono flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-[0_0_15px_rgba(138,43,226,0.3)]"
+                            >
+                              <Play className="w-3.5 h-3.5" /> Initiate Auto Run
+                            </button>
+                          )}
+
                           <button
-                            disabled={isSimulating}
-                            onClick={handleRunSimulation}
-                            className="flex-1 sm:flex-initial px-6 py-2 bg-brand-violet hover:bg-brand-violet/80 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(138,43,226,0.3)]"
+                            onClick={handleSingleStep}
+                            className="flex-1 sm:flex-initial px-4 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-brand-cyan rounded-lg text-xs font-mono flex items-center justify-center gap-1.5 transition-all cursor-pointer"
                           >
-                            <RefreshCw className={`w-3.5 h-3.5 ${isSimulating ? "animate-spin" : ""}`} /> 
-                            {isSimulating ? "Processing..." : "Initiate Heartbeat Run"}
+                            <SkipForward className="w-3.5 h-3.5" /> Manual Tick ›
                           </button>
                         </div>
                       </div>

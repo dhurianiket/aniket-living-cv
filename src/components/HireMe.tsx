@@ -64,10 +64,14 @@ export function HireMe() {
               <motion.div
                 key={offering.id}
                 layout={!reduceMotion}
-                initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: reduceMotion ? 0 : idx * 0.12,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
                 className={cn(
                   "glass-panel p-6 rounded-2xl group hover:bg-brand-cyan/5 hover:border-brand-cyan/30 transition-all cursor-pointer flex flex-col h-full",
                   idx === 0 && mode !== "default" ? "border-brand-cyan/50 shadow-[0_0_20px_rgba(0,240,255,0.1)]" : ""

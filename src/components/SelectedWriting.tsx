@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useAppState } from "../AppStateContext";
 import { 
@@ -39,6 +39,43 @@ export function SelectedWriting() {
   const [filterVerdict, setFilterVerdict] = useState<string>("All");
   const [activeCodeTab, setActiveCodeTab] = useState<"limiter" | "router" | "compressor" | "dispatcher">("limiter");
   const [expandedTrap, setExpandedTrap] = useState<number | null>(null);
+
+  // UTC Live Ticker & Rate Cooldown States
+  const [tokens, setTokens] = useState(41250);
+  const [utcTime, setUtcTime] = useState("");
+
+  useEffect(() => {
+    // Clock tick
+    const update = () => {
+      const now = new Date();
+      setUtcTime(now.getUTCFullYear() + "-" + 
+                 String(now.getUTCMonth() + 1).padStart(2, '0') + "-" + 
+                 String(now.getUTCDate()).padStart(2, '0') + " " + 
+                 String(now.getUTCHours()).padStart(2, '0') + ":" + 
+                 String(now.getUTCMinutes()).padStart(2, '0') + ":" + 
+                 String(now.getUTCSeconds()).padStart(2, '0') + " UTC");
+    };
+    update();
+    const clockInterval = setInterval(update, 1000);
+
+    // Active Token Bucket cooldown animation
+    const bucketInterval = setInterval(() => {
+      setTokens((prev) => {
+        // Occasional transaction depletion
+        const randomTx = Math.random() < 0.25 ? Math.floor(Math.random() * 6000) + 1500 : 0;
+        let nextVal = prev - randomTx;
+        if (nextVal < 10000) nextVal = 10000;
+        // Bleed off / recover
+        const recovery = Math.floor(Math.random() * 500) + 800;
+        return Math.min(50000, nextVal + recovery);
+      });
+    }, 1200);
+
+    return () => {
+      clearInterval(clockInterval);
+      clearInterval(bucketInterval);
+    };
+  }, []);
 
   const handleCopyCode = (id: string, code: string) => {
     navigator.clipboard.writeText(code);
@@ -614,25 +651,61 @@ export function SelectedWriting() {
         </div>
 
         {/* Section 5: Golden Zero-Cost Stack Configulator */}
-        <div className="glass-panel p-8 rounded-2xl border border-brand-green/20 bg-gradient-to-r from-brand-green/5 via-transparent to-brand-cyan/5 relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-8">
-          <div className="space-y-3 max-w-2xl">
-            <span className="font-mono text-[10px] text-brand-green bg-brand-green/10 px-2.5 py-1 rounded inline-block uppercase tracking-wider">
-              Optimal Setup Topology
-            </span>
-            <h3 className="font-display text-2xl font-bold text-white leading-none">
-              The Golden Zero-Cost Agent Stack
-            </h3>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Combine multiple providers in a unified fallback array: <strong>Groq Llama-4-Scout</strong> as primary, <strong>Cerebras Llama-3.3-70b</strong> as secondary, and <strong>Gemini 2.5 Flash</strong> as tertiary. Together, they achieve an aggregate throughput of <strong>~1,600 robust requests/day entirely for free</strong>.
-            </p>
+        <div id="survival-guide" className="glass-panel p-6 sm:p-8 rounded-2xl border border-brand-green/20 bg-gradient-to-br from-brand-green/5 via-brand-black/40 to-brand-cyan/5 relative overflow-hidden flex flex-col gap-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <span className="font-mono text-[10px] text-brand-green bg-brand-green/10 px-2.5 py-1 rounded inline-block uppercase tracking-wider">
+                Optimal Setup Topology
+              </span>
+              <h3 className="font-display text-2xl font-bold text-white leading-none">
+                The Golden Zero-Cost Agent Stack
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Combine multiple providers in a unified fallback array: <strong>Groq Llama-4-Scout</strong> as primary, <strong>Cerebras Llama-3.3-70b</strong> as secondary, and <strong>Gemini 2.5 Flash</strong> as tertiary. Together, they achieve an aggregate throughput of <strong>~1,600 robust requests/day entirely for free</strong>.
+              </p>
+            </div>
+
+            <div className="shrink-0 p-6 bg-black/40 border border-white/10 rounded-xl space-y-2 text-center text-xs font-mono min-w-[220px]">
+              <span className="text-gray-400 block tracking-widest uppercase text-[9px]">TOTAL FREE THRUPUT</span>
+              <div className="text-4xl font-display font-extrabold text-brand-green tracking-tight">
+                ~1,600
+              </div>
+              <span className="text-gray-300 block text-[10px]">Requests / Day Validated</span>
+            </div>
           </div>
 
-          <div className="shrink-0 p-6 bg-black/40 border border-white/10 rounded-xl space-y-2 text-center text-xs font-mono min-w-[220px]">
-            <span className="text-gray-400 block tracking-widest uppercase text-[9px]">TOTAL FREE THRUPUT</span>
-            <div className="text-4xl font-display font-extrabold text-brand-green tracking-tight">
-              ~1,600
+          {/* Golden Stack Real-Time Cooldown Ticker panel */}
+          <div className="border-t border-white/5 pt-5 flex flex-col md:flex-row md:items-center justify-between gap-4 font-mono text-xs text-gray-400">
+            <div className="flex-1 space-y-2">
+              <div className="flex justify-between items-center text-[10px]">
+                <span className="text-gray-500 uppercase flex items-center gap-1.5 font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse" />
+                  Rate Cooldown (Token Bucket Recovery)
+                </span>
+                <span className="text-brand-green font-bold">{tokens.toLocaleString()} / 50,000 TPM</span>
+              </div>
+              <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-brand-green rounded-full transition-all duration-1000"
+                  style={{ width: `${(tokens / 50000) * 100}%` }}
+                />
+              </div>
+              <div className="flex justify-between text-[9px] text-gray-500">
+                <span>Refilling: +62.5 t/s (Steady Lock leak rate)</span>
+                <span>Burst window: Active</span>
+              </div>
             </div>
-            <span className="text-gray-300 block text-[10px]">Requests / Day Validated</span>
+
+            <div className="flex md:flex-col lg:flex-row md:items-end lg:items-center gap-4 text-[10px] md:text-right lg:text-left md:border-l md:border-white/5 md:pl-6 shrink-0 justify-between">
+              <div>
+                <span className="text-gray-500 uppercase block font-bold">Local Sync Node</span>
+                <span className="text-white text-[11px] font-bold">{utcTime || "CLOCK_INIT..."}</span>
+              </div>
+              <div className="hidden sm:block">
+                <span className="text-gray-500 uppercase block font-bold">Aggregated Buffer</span>
+                <span className="text-brand-cyan text-[11px] font-bold">STANDBY_SECURE</span>
+              </div>
+            </div>
           </div>
         </div>
 

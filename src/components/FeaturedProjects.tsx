@@ -42,10 +42,14 @@ export function FeaturedProjects() {
               <motion.div
                 key={project.id}
                 layout={!reduceMotion}
-                initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.95 }}
-                transition={{ duration: 0.6 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: reduceMotion ? 0 : index * 0.15,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
                 className={cn(
                   "glass-panel p-8 rounded-2xl group hover:border-brand-cyan/30 transition-all duration-500 relative overflow-hidden",
                   // Add a subtle border glow if it matches the main mode priority

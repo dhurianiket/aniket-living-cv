@@ -4,7 +4,7 @@ import { Briefcase, Rocket, Palette, Sparkles, Activity, MinusCircle } from "luc
 import { cn } from "../utils";
 
 export function Header() {
-  const { mode, setMode, setScanModalOpen, reduceMotion, setReduceMotion } = useAppState();
+  const { mode, setMode, setScanModalOpen, reduceMotion, setReduceMotion, setCaseStudyOpen } = useAppState();
 
   const modes: { id: ViewMode; label: string; icon: React.ReactNode }[] = [
     { id: "default", label: "Default", icon: null },
@@ -21,6 +21,25 @@ export function Header() {
       </div>
 
       <div className="hidden md:flex items-center gap-4">
+        <button
+          onClick={() => {
+            const el = document.getElementById("survival-guide");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          }}
+          className="text-xs font-mono text-gray-400 hover:text-brand-cyan transition-colors"
+        >
+          Survival Guide
+        </button>
+
+        <button
+          onClick={() => setCaseStudyOpen(true)}
+          className="text-xs font-mono text-gray-400 hover:text-brand-violet transition-colors"
+        >
+          Aegis Playbook
+        </button>
+
+        <div className="w-px h-6 bg-white/10 mx-1" />
+
         <div className="flex gap-1 p-1 glass-panel rounded-full">
           {modes.map((m) => (
             <button

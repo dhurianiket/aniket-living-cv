@@ -1,6 +1,65 @@
 import { useState, useCallback } from 'react';
 import { collection, addDoc, serverTimestamp, getDocs, query, limit } from 'firebase/firestore';
-import { db } from '../lib/firebase';
+import { db, auth } from '../lib/firebase';
+
+export enum OperationType {
+  CREATE = 'create',
+  UPDATE = 'update',
+  DELETE = 'delete',
+  LIST = 'list',
+  GET = 'get',
+  WRITE = 'write',
+}
+
+export interface FirestoreErrorInfo {
+  error: string;
+  operationType: OperationType;
+  path: string | null;
+  authInfo: {
+    userId?: string | null;
+    email?: string | null;
+    emailVerified?: boolean | null;
+    isAnonymous?: boolean | null;
+    tenantId?: string | null;
+    providerInfo?: {
+      providerId?: string | null;
+      email?: string | null;
+    }[];
+  }
+}
+
+export function handleFirestoreError(error: unknown, operationType: OperationType, path: string | null) {
+  const errMessage = error instanceof Error ? error.message : String(error);
+  
+  const isPermissionError = 
+    errMessage.toLowerCase().includes('permission') || 
+    errMessage.toLowerCase().includes('insufficient');
+
+  const errInfo: FirestoreErrorInfo = {
+    error: errMessage,
+    authInfo: {
+      userId: auth?.currentUser?.uid || null,
+      email: auth?.currentUser?.email || null,
+      emailVerified: auth?.currentUser?.emailVerified || null,
+      isAnonymous: auth?.currentUser?.isAnonymous || null,
+      tenantId: auth?.currentUser?.tenantId || null,
+      providerInfo: auth?.currentUser?.providerData?.map(provider => ({
+        providerId: provider.providerId,
+        email: provider.email,
+      })) || []
+    },
+    operationType,
+    path
+  };
+
+  console.error('Firestore Error Details:', JSON.stringify(errInfo));
+  
+  if (isPermissionError) {
+    throw new Error(JSON.stringify(errInfo));
+  } else {
+    throw error;
+  }
+}
 
 // Use this for recording visitor analytics / feature usage
 export function useAnalytics() {
@@ -23,6 +82,7 @@ export function useAnalytics() {
       await addDoc(collection(db, 'analytics'), docData);
     } catch (error) {
       console.error('Failed to log analytics:', error);
+      handleFirestoreError(error, OperationType.CREATE, 'analytics');
     }
   }, []);
 
@@ -64,6 +124,7 @@ export function useContact() {
       return true;
     } catch (err: any) {
       setError(err?.message || 'Failed to send message');
+      handleFirestoreError(err, OperationType.CREATE, 'contacts');
       return false;
     } finally {
       setIsSubmitting(false);
@@ -92,6 +153,7 @@ export function useFeatureFlags() {
       }
     } catch (error) {
       console.error('Error fetching feature flags:', error);
+      handleFirestoreError(error, OperationType.LIST, 'featureFlags');
     }
   }, []);
 
@@ -109,8 +171,10 @@ export function useScanLog() {
         });
     } catch (err) {
         console.error('Error saving scan result:', err);
+        handleFirestoreError(err, OperationType.CREATE, 'scans');
     }
   }, []);
 
   return { recordScan };
 }
+
