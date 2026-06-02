@@ -16,6 +16,7 @@ export interface Experience {
   location?: string;
   duration: string;
   highlights: string[];
+  icons?: ("google" | "aws" | string)[];
 }
 
 export interface Project {

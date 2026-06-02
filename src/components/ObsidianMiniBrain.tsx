@@ -183,6 +183,25 @@ export function ObsidianMiniBrain() {
         response = "Opening secure case file...";
         setMiniBrainOpen(false);
         setCaseStudyOpen(true);
+      } else if (lowerText.includes("arthadesk") || lowerText.includes("billing") || lowerText.includes("distributor")) {
+        response = (
+          <div className="space-y-3">
+            <span className="font-mono text-[10px] text-brand-cyan bg-brand-cyan/15 px-2 py-0.5 rounded tracking-widest uppercase">
+              PROJECT DATA RETURNED
+            </span>
+            <p className="text-xs text-gray-300 font-sans leading-relaxed">
+              <strong>ArthaDesk</strong> is an offline-first distributor billing and management software custom-built for FMCG wholesalers and distributors. I built it for fast desktop deployment to solve extreme web connectivity limitations.
+            </p>
+            <a 
+              href="https://arthadesk-distributor-billing-management-software-896741049937.asia-southeast1.run.app/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-4 py-2 bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/50 font-semibold text-xs rounded-lg hover:bg-brand-cyan/30 transition-all font-mono inline-block cursor-pointer mt-1"
+            >
+              Launch Demo Environment
+            </a>
+          </div>
+        );
       }
       // General NLP Matches
       else {

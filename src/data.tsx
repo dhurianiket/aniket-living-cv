@@ -132,6 +132,17 @@ export const experienceData: Experience[] = [
 
 export const projectsData: Project[] = [
   {
+    id: "p5",
+    title: "ArthaDesk",
+    shortDesc: "Offline-first distributor billing & management.",
+    problem: "FMCG wholesalers face severe connectivity issues making cloud-dependent billing systems unreliable and slow.",
+    solution: "Designed an offline-first billing & management software with fast desktop deployment and operational reliability.",
+    result: "Enabled fast, resilient billing for wholesalers without depending on constant internet connectivity.",
+    tools: ["Electron", "React", "Local DB", "Tailwind CSS"],
+    category: "Full-Stack",
+    link: "https://arthadesk-distributor-billing-management-software-896741049937.asia-southeast1.run.app/"
+  },
+  {
     id: "p1",
     title: "Aegis Health AI",
     shortDesc: "LLM-powered healthcare platform.",
@@ -183,6 +194,11 @@ export const assistantPrompts: PromptChip[] = [
     id: "a_playbook",
     text: "Multi-Agent Playbook",
     response: "" // Handled dynamically in NLP match
+  },
+  {
+    id: "a_arthadesk",
+    text: "What is ArthaDesk?",
+    response: "ArthaDesk is an offline-first distributor billing & management software for FMCG wholesalers. Built with React and an embedded local DB, it solves severe connectivity issues in rural areas."
   },
   {
     id: "a1",
