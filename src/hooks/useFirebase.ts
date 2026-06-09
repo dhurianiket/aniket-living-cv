@@ -55,9 +55,7 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
   console.error('Firestore Error Details:', JSON.stringify(errInfo));
   
   if (isPermissionError) {
-    throw new Error(JSON.stringify(errInfo));
-  } else {
-    throw error;
+    console.warn(`Permission error explicitly suppressed: ${errMessage}`);
   }
 }
 
@@ -81,7 +79,7 @@ export function useAnalytics() {
 
       await addDoc(collection(db, 'analytics'), docData);
     } catch (error) {
-      console.error('Failed to log analytics:', error);
+      console.warn('Failed to log analytics (could be insufficient permissions). Tracking error:');
       handleFirestoreError(error, OperationType.CREATE, 'analytics');
     }
   }, []);

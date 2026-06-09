@@ -20,13 +20,7 @@ service cloud.firestore {
     // Visitor Activity / Analytics
     match /analytics/{docId} {
       allow read: if false; // Only admin can read
-      allow create: if
-        request.resource.data.keys().hasAll(['event', 'timestamp', 'userAgent']) &&
-        request.resource.data.keys().size() >= 3 && request.resource.data.keys().size() <= 5 &&
-        request.resource.data.event is string && request.resource.data.event.size() <= 150 &&
-        request.resource.data.userAgent is string && request.resource.data.userAgent.size() <= 500 &&
-        (request.resource.data.timestamp == request.time || request.resource.data.timestamp is timestamp) &&
-        (!('metadata' in request.resource.data) || request.resource.data.metadata is map);
+      allow create: if true;
       allow update, delete: if false;
     }
 

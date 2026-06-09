@@ -196,6 +196,11 @@ export const assistantPrompts: PromptChip[] = [
     response: "" // Handled dynamically in NLP match
   },
   {
+    id: "a_milestones",
+    text: "Startup Milestones",
+    response: "" // Handled dynamically in NLP match
+  },
+  {
     id: "a_arthadesk",
     text: "What is ArthaDesk?",
     response: "ArthaDesk is an offline-first distributor billing & management software for FMCG wholesalers. Built with React and an embedded local DB, it solves severe connectivity issues in rural areas."

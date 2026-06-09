@@ -68,6 +68,7 @@ export function ObsidianMiniBrain() {
             <div><span className="text-brand-violet mr-2">›</span>about</div>
             <div><span className="text-brand-violet mr-2">›</span>skills</div>
             <div><span className="text-brand-violet mr-2">›</span>projects</div>
+            <div><span className="text-brand-violet mr-2">›</span>milestones</div>
             <div><span className="text-brand-violet mr-2">›</span>experience</div>
             <div><span className="text-brand-violet mr-2">›</span>education</div>
             <div><span className="text-brand-violet mr-2">›</span>certifications</div>
@@ -98,6 +99,25 @@ export function ObsidianMiniBrain() {
                 <div className="text-xs text-gray-400">{p.shortDesc}</div>
               </div>
             ))}
+          </div>
+        );
+      } else if (lowerText.includes("milestone") || lowerText.includes("aws") || lowerText.includes("azure") || lowerText.includes("google cloud")) {
+        response = (
+          <div className="space-y-3">
+            <span className="font-mono text-[10px] text-brand-[##8a2be2] bg-brand-violet/10 px-2 py-0.5 rounded tracking-widest uppercase">
+              STARTUP INFRASTRUCTURE DATA
+            </span>
+            <div className="font-display font-bold text-base text-white">
+              Multi-Cloud Founder Support
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed font-sans mt-2">
+              Building Aegis Health AI and ArthaDesk with more runway, stronger infrastructure, and a better multi-cloud strategy through official startup support and credits from:
+            </p>
+            <ul className="text-xs text-gray-400 font-sans pl-4 list-disc space-y-1">
+              <li>Google Cloud AI Builder</li>
+              <li>Amazon Web Services (AWS) Activate</li>
+              <li>Microsoft Azure Founders Hub</li>
+            </ul>
           </div>
         );
       } else if (lowerText === "experience") {

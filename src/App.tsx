@@ -13,6 +13,7 @@ const BackgroundParticles = React.lazy(() => import('./components/BackgroundPart
 const CaseStudyModal = React.lazy(() => import('./components/CaseStudyModal').then(module => ({ default: module.CaseStudyModal })));
 const SkillConstellation = React.lazy(() => import('./components/SkillConstellation').then(module => ({ default: module.SkillConstellation })));
 const About = React.lazy(() => import('./components/About').then(module => ({ default: module.About })));
+const FounderMilestones = React.lazy(() => import('./components/FounderMilestones').then(module => ({ default: module.FounderMilestones })));
 const ExperienceTimeline = React.lazy(() => import('./components/ExperienceTimeline').then(module => ({ default: module.ExperienceTimeline })));
 const Certifications = React.lazy(() => import('./components/Certifications').then(module => ({ default: module.Certifications })));
 const FeaturedProjects = React.lazy(() => import('./components/FeaturedProjects').then(module => ({ default: module.FeaturedProjects })));
@@ -54,6 +55,7 @@ function AppContent() {
           <Suspense fallback={<div className="min-h-[50vh]" />}>
             <SkillConstellation />
             <About />
+            <FounderMilestones />
             <ExperienceTimeline />
             <Certifications />
             <FeaturedProjects />
