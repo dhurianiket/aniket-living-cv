@@ -88,7 +88,7 @@ export function ProofContact() {
               <ExternalLink className="w-4 h-4 text-gray-600 ml-auto group-hover:text-white transition-colors" />
             </a>
 
-            <a href="https://deoyanimovies.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 glass-panel rounded-xl hover:bg-brand-gold/5 hover:border-brand-gold/30 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 group cursor-pointer">
+            <a href="https://www.deoyanimovies.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 glass-panel rounded-xl hover:bg-brand-gold/5 hover:border-brand-gold/30 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 group cursor-pointer">
               <div className="p-3 bg-brand-gold/10 rounded-lg group-hover:bg-brand-gold/20 group-hover:scale-110 transition-all duration-300">
                 <div className="w-5 h-5 text-brand-gold flex items-center justify-center font-bold font-display text-lg">D</div>
               </div>

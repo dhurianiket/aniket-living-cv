@@ -431,7 +431,7 @@ export function CaseStudyModal() {
                       <div className="text-3xl font-display font-extrabold text-[#D4AF37] mt-1">₹25</div>
                       <span className="text-gray-400 block text-[10px] font-mono mt-0.5">72-Hour Cinema Access</span>
                       <a
-                        href="https://deoyanimovies.com"
+                        href="https://www.deoyanimovies.com"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-4 px-4 py-2 bg-gradient-to-r from-[#D4AF37] to-amber-500 text-black font-semibold rounded-lg text-xs font-mono flex items-center justify-center gap-1.5 transition-all hover:brightness-110 shadow-[0_0_15px_rgba(212,175,55,0.3)]"
@@ -530,7 +530,7 @@ export function CaseStudyModal() {
                       Production live at <strong>deoyanimovies.com</strong> with multi-film catalog streaming, active Razorpay payment webhooks, and multi-device playback authorization.
                     </p>
                     <a
-                      href="https://deoyanimovies.com"
+                      href="https://www.deoyanimovies.com"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-6 py-3 bg-[#D4AF37] text-black font-semibold rounded-md hover:bg-amber-400 transition-colors font-mono text-sm shadow-[0_0_20px_rgba(212,175,55,0.3)]"

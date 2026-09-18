@@ -243,12 +243,12 @@ export function ObsidianMiniBrain() {
                 Launch OTT Blueprint & DRM Playbook
               </button>
               <a
-                href="https://deoyanimovies.com"
+                href="https://www.deoyanimovies.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-white/10 hover:bg-white/15 text-white font-mono text-xs rounded-lg border border-white/20 transition-all"
               >
-                Visit deoyanimovies.com ↗
+                Visit www.deoyanimovies.com ↗
               </a>
             </div>
           </div>

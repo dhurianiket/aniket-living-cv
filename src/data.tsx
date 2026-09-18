@@ -153,7 +153,7 @@ export const projectsData: Project[] = [
     result: "Successfully launched live at deoyanimovies.com, monetizing premier banner catalog films (Bindhast, Matru Devo Bhavah, Chimani Pakhar) with sub-second time-to-first-frame and zero-piracy stream protection.",
     tools: ["React 19", "Bunny Stream CDN", "Multi-DRM", "Razorpay TVOD", "Firebase Firestore", "Google Gemini 3.6 Flash", "Capacitor Mobile"],
     category: "Full-Stack Media",
-    link: "https://deoyanimovies.com"
+    link: "https://www.deoyanimovies.com"
   },
   {
     id: "p5",
