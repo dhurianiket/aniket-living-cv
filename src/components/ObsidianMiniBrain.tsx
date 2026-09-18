@@ -12,7 +12,7 @@ interface Message {
 }
 
 export function ObsidianMiniBrain() {
-  const { isMiniBrainOpen, setMiniBrainOpen, setCaseStudyOpen, reduceMotion } = useAppState();
+  const { isMiniBrainOpen, setMiniBrainOpen, setCaseStudyOpen, setCaseStudyTopic, reduceMotion } = useAppState();
   const { recordEvent } = useAnalytics();
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -58,7 +58,7 @@ export function ObsidianMiniBrain() {
     // Simulate thinking delay
     setTimeout(() => {
       const lowerText = text.toLowerCase().trim();
-      let response: React.ReactNode = "My neural pathways don't have a specific answer for that. Try asking about my healthcare work, AI capabilities, or type 'help' for commands.";
+      let response: React.ReactNode = "My neural pathways don't have a specific answer for that. Try asking about my OTT streaming work, AI capabilities, or type 'help' for commands.";
       
       // Terminal Commands Handling
       if (lowerText === "help") {
@@ -68,6 +68,9 @@ export function ObsidianMiniBrain() {
             <div><span className="text-brand-violet mr-2">›</span>about</div>
             <div><span className="text-brand-violet mr-2">›</span>skills</div>
             <div><span className="text-brand-violet mr-2">›</span>projects</div>
+            <div><span className="text-brand-gold mr-2">›</span>ott (or 'deoyani')</div>
+            <div><span className="text-brand-gold mr-2">›</span>drm (or 'streaming')</div>
+            <div><span className="text-brand-cyan mr-2">›</span>ai-generalist</div>
             <div><span className="text-brand-violet mr-2">›</span>milestones</div>
             <div><span className="text-brand-violet mr-2">›</span>experience</div>
             <div><span className="text-brand-violet mr-2">›</span>education</div>
@@ -75,6 +78,7 @@ export function ObsidianMiniBrain() {
             <div><span className="text-brand-violet mr-2">›</span>contact</div>
             <div><span className="text-brand-violet mr-2">›</span>survival-guide</div>
             <div><span className="text-brand-violet mr-2">›</span>playbook</div>
+            <div><span className="text-brand-gold mr-2">›</span>case-study deoyani-movies</div>
             <div><span className="text-brand-violet mr-2">›</span>case-study aegis-health-ai</div>
           </div>
         );
@@ -199,10 +203,106 @@ export function ObsidianMiniBrain() {
             </button>
           </div>
         );
-      } else if (lowerText === "case-study aegis-health-ai") {
-        response = "Opening secure case file...";
+      } else if (lowerText === "case-study aegis-health-ai" || lowerText === "case-study aegis") {
+        response = "Opening secure Aegis Health AI Multi-Agent Playbook...";
+        setCaseStudyTopic("aegis");
         setMiniBrainOpen(false);
         setCaseStudyOpen(true);
+      } else if (lowerText === "case-study deoyani-movies" || lowerText === "case-study deoyani") {
+        response = "Opening Deoyani Movies OTT Streaming Blueprint & DRM Playbook...";
+        setCaseStudyTopic("deoyani");
+        setMiniBrainOpen(false);
+        setCaseStudyOpen(true);
+      } else if (lowerText === "ott" || lowerText === "deoyani" || lowerText === "deoyani-movies") {
+        response = (
+          <div className="space-y-3">
+            <span className="font-mono text-[10px] text-brand-gold bg-brand-gold/15 px-2 py-0.5 rounded tracking-widest uppercase border border-brand-gold/30">
+              FLAGSHIP OTT ARCHITECTURE
+            </span>
+            <div className="font-display font-bold text-base text-white">
+              Deoyani Movies OTT Platform
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed font-sans">
+              As Chief Architect, Lead OTT Systems Engineer & Sr. Video Editor at Deoyani Movies Pvt Ltd (founded by Matchindra Chate), I engineered the direct-to-consumer theatrical OTT streaming ecosystem at <strong>deoyanimovies.com</strong>.
+            </p>
+            <ul className="text-xs text-gray-400 font-sans pl-4 list-disc space-y-1">
+              <li><strong>Commercial TVOD:</strong> ₹25 for 72hr access & VIP passes (₹199–₹799) with live Razorpay + HMAC-SHA256 webhooks.</li>
+              <li><strong>Bunny Stream CDN:</strong> Master Library 747391, custom edge CDN, MediaCage ClearKey cbcs CENC DRM & 10m expiring tokens.</li>
+              <li><strong>Concurrency Hardening:</strong> Sliding-window 30s heartbeat with strict 2-device ceiling and mobile blanking.</li>
+              <li><strong>Multilingual AI Concierge:</strong> Google Cloud Agent Platform / Gemini 3.6 Flash for Marathi, Hindi, English trivia & discovery.</li>
+            </ul>
+            <div className="flex flex-wrap gap-2 pt-1">
+              <button
+                onClick={() => {
+                  setCaseStudyTopic("deoyani");
+                  setMiniBrainOpen(false);
+                  setCaseStudyOpen(true);
+                }}
+                className="px-4 py-2 bg-gradient-to-r from-brand-gold to-brand-crimson text-black font-bold text-xs rounded-lg hover:opacity-90 transition-all font-mono inline-block cursor-pointer"
+              >
+                Launch OTT Blueprint & DRM Playbook
+              </button>
+              <a
+                href="https://deoyanimovies.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-white/10 hover:bg-white/15 text-white font-mono text-xs rounded-lg border border-white/20 transition-all"
+              >
+                Visit deoyanimovies.com ↗
+              </a>
+            </div>
+          </div>
+        );
+      } else if (lowerText === "drm" || lowerText === "streaming") {
+        response = (
+          <div className="space-y-3">
+            <span className="font-mono text-[10px] text-brand-gold bg-brand-gold/15 px-2 py-0.5 rounded tracking-widest uppercase border border-brand-gold/30">
+              ZERO-TRUST DRM & CONCURRENCY
+            </span>
+            <div className="font-display font-bold text-base text-white">
+              Anti-Piracy & DRM Pipeline
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed font-sans">
+              Our OTT infrastructure eliminates credential sharing and stream ripping using a 4-pillar defense:
+            </p>
+            <ol className="text-xs text-gray-400 font-sans pl-4 list-decimal space-y-1">
+              <li><strong>Zero-Trust Ephemeral Tokens:</strong> HMAC-SHA256 signed playback tokens with 10-minute maximum TTL bound to user IP.</li>
+              <li><strong>MediaCage ClearKey DRM:</strong> AES-128 cbcs CENC encryption with dynamic key rotation and strict referrer locking.</li>
+              <li><strong>Sliding-Window Heartbeat:</strong> Firestore distributed session tracking locking concurrent streams to max 2 devices.</li>
+              <li><strong>Native App & Forensic Guard:</strong> Android FLAG_SECURE prevents screen recording; Capacitor container auto-pauses and blanks on backgrounding.</li>
+            </ol>
+            <button
+              onClick={() => {
+                setCaseStudyTopic("deoyani");
+                setMiniBrainOpen(false);
+                setCaseStudyOpen(true);
+              }}
+              className="px-4 py-2 bg-brand-gold text-black font-semibold text-xs rounded-lg hover:bg-opacity-80 transition-all font-mono inline-block cursor-pointer mt-1"
+            >
+              Open Interactive DRM Simulator
+            </button>
+          </div>
+        );
+      } else if (lowerText === "ai-generalist" || lowerText === "generalist") {
+        response = (
+          <div className="space-y-3">
+            <span className="font-mono text-[10px] text-brand-cyan bg-brand-cyan/15 px-2 py-0.5 rounded tracking-widest uppercase">
+              ROLE DEFINITION
+            </span>
+            <div className="font-display font-bold text-base text-white">
+              What is an AI Generalist?
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed font-sans">
+              An <strong>AI Generalist</strong> does not just call an LLM API. An AI Generalist operates across the entire full-stack spectrum:
+            </p>
+            <ul className="text-xs text-gray-400 font-sans pl-4 list-disc space-y-1">
+              <li><strong>Agentic Architecture:</strong> Multi-agent orchestration, prompt compression, state graphs, and fault-tolerant fallbacks.</li>
+              <li><strong>Full-Stack Product Engineering:</strong> TypeScript, React 19, Node.js, distributed databases, and cloud infrastructure.</li>
+              <li><strong>Creative Direction & Post-Production:</strong> 4K cinematic mastering, theatrical video editing, colour grading, sound design, and viral narrative crafting.</li>
+              <li><strong>Vibe Coding & Rapid Prototyping:</strong> Turning complex product ideas into hardened production platforms in days instead of months.</li>
+            </ul>
+          </div>
+        );
       } else if (lowerText.includes("arthadesk") || lowerText.includes("billing") || lowerText.includes("distributor")) {
         response = (
           <div className="space-y-3">
@@ -288,8 +388,27 @@ export function ObsidianMiniBrain() {
           response = "When I'm not coding or editing, I am an enthusiastic chess player and a guitar player.";
         } else if (lowerText.includes("school") || lowerText.includes("degree") || lowerText.includes("college") || lowerText.includes("university")) {
           response = "I completed my Diploma in Electronics and Telecommunication Engineering at S. H Jondhale Polytechnic. I also completed my secondary education there in 2014.";
-        } else if (lowerText.includes("deoyani")) {
-          response = "I worked at Deoyani Movies as a Sr. Video Editor & Digital Marketing Specialist, managing post-production, SEO, and YouTube growth for upcoming movie releases.";
+        } else if (lowerText.includes("deoyani") || lowerText.includes("ott") || lowerText.includes("drm") || lowerText.includes("bindhast")) {
+          response = (
+            <div className="space-y-2">
+              <p className="text-xs text-gray-200">
+                At <strong>Deoyani Movies Pvt Ltd</strong>, I serve as <strong>Chief Architect, Lead OTT Systems Engineer & Sr. Video Editor</strong>.
+              </p>
+              <p className="text-xs text-gray-400">
+                I engineered the full direct-to-consumer theatrical OTT streaming ecosystem at <strong>deoyanimovies.com</strong>, complete with Bunny Stream HLS + MediaCage ClearKey DRM, Razorpay TVOD pay-per-view, 30s concurrency lockout, and Google Cloud Agent Platform / Gemini 3.6 Flash.
+              </p>
+              <button
+                onClick={() => {
+                  setCaseStudyTopic("deoyani");
+                  setMiniBrainOpen(false);
+                  setCaseStudyOpen(true);
+                }}
+                className="mt-1 text-xs font-mono text-brand-gold hover:underline flex items-center gap-1"
+              >
+                Launch OTT Blueprint & DRM Playbook →
+              </button>
+            </div>
+          );
         } else if (lowerText.includes("shelax") || lowerText.includes("dubai")) {
           response = "I worked at Shelax Worldwide FZE in Dubai as a Sr. Video Editor and Content Manager, editing music videos, managing app content, and handling AWS uploads.";
         } else if (lowerText.includes("corona")) {

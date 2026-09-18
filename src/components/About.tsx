@@ -25,17 +25,20 @@ export function About() {
           
           <div className="space-y-6 text-gray-300 font-sans leading-relaxed text-base sm:text-lg">
             <p>
-              I am Aniket Dhuri, a Product Manager and GenAI Specialist based in India. I operate at the intersection of complex software engineering and high-end creative storytelling. 
-              As a solo founder, I don't just write code—I build products that solve real, painful problems.
+              I am Aniket Dhuri, a Product Manager, AI Generalist, and Chief Architect based in India. I operate at the intersection of complex software engineering, applied artificial intelligence, and high-end creative storytelling. 
+              As a solo founder and systems builder, I don't just write code—I design, ship, and scale production platforms that solve real, painful problems.
+            </p>
+            <p className={cn("transition-all duration-500", (mode === "founder" || mode === "recruiter") && "text-brand-cyan")}>
+              As Chief Architect and Lead OTT Systems Engineer at <strong className="text-white">Deoyani Movies</strong>, I architected the company's official direct-to-consumer OTT streaming platform (<a href="https://deoyanimovies.com" target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline font-mono text-sm">deoyanimovies.com</a>). I engineered the complete video delivery pipeline using Bunny Stream CDN, Widevine and FairPlay cbcs CENC DRM, 30s sliding session concurrency heartbeats, live Razorpay TVOD monetization, and a multilingual studio AI concierge powered by Google Gemini 3.6 Flash.
             </p>
             <p className={cn("transition-all duration-500", mode === "founder" && "text-brand-cyan")}>
-              My most recent endeavor is <strong className="text-white">Aegis Health AI</strong>, 
+              My health-tech endeavor is <strong className="text-white">Aegis Health AI</strong>, 
               where I architected a full-stack platform transforming medical lab jargon into clear, structured insights using Google Gemini.
               I managed everything from the responsive React frontend to the secure Firebase backend.
             </p>
             <p className={cn("transition-all duration-500", mode === "creative" && "text-brand-violet")}>
-              Before diving deep into AI and healthcare primitives, I spent years directing post-production 
-              and digital strategy for global brands across Mumbai and Dubai. I know how to make things work flawlessly under the hood, 
+              Before diving deep into AI and streaming architectures, I spent years directing post-production, 
+              cinematic video editing, and digital strategy for global brands across Mumbai and Dubai. As a Senior Video Editor, I know how to make things work flawlessly under the hood, 
               and I know how to make them visually compelling on the surface.
             </p>
             <p>
@@ -61,9 +64,9 @@ export function About() {
           
           <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "recruiter" && "border-brand-violet/50 shadow-[0_0_20px_rgba(138,43,226,0.15)]")}>
             <Cpu className="w-8 h-8 text-brand-violet" />
-            <h3 className="font-bold text-white text-xl">Full-Stack AI</h3>
+            <h3 className="font-bold text-white text-xl">AI Generalist &amp; Full-Stack</h3>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Deep expertise in React, Firebase, and LLM orchestration. I bridge the gap between AI capabilities and actual product utility.
+              Versatile expertise across LLMs, multi-agent networks, React 19, Firebase, and OTT streaming architectures. I bridge AI capabilities with product utility.
             </p>
           </div>
 
@@ -71,7 +74,7 @@ export function About() {
             <Layers className="w-8 h-8 text-brand-green" />
             <h3 className="font-bold text-white text-xl">Creative Technologist</h3>
             <p className="text-sm text-gray-400 leading-relaxed">
-              My background in cinematic video editing directly informs my UX/UI decisions. I build systems that are not only intelligent but also visually intuitive and engaging.
+              My background in senior video editing and motion graphics directly informs my UX/UI decisions. I build systems that are intelligent, hardened, and visually intuitive.
             </p>
           </div>
 

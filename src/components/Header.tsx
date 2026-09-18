@@ -5,7 +5,7 @@ import { cn } from "../utils";
 import { getFirebaseConfigStatus } from "../lib/firebase";
 
 export function Header() {
-  const { mode, setMode, setScanModalOpen, reduceMotion, setReduceMotion, setCaseStudyOpen } = useAppState();
+  const { mode, setMode, setScanModalOpen, reduceMotion, setReduceMotion, setCaseStudyOpen, setCaseStudyTopic } = useAppState();
   const [showWarningDetails, setShowWarningDetails] = useState(false);
   const configStatus = getFirebaseConfigStatus();
 
@@ -19,8 +19,8 @@ export function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 flex flex-col backdrop-blur-lg bg-brand-black/85 border-b border-white/5">
-        {/* Top Warning Banner if missing config */}
-        {!configStatus.isConfigured && (
+        {/* Top Warning Banner if missing config (DEV mode only) */}
+        {import.meta.env.DEV && !configStatus.isConfigured && (
           <div className="bg-gradient-to-r from-brand-amber/10 via-brand-amber/20 to-brand-amber/10 border-b border-brand-amber/15 px-4 sm:px-6 py-2 flex items-center justify-between text-xs font-mono text-brand-amber">
             <div className="flex items-center gap-2 mx-auto sm:mx-0">
               <span className="relative flex h-2 w-2">
@@ -52,7 +52,7 @@ export function Header() {
               !reduceMotion && "animate-pulse"
             )} />
             <span>Aniket Dhuri</span>
-            {!configStatus.isConfigured && (
+            {import.meta.env.DEV && !configStatus.isConfigured && (
               <span className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono bg-brand-amber/10 text-brand-amber uppercase tracking-wider border border-brand-amber/20">
                 Offline Mode
               </span>
@@ -71,7 +71,20 @@ export function Header() {
             </button>
 
             <button
-              onClick={() => setCaseStudyOpen(true)}
+              onClick={() => {
+                setCaseStudyTopic("deoyani");
+                setCaseStudyOpen(true);
+              }}
+              className="text-xs font-mono text-gray-400 hover:text-brand-gold transition-colors cursor-pointer"
+            >
+              OTT Blueprint
+            </button>
+
+            <button
+              onClick={() => {
+                setCaseStudyTopic("aegis");
+                setCaseStudyOpen(true);
+              }}
               className="text-xs font-mono text-gray-400 hover:text-brand-violet transition-colors cursor-pointer"
             >
               Aegis Playbook
@@ -110,8 +123,8 @@ export function Header() {
               {reduceMotion ? <MinusCircle className="w-4 h-4" /> : <Activity className="w-4 h-4" />}
             </button>
 
-            {/* Warning shortcut in desktop nav */}
-            {!configStatus.isConfigured && (
+            {/* Warning shortcut in desktop nav (DEV mode only) */}
+            {import.meta.env.DEV && !configStatus.isConfigured && (
               <button
                 onClick={() => setShowWarningDetails(true)}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono bg-brand-amber/10 text-brand-amber border border-brand-amber/30 hover:bg-brand-amber/20 transition-all cursor-pointer animate-pulse"
@@ -133,8 +146,8 @@ export function Header() {
 
           {/* Mobile view buttons */}
           <div className="flex md:hidden items-center gap-1 sm:gap-2">
-            {/* Warning shortcut on mobile nav if unconfigured */}
-            {!configStatus.isConfigured && (
+            {/* Warning shortcut on mobile nav if unconfigured (DEV mode only) */}
+            {import.meta.env.DEV && !configStatus.isConfigured && (
               <button
                 onClick={() => setShowWarningDetails(true)}
                 aria-label="Missing Keys Alert"

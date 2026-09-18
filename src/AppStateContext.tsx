@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 export type ViewMode = "default" | "recruiter" | "founder" | "creative";
+export type CaseStudyTopic = "aegis" | "deoyani";
 
 interface AppStateContextType {
   mode: ViewMode;
@@ -9,6 +10,8 @@ interface AppStateContextType {
   setScanModalOpen: (open: boolean) => void;
   isCaseStudyOpen: boolean;
   setCaseStudyOpen: (open: boolean) => void;
+  caseStudyTopic: CaseStudyTopic;
+  setCaseStudyTopic: (topic: CaseStudyTopic) => void;
   isMiniBrainOpen: boolean;
   setMiniBrainOpen: (open: boolean) => void;
   reduceMotion: boolean;
@@ -21,6 +24,7 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<ViewMode>("default");
   const [isScanModalOpen, setScanModalOpen] = useState(false);
   const [isCaseStudyOpen, setCaseStudyOpen] = useState(false);
+  const [caseStudyTopic, setCaseStudyTopic] = useState<CaseStudyTopic>("deoyani");
   const [isMiniBrainOpen, setMiniBrainOpen] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
 
@@ -42,6 +46,8 @@ export function AppStateProvider({ children }: { children: ReactNode }) {
         setScanModalOpen,
         isCaseStudyOpen,
         setCaseStudyOpen,
+        caseStudyTopic,
+        setCaseStudyTopic,
         isMiniBrainOpen,
         setMiniBrainOpen,
         reduceMotion,

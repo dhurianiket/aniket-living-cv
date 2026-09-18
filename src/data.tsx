@@ -19,26 +19,34 @@ export const skillsData: Skill[] = [
   },
   {
     id: "s3",
-    name: "AI & Vibe Coding",
+    name: "AI Generalist & Vibe Coding",
     category: "AI / Development",
-    description: "Integrating Generative AI tools and orchestrating LLMs.",
-    tools: ["Generative AI Tools", "AI Video Generation", "AI Image Generation", "Google Gemini", "Vibe Coding"],
-    level: 90,
+    description: "Orchestrating multi-agent systems, multimodal generative models, and LLM production pipelines.",
+    tools: ["Google Gemini", "Claude", "Multi-Agent Orchestration", "AI Video & Voice", "Generative AI", "Vibe Coding"],
+    level: 95,
+  },
+  {
+    id: "s9",
+    name: "OTT Video & DRM Infrastructure",
+    category: "Automation / Systems",
+    description: "Enterprise video streaming CDN, Widevine/FairPlay DRM, ephemeral HMAC signed tokens, and TVOD payment pipelines.",
+    tools: ["Bunny Stream CDN", "HLS / DASH", "MediaCage DRM", "Widevine & FairPlay", "Razorpay TVOD", "Capacitor Mobile"],
+    level: 95,
   },
   {
     id: "s4",
     name: "Cybersecurity",
     category: "Automation / Systems",
-    description: "Security assessment and vulnerability testing.",
-    tools: ["Ethical Hacking", "Web VAPT", "OWASP"],
-    level: 75,
+    description: "Security assessment, token verification, and vulnerability testing.",
+    tools: ["Ethical Hacking", "Web VAPT", "OWASP", "HMAC-SHA256 Auth"],
+    level: 80,
   },
   {
     id: "s5",
-    name: "Video Editing",
+    name: "Video Editing & Post-Production",
     category: "Multimedia / Design",
-    description: "High-end cinematic video editing, motion graphics, and post-production.",
-    tools: ["Adobe Premiere Pro", "Adobe After Effects", "Video Editing"],
+    description: "High-end cinematic video editing, color grading, motion graphics, and theatrical mastering.",
+    tools: ["Adobe Premiere Pro", "Adobe After Effects", "DaVinci Resolve", "Video Mastering"],
     level: 95,
   },
   {
@@ -59,11 +67,11 @@ export const skillsData: Skill[] = [
   },
   {
     id: "s8",
-    name: "Additional Skills",
+    name: "Growth & Digital Strategy",
     category: "Marketing / Growth",
-    description: "Diverse set of technical and creative abilities.",
-    tools: ["Music", "Digital Marketing", "SEO"],
-    level: 85,
+    description: "Content distribution, search engine architecture, and multi-channel audience scaling.",
+    tools: ["YouTube Studio", "Digital Marketing", "SEO", "Analytics"],
+    level: 88,
   },
 ];
 
@@ -78,19 +86,23 @@ export const experienceData: Experience[] = [
       "Architected and developed a full-stack platform transforming raw medical lab reports into structured, patient-friendly summaries using Gemini models.",
       "Built a secure, real-time backend with Firebase and designed a responsive, interactive React/Vite frontend.",
       "Led end-to-end product design, bridging technical implementation with healthcare informatics."
-    ]
+    ],
+    icons: ["google", "aws"]
   },
   {
     id: "e2",
-    role: "Sr. Video Editor & Digital Marketing Specialist",
-    company: "Deoyani Movies",
-    location: "Mumbai",
-    duration: "Jun 2024 - Jan 2026",
+    role: "Chief Architect, Lead OTT Systems Engineer & Sr. Video Editor",
+    company: "Deoyani Movies Pvt Ltd",
+    location: "Mumbai, India",
+    duration: "Jun 2024 - Present",
     highlights: [
-      "Managed post-production and delivery, spearheading end-to-end video editing workflows for films and promos.",
-      "Developed and executed digital strategy and social media marketing campaigns, scaling YouTube growth through SEO.",
-      "Partnered with production teams to align digital marketing initiatives with promotional goals."
-    ]
+      "Architected, developed, and launched the official Deoyani Movies OTT streaming portal (deoyanimovies.com) powered by React 19, Firebase Firestore, and Bunny.net Stream CDN.",
+      "Engineered TVOD pay-per-movie monetization (₹25 / 72-hour rental) and VIP cinema passes with live Razorpay gateway integration, cryptographic HMAC-SHA256 webhook verification, and idempotent ledgering.",
+      "Constructed zero-trust anti-piracy defenses: ephemeral HMAC-SHA256 signed playback tokens (10m TTL), Shaka Multi-DRM (Widevine L3/L1 & Apple FairPlay cbcs CENC), 30s sliding session concurrency locks (2-device cap), and mobile app-switcher privacy blanking.",
+      "Integrated Google Cloud Agent Platform / Gemini 3.6 Flash AI service for smart catalog search, studio trivia, and multilingual conversational concierge (Marathi, Hindi, English).",
+      "Directed end-to-end post-production, digital mastering, color grading, and promotional trailer editing for landmark films (Matru Devo Bhavah, Bindhast, Chimani Pakhar), scaling digital reach via YouTube SEO."
+    ],
+    icons: ["google", "aws"]
   },
   {
     id: "e3",
@@ -102,7 +114,8 @@ export const experienceData: Experience[] = [
       "Edited music videos and worked on audio quality improvements in existing videos.",
       "Managed content for the app and transcribed files for the platform.",
       "Uploaded and managed content on AWS servers for global distribution."
-    ]
+    ],
+    icons: ["aws"]
   },
   {
     id: "e4",
@@ -131,6 +144,17 @@ export const experienceData: Experience[] = [
 ];
 
 export const projectsData: Project[] = [
+  {
+    id: "p0",
+    title: "Deoyani Movies OTT Platform",
+    shortDesc: "Enterprise Web & Mobile OTT Streaming Architecture.",
+    problem: "Regional film production houses suffer from opaque 3rd-party aggregator rev-shares, video piracy, and lack of direct audience monetization.",
+    solution: "Engineered a production-grade Web/Mobile OTT platform featuring Bunny Stream encrypted CDN delivery, live Razorpay TVOD (₹25/72hr) & VIP cinema passes, Zero-Trust expiring HMAC tokens, Multi-DRM (Widevine/FairPlay cbcs), 30s sliding concurrency locks, and an integrated multilingual Gemini 3.6 Flash AI concierge.",
+    result: "Successfully launched live at deoyanimovies.com, monetizing premier banner catalog films (Bindhast, Matru Devo Bhavah, Chimani Pakhar) with sub-second time-to-first-frame and zero-piracy stream protection.",
+    tools: ["React 19", "Bunny Stream CDN", "Multi-DRM", "Razorpay TVOD", "Firebase Firestore", "Google Gemini 3.6 Flash", "Capacitor Mobile"],
+    category: "Full-Stack Media",
+    link: "https://deoyanimovies.com"
+  },
   {
     id: "p5",
     title: "ArthaDesk",
@@ -186,6 +210,21 @@ export const projectsData: Project[] = [
 
 export const assistantPrompts: PromptChip[] = [
   {
+    id: "a_deoyani",
+    text: "What is Deoyani Movies OTT?",
+    response: "Deoyani Movies OTT (deoyanimovies.com) is an enterprise-grade Web & Mobile OTT platform I architected and developed for Deoyani Movies Pvt Ltd. It features Bunny Stream CDN, Widevine/FairPlay cbcs DRM, live Razorpay TVOD monetization, 30s sliding concurrency heartbeats, and a multilingual Gemini 3.6 Flash AI concierge."
+  },
+  {
+    id: "a_ai_generalist",
+    text: "What is an AI Generalist?",
+    response: "As an AI Generalist, I operate across the full spectrum of applied AI: from multi-agent orchestration (Aegis Health AI) and LLM prompting/fine-tuning (Gemini, Claude, Llama) to multimodal AI workflows (AI video, voice synthesis, generative vision) and full-stack integration into hardened production software."
+  },
+  {
+    id: "a_drm",
+    text: "How does the OTT DRM work?",
+    response: "The Deoyani OTT video pipeline enforces Zero-Trust security: short-lived HMAC-SHA256 signed playback URLs (10-minute TTL), Shaka Multi-DRM with Widevine (Google) and FairPlay (Apple) AES-128 cbcs CENC encryption, 30-second sliding-window session heartbeats capping active devices to 2, and mobile app-switcher privacy blanking."
+  },
+  {
     id: "a_survival",
     text: "Survival Rate Guide",
     response: "" // Handled dynamically in NLP match
@@ -208,7 +247,7 @@ export const assistantPrompts: PromptChip[] = [
   {
     id: "a1",
     text: "What can he build?",
-    response: "I build full-stack web applications, AI-integrated platforms (like Aegis Health AI), intelligent dashboards, and complex workflow automations. I handle frontend architecture (React/TS), backend setup (Firebase), and LLM integrations (Gemini)."
+    response: "I am a Product Manager, AI Generalist, and Chief Architect. I build full-stack web applications, AI-integrated platforms (like Aegis Health AI), enterprise OTT streaming systems (like Deoyani Movies OTT), and complex workflow automations. I handle frontend architecture (React/TS), backend setup (Firebase), and LLM integrations (Gemini)."
   },
   {
     id: "a2",
@@ -228,7 +267,7 @@ export const assistantPrompts: PromptChip[] = [
   {
     id: "a5",
     text: "Can he help with AI products?",
-    response: "Absolutely. I specialize in integrating LLMs into practical tools. Whether you need an intelligent assistant, complex data parser, or automated insights engine, I know how to prompt, orchestrate, and deploy AI models reliably into production."
+    response: "Absolutely. As an AI Generalist, I specialize in integrating LLMs into practical tools. Whether you need an intelligent assistant, complex data parser, or automated insights engine, I know how to prompt, orchestrate, and deploy AI models reliably into production."
   },
   {
     id: "a6",

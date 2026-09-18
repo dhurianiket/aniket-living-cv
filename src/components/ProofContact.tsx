@@ -21,17 +21,17 @@ export function ProofContact() {
               <div className="text-xl sm:text-3xl font-display font-bold text-white mb-1">MVP</div>
               <div className="text-[10px] sm:text-xs font-mono text-gray-400 uppercase tracking-wider">Aegis Health AI in testing</div>
             </div>
+            <div className="glass-panel p-4 sm:p-6 rounded-xl border-t-2 border-t-brand-gold">
+              <div className="text-xl sm:text-3xl font-display font-bold text-white mb-1">OTT DRM</div>
+              <div className="text-[10px] sm:text-xs font-mono text-gray-400 uppercase tracking-wider">Deoyani Live Production</div>
+            </div>
             <div className="glass-panel p-4 sm:p-6 rounded-xl border-t-2 border-t-brand-violet">
-              <div className="text-xl sm:text-3xl font-display font-bold text-white mb-1">Full-Stack</div>
-              <div className="text-[10px] sm:text-xs font-mono text-gray-400 uppercase tracking-wider">Architecture & Design</div>
+              <div className="text-xl sm:text-3xl font-display font-bold text-white mb-1">AI Generalist</div>
+              <div className="text-[10px] sm:text-xs font-mono text-gray-400 uppercase tracking-wider">Full-Stack & Systems</div>
             </div>
             <div className="glass-panel p-4 sm:p-6 rounded-xl border-t-2 border-t-brand-green">
               <div className="text-xl sm:text-3xl font-display font-bold text-white mb-1">5+ Yrs</div>
               <div className="text-[10px] sm:text-xs font-mono text-gray-400 uppercase tracking-wider">Creative Direction</div>
-            </div>
-            <div className="glass-panel p-4 sm:p-6 rounded-xl border-t-2 border-t-brand-amber">
-              <div className="text-xl sm:text-3xl font-display font-bold text-white mb-1">Solo</div>
-              <div className="text-[10px] sm:text-xs font-mono text-gray-400 uppercase tracking-wider">System Builder</div>
             </div>
           </div>
         </div>
@@ -86,6 +86,17 @@ export function ProofContact() {
                 <div className="text-xs font-mono text-gray-400">View source code & contributions</div>
               </div>
               <ExternalLink className="w-4 h-4 text-gray-600 ml-auto group-hover:text-white transition-colors" />
+            </a>
+
+            <a href="https://deoyanimovies.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 glass-panel rounded-xl hover:bg-brand-gold/5 hover:border-brand-gold/30 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300 group cursor-pointer">
+              <div className="p-3 bg-brand-gold/10 rounded-lg group-hover:bg-brand-gold/20 group-hover:scale-110 transition-all duration-300">
+                <div className="w-5 h-5 text-brand-gold flex items-center justify-center font-bold font-display text-lg">D</div>
+              </div>
+              <div>
+                <div className="text-sm font-medium text-white">Deoyani Movies OTT</div>
+                <div className="text-xs font-mono text-gray-400">Direct-to-Consumer Theatrical OTT Platform</div>
+              </div>
+              <ExternalLink className="w-4 h-4 text-gray-600 ml-auto group-hover:text-brand-gold transition-colors" />
             </a>
 
             <a href="https://aegishealthai.co.in" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 p-4 glass-panel rounded-xl hover:bg-brand-violet/5 hover:border-brand-violet/30 hover:shadow-[0_0_20px_rgba(138,43,226,0.2)] transition-all duration-300 group cursor-pointer">

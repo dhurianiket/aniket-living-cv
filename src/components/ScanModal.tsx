@@ -6,28 +6,28 @@ import { X, CheckCircle2, ScanFace, Target, Zap, Briefcase } from "lucide-react"
 
 const scanData = {
   default: {
-    summary: "Aniket is a solo founder and full-stack AI builder who crafts intelligent systems and premium digital experiences.",
-    strengths: ["Full-Stack Architecture", "LLM Orchestration", "Creative Direction"],
-    roles: ["Full-Stack AI Builder", "Founding Engineer", "Creative Technologist"],
-    projectTypes: ["AI-Integrated MVCs", "Enterprise Dashboards", "Interactive Data Apps"]
+    summary: "Aniket is a solo founder, AI Generalist, and Chief Architect who builds intelligent systems, enterprise streaming architectures, and premium digital products.",
+    strengths: ["Full-Stack Architecture", "AI Generalist & LLMs", "OTT Streaming & DRM", "Creative Direction"],
+    roles: ["AI Generalist", "Chief OTT Architect", "Product Manager", "Founding Engineer"],
+    projectTypes: ["Enterprise OTT Streaming", "AI-Integrated Platforms", "Healthcare IT Systems", "Interactive SaaS"]
   },
   recruiter: {
-    summary: "Aniket is a versatile full-stack engineer and digital strategist with a proven track record of delivering end-to-end products.",
-    strengths: ["Full-Stack Engineering", "Cross-functional Leadership", "Rapid Prototyping"],
-    roles: ["Frontend Engineer", "Full-Stack Developer", "Product Engineer"],
-    projectTypes: ["SaaS Platforms", "Consumer Web Apps", "Internal Tooling"]
+    summary: "Aniket is a versatile technical architect, AI Generalist, and digital strategist with a proven track record of shipping end-to-end commercial products.",
+    strengths: ["Full-Stack & CDN Architecture", "AI Agent Pipelines", "Cross-Functional Leadership", "Rapid Prototyping"],
+    roles: ["AI Generalist", "Chief Architect", "Full-Stack Engineer", "Product Manager"],
+    projectTypes: ["Web & Mobile OTT Portals", "SaaS Platforms", "AI Microservices", "Internal Tooling"]
   },
   founder: {
-    summary: "Aniket is a fellow builder who understands how to balance technical debt with shipping velocity, leveraging AI to create defensible products.",
-    strengths: ["MVP Architecture", "AI Integration", "Product Strategy"],
-    roles: ["Founding Engineer", "Technical Co-Founder", "Lead Developer"],
-    projectTypes: ["0-to-1 Startups", "Healthcare IT Systems", "LLM Wrappers"]
+    summary: "Aniket is a fellow builder and technical co-founder who balances architecture and velocity, leveraging AI to construct scalable, defensible products.",
+    strengths: ["0-to-1 Architecture", "AI Generalist Execution", "Payment & DRM Workflows", "Product Strategy"],
+    roles: ["Technical Co-Founder", "Chief Architect", "Founding Engineer", "Lead Developer"],
+    projectTypes: ["0-to-1 Startups", "OTT Streaming & Monetization", "Healthcare IT Platforms", "LLM Systems"]
   },
   creative: {
-    summary: "Aniket seamlessly blends high-end cinematic aesthetics with modern frontend development to craft engaging, conversion-optimized experiences.",
-    strengths: ["Cinematic Storytelling", "UI/UX Motion Design", "Growth Marketing"],
-    roles: ["Creative Technologist", "Design Engineer", "Creative Director"],
-    projectTypes: ["Premium Portfolios", "Marketing Websites", "Video Campaigns"]
+    summary: "Aniket seamlessly bridges cinematic post-production and senior video editing with modern frontend engineering to craft hardened, high-retention experiences.",
+    strengths: ["Cinematic Storytelling", "Senior Video Editing", "UI/UX Motion Design", "Growth & YouTube SEO"],
+    roles: ["Creative Technologist", "Sr. Video Editor", "Post-Production Lead", "Design Engineer"],
+    projectTypes: ["Theatrical OTT Platforms", "Cinematic Commercials", "Marketing Growth Engines", "Media Portfolios"]
   }
 };
 

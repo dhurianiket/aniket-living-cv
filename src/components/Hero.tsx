@@ -5,7 +5,7 @@ import { cn } from "../utils";
 import { useAppState } from "../AppStateContext";
 
 export function Hero() {
-  const { mode, setCaseStudyOpen, setMiniBrainOpen, reduceMotion } = useAppState();
+  const { mode, setCaseStudyOpen, setCaseStudyTopic, setMiniBrainOpen, reduceMotion } = useAppState();
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
   const [activeCycleTab, setActiveCycleTab] = useState<"inference" | "failover" | "mutex">("inference");
@@ -191,8 +191,8 @@ export function Hero() {
             className="font-sans text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mb-8 sm:mb-10 leading-relaxed font-normal"
             style={{ transform: reduceMotion ? "none" : "translateZ(20px)" }}
           >
-            I'm <span className="text-white font-medium">Aniket Dhuri</span> — a <span className="text-brand-cyan font-semibold">Product Manager</span>, <span className="text-brand-violet font-semibold">GenAI Specialist</span>, and solo founder based in India. 
-            I architect intelligent platforms like Aegis Health AI and craft high-end interactive systems.
+            I'm <span className="text-white font-medium">Aniket Dhuri</span> — a <span className="text-brand-cyan font-semibold">Product Manager</span>, <span className="text-brand-violet font-semibold">AI Generalist</span>, and <span className="text-[#D4AF37] font-semibold">Chief OTT Architect</span> based in India. 
+            I architect intelligent platforms like Aegis Health AI, engineer high-throughput streaming systems like Deoyani Movies OTT, and craft hardened digital products.
           </p>
 
           <div 
@@ -201,8 +201,12 @@ export function Hero() {
           >
             <button 
               onClick={() => {
-                if (mode === "founder") setCaseStudyOpen(true);
-                else scrollTo("projects");
+                if (mode === "founder") {
+                  setCaseStudyTopic("deoyani");
+                  setCaseStudyOpen(true);
+                } else {
+                  scrollTo("projects");
+                }
               }}
               className="group relative px-6 py-3.5 bg-brand-black border border-brand-cyan text-brand-cyan overflow-hidden rounded-md transition-all hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] flex items-center gap-2 cursor-pointer font-bold tracking-wider"
             >
@@ -254,6 +258,17 @@ export function Hero() {
             <span className="text-gray-500 uppercase tracking-wider mr-2 text-[10px]">Direct Entry Nodes:</span>
             <button
               onClick={() => {
+                setCaseStudyTopic("deoyani");
+                setCaseStudyOpen(true);
+              }}
+              className="flex items-center gap-1.5 px-3 py-1 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 border border-[#D4AF37]/30 rounded-full font-mono text-[#D4AF37] transition-all cursor-pointer shadow-[0_0_10px_rgba(212,175,55,0.15)]"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
+              Deoyani OTT Blueprint
+            </button>
+
+            <button
+              onClick={() => {
                 const el = document.getElementById("survival-guide");
                 if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
@@ -264,11 +279,14 @@ export function Hero() {
             </button>
             
             <button
-              onClick={() => setCaseStudyOpen(true)}
+              onClick={() => {
+                setCaseStudyTopic("aegis");
+                setCaseStudyOpen(true);
+              }}
               className="flex items-center gap-1.5 px-3 py-1 bg-brand-violet/5 hover:bg-brand-violet/15 border border-brand-violet/20 rounded-full font-mono text-brand-violet transition-all cursor-pointer"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-brand-violet" />
-              Aegis Multi-Agent Playbook
+              Aegis Agent Playbook
             </button>
           </div>
         </motion.div>

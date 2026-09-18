@@ -1,11 +1,14 @@
 import { motion, useScroll, useTransform } from "motion/react";
 
 const achievements = [
+  "🎬 Chief Architect & Developer of Deoyani Movies OTT Platform (deoyanimovies.com)",
   "🚀 Shipped MVP of Aegis Health AI in testing phase",
-  "🧠 Integrated Google Gemini for Clinical Document Parsing",
-  "🎥 Pre/post-production for Bhojpuri film 'Matru Devo Bhava'",
+  "🛡️ Engineered Zero-Trust Multi-DRM (Widevine & FairPlay) & Ephemeral HMAC Video Security",
+  "🧠 AI Generalist: Integrated Google Gemini for Clinical Parsing & Multilingual OTT Concierge",
+  "💳 Integrated Live Razorpay TVOD & Cloud Firestore Subscriptions Engine",
+  "🎥 Senior Video Editing & Theatrical Mastering for Landmark Films (Bindhast, Matru Devo Bhavah, Chimani Pakhar)",
   "✉️ Special invite from BeerBiceps via Skillhouse",
-  "⚡ Built Scalable React & Firebase Architectures",
+  "⚡ Built Scalable React 19, Bunny CDN & Firebase Architectures",
   "🎸 Guitar Player & Enthusiastic Chess Player",
 ];
 

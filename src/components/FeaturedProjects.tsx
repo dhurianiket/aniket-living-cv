@@ -5,20 +5,23 @@ import { useAppState } from "../AppStateContext";
 import { cn } from "../utils";
 
 export function FeaturedProjects() {
-  const { mode, reduceMotion, setCaseStudyOpen } = useAppState();
+  const { mode, reduceMotion, setCaseStudyOpen, setCaseStudyTopic } = useAppState();
 
   const sortedProjects = [...projectsData].sort((a, b) => {
     if (mode === "recruiter") {
+      if (a.category === "Full-Stack Media") return -1;
       if (a.category === "Full-Stack AI") return -1;
       if (a.category === "Growth") return -1;
       return 1;
     }
     if (mode === "founder") {
+      if (a.category === "Full-Stack Media") return -1;
       if (a.category === "Full-Stack AI") return -1;
       if (a.category === "Systems") return -1;
       return 1;
     }
     if (mode === "creative") {
+      if (a.category === "Full-Stack Media") return -1;
       if (a.category === "Creative") return -1;
       if (a.category === "Growth") return -1;
       return 1;
@@ -89,9 +92,23 @@ export function FeaturedProjects() {
                       <h4 className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-1">Impact</h4>
                       <p className="text-white text-sm font-medium">{project.result}</p>
                     </div>
+                    {project.id === "p0" && (
+                      <button
+                        onClick={() => {
+                          setCaseStudyTopic("deoyani");
+                          setCaseStudyOpen(true);
+                        }}
+                        className="mt-4 px-4 py-2 bg-brand-cyan/10 hover:bg-brand-cyan/20 border border-brand-cyan/35 hover:border-brand-cyan/60 text-brand-cyan rounded-lg text-xs font-mono self-start flex items-center gap-1.5 transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.15)] cursor-pointer"
+                      >
+                        <Cpu className="w-3.5 h-3.5 text-brand-cyan" /> OTT Architecture &amp; DRM Blueprint
+                      </button>
+                    )}
                     {project.id === "p1" && (
                       <button
-                        onClick={() => setCaseStudyOpen(true)}
+                        onClick={() => {
+                          setCaseStudyTopic("aegis");
+                          setCaseStudyOpen(true);
+                        }}
                         className="mt-4 px-4 py-2 bg-brand-violet/10 hover:bg-brand-violet/20 border border-brand-violet/35 hover:border-brand-cyan/50 text-brand-cyan rounded-lg text-xs font-mono self-start flex items-center gap-1.5 transition-all duration-300 shadow-[0_0_15px_rgba(138,43,226,0.1)] cursor-pointer"
                       >
                         <Cpu className="w-3.5 h-3.5 text-brand-cyan" /> Playbook &amp; Architecture Manual
