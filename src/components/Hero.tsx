@@ -165,14 +165,19 @@ export function Hero() {
             initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="flex items-center gap-2 mb-4 text-brand-cyan font-mono text-xs sm:text-sm tracking-widest uppercase bg-brand-cyan/5 border border-brand-cyan/15 px-3 py-1 rounded w-fit relative"
+            className="flex items-center gap-2.5 mb-4 text-brand-cyan font-mono text-xs sm:text-sm tracking-widest uppercase bg-brand-cyan/5 border border-brand-cyan/20 px-3.5 py-1.5 rounded-full w-fit relative shadow-[0_0_15px_rgba(0,240,255,0.1)]"
             style={{ 
               transform: reduceMotion ? "none" : "translateZ(30px)",
               transformStyle: "preserve-3d"
             }}
           >
-            <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-            <span>INITIALIZING PROFILE...</span>
+            <img 
+              src="/aniket-portrait.jpg" 
+              alt="Aniket Dhuri" 
+              className="w-6 h-6 rounded-full object-cover object-top border border-brand-cyan/50 shrink-0 shadow-[0_0_8px_rgba(0,240,255,0.4)]"
+            />
+            <Sparkles className="w-3.5 h-3.5 animate-pulse text-brand-cyan shrink-0" />
+            <span>SYSTEM.ONLINE // ANIKET DHURI</span>
             <span className="absolute -right-1 -top-1 w-2 h-2 rounded-full bg-brand-cyan animate-ping" />
           </motion.div>
 
@@ -294,99 +299,83 @@ export function Hero() {
         {/* Right side interactive 3D Hologram column */}
         <div className="lg:col-span-5 hidden lg:flex justify-center items-center">
           <div 
-            className="w-full max-w-[380px] aspect-square relative select-none rounded-2xl"
+            className="w-full max-w-[390px] aspect-[4/4.8] relative select-none rounded-2xl"
             style={{ perspective: "1000px" }}
           >
             {/* Main Interactive 3D Frame */}
             <div 
-              className="w-full h-full glass-panel border-white/10 rounded-2xl relative transition-all duration-300 ease-out shadow-[0_0_50px_rgba(0,240,255,0.05)] cursor-pointer"
+              className="w-full h-full glass-panel border border-brand-cyan/30 rounded-2xl relative transition-all duration-300 ease-out shadow-[0_0_50px_rgba(0,240,255,0.12)] cursor-pointer overflow-hidden group"
               style={{
                 transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
                 transformStyle: "preserve-3d"
               }}
             >
-              {/* Back ambient matrix effect */}
-              <div 
-                className="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:16px_16px] rounded-2xl pointer-events-none"
-                style={{ transform: "translateZ(-30px)" }}
+              {/* Executive Portrait of Aniket Dhuri */}
+              <img 
+                src="/aniket-portrait.jpg" 
+                alt="Aniket Dhuri - Product Manager, AI Generalist & Chief OTT Architect" 
+                className="absolute inset-0 w-full h-full object-cover object-top filter brightness-[0.97] contrast-105 transition-transform duration-700 group-hover:scale-105"
+                style={{ transform: "translateZ(0px)" }}
               />
 
-              {/* Central glowing core node */}
+              {/* Gradient Vignette Overlays for deep obsidian cinematic depth */}
               <div 
-                className="absolute w-20 h-20 top-1/2 left-1/2 -mt-10 -ml-10 rounded-full flex items-center justify-center pointer-events-none"
-                style={{ transform: "translateZ(40px)" }}
+                className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/40 to-transparent pointer-events-none" 
+                style={{ transform: "translateZ(10px)" }}
+              />
+              <div 
+                className="absolute inset-0 bg-gradient-to-b from-brand-black/70 via-transparent to-brand-black/90 pointer-events-none" 
+                style={{ transform: "translateZ(10px)" }}
+              />
+
+              {/* Cyber Scan Grid Lines */}
+              <div 
+                className="absolute inset-0 bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px)] [background-size:100%_4px] pointer-events-none opacity-40"
+                style={{ transform: "translateZ(18px)" }}
+              />
+
+              {/* Floating Layer 3D Badge: Founder & Architect */}
+              <div 
+                className="absolute left-4 top-4 px-3 py-1.5 bg-brand-black/90 backdrop-blur-md border border-brand-cyan/50 rounded-lg flex items-center gap-2 text-[10px] font-mono text-white pointer-events-none shadow-[0_0_15px_rgba(0,240,255,0.25)]"
+                style={{ transform: "translateZ(55px)" }}
               >
-                <div className="absolute inset-0 bg-brand-cyan/20 blur-xl rounded-full scale-125 animate-pulse" />
-                <div className="absolute inset-1.5 bg-brand-black border border-brand-cyan/40 rounded-full flex items-center justify-center">
-                  <Cpu className="w-6 h-6 text-brand-cyan animation-spin" style={{ animationDuration: "12s" }} />
-                </div>
+                <span className="w-2 h-2 rounded-full bg-brand-cyan animate-ping" />
+                <span className="font-bold tracking-wider text-brand-cyan">ANIKET DHURI</span>
+                <span className="text-gray-400 text-[9px]">// ARCHITECT</span>
               </div>
 
-              {/* 3D Co-centric rotating vector paths */}
+              {/* Floating Layer 3D Badge: AI Generalist */}
               <div 
-                className="absolute inset-6 rounded-full border border-dashed border-brand-cyan/25 flex items-center justify-center animate-spin pointer-events-none"
-                style={{ 
-                  transform: "translateZ(10px) rotateX(45deg)", 
-                  transformStyle: "preserve-3d",
-                  animationDuration: "25s" 
-                }}
-              >
-                <div className="w-4 h-4 rounded-full bg-brand-cyan absolute top-0 -mt-2 shadow-[0_0_10px_#00f0ff]" />
-              </div>
-
-              <div 
-                className="absolute inset-16 rounded-full border border-dashed border-brand-violet/25 flex items-center justify-center animate-spin pointer-events-none"
-                style={{ 
-                  transform: "translateZ(20px) rotateY(-45deg)", 
-                  transformStyle: "preserve-3d",
-                  animationDuration: "18s",
-                  animationDirection: "reverse"
-                }}
-              >
-                <div className="w-3.5 h-3.5 rounded-full bg-brand-violet absolute bottom-0 -mb-2 shadow-[0_0_10px_#8a2be2]" />
-              </div>
-
-              {/* Floating Layer 3D Badge: PM Node */}
-              <div 
-                className="absolute left-6 top-8 px-2.5 py-1.5 bg-brand-black/95 border border-brand-cyan/35 rounded-lg flex items-center gap-1.5 text-[10px] font-mono text-white pointer-events-none"
+                className="absolute right-4 top-4 px-2.5 py-1.5 bg-brand-black/90 backdrop-blur-md border border-[#D4AF37]/50 rounded-lg flex items-center gap-1.5 text-[10px] font-mono text-[#D4AF37] pointer-events-none shadow-[0_0_15px_rgba(212,175,55,0.25)]"
                 style={{ transform: "translateZ(65px)" }}
               >
-                <Activity className="w-3.5 h-3.5 text-brand-cyan animate-pulse" />
-                <span>INFERENCE ENGINE</span>
-              </div>
-
-              {/* Floating Layer 3D Badge: System Node */}
-              <div 
-                className="absolute right-6 top-16 px-2.5 py-1.5 bg-brand-black/95 border border-brand-violet/35 rounded-lg flex items-center gap-1.5 text-[10px] font-mono text-white pointer-events-none"
-                style={{ transform: "translateZ(95px)" }}
-              >
-                <Orbit className="w-3.5 h-3.5 text-brand-violet" />
-                <span>MUTEX COEXIST_v4</span>
+                <Sparkles className="w-3 h-3 text-[#D4AF37] animate-pulse" />
+                <span>AI GENERALIST</span>
               </div>
 
               {/* Bottom live stats telemetry readout */}
               <div 
-                className="absolute inset-x-6 bottom-6 p-4 bg-brand-black/90 border border-white/5 rounded-xl font-mono text-[10px] text-gray-400 space-y-1"
+                className="absolute inset-x-4 bottom-4 p-3.5 bg-brand-black/95 backdrop-blur-md border border-white/10 rounded-xl font-mono text-[10px] text-gray-300 space-y-1.5 shadow-2xl"
                 style={{ transform: "translateZ(45px)" }}
               >
-                <div className="flex justify-between items-center text-white border-b border-white/5 pb-1.5 mb-1.5">
-                  <span className="flex items-center gap-1.5 font-bold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-ping" />
-                    TELEMETRY ON
+                <div className="flex justify-between items-center text-white border-b border-white/10 pb-1.5">
+                  <span className="flex items-center gap-1.5 font-bold text-[11px] text-white">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-green animate-pulse" />
+                    FOUNDER &amp; CHIEF ARCHITECT
                   </span>
-                  <span className="text-[9px] text-gray-500">Node: 2276.x</span>
+                  <span className="text-[9px] text-brand-cyan font-mono font-semibold">VERIFIED</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Throughput:</span>
-                  <span className="text-brand-cyan">~1,500 t/s</span>
+                <div className="flex justify-between text-[9.5px]">
+                  <span className="text-gray-400">Deoyani OTT:</span>
+                  <span className="text-[#D4AF37] font-semibold">Chief Architect (Live D2C)</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Mutex State:</span>
-                  <span className="text-brand-green">OK_ACQUIRED</span>
+                <div className="flex justify-between text-[9.5px]">
+                  <span className="text-gray-400">Aegis Health AI:</span>
+                  <span className="text-brand-cyan font-semibold">Founder (Gemini 3.6 Flash)</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Context:</span>
-                  <span className="text-brand-violet">ADAPTIVE_COMPRESSED</span>
+                <div className="flex justify-between text-[9.5px]">
+                  <span className="text-gray-400">Creative Direction:</span>
+                  <span className="text-brand-violet font-semibold">Sr. Video Editor (5+ Yrs)</span>
                 </div>
               </div>
 

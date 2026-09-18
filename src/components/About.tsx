@@ -52,47 +52,81 @@ export function About() {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4"
+          className="flex-1 flex flex-col gap-6"
         >
-          <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "founder" && "border-brand-cyan/50 shadow-[0_0_20px_rgba(0,240,255,0.1)]")}>
-            <User className="w-8 h-8 text-brand-cyan" />
-            <h3 className="font-bold text-white text-xl">Founder Mentality</h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              I understand velocity. I know how to ship MVPs fast without sacrificing architecture, focusing on user impact over theoretical perfection.
-            </p>
-          </div>
-          
-          <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "recruiter" && "border-brand-violet/50 shadow-[0_0_20px_rgba(138,43,226,0.15)]")}>
-            <Cpu className="w-8 h-8 text-brand-violet" />
-            <h3 className="font-bold text-white text-xl">AI Generalist &amp; Full-Stack</h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Versatile expertise across LLMs, multi-agent networks, React 19, Firebase, and OTT streaming architectures. I bridge AI capabilities with product utility.
-            </p>
-          </div>
+          {/* Executive Founder Spotlight Card */}
+          <div className="glass-panel p-6 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden group shadow-[0_0_30px_rgba(0,240,255,0.06)] hover:border-brand-cyan/40 transition-all duration-500">
+            <div className="relative shrink-0">
+              <img 
+                src="/aniket-portrait.jpg" 
+                alt="Aniket Dhuri - Product Manager, AI Generalist & Chief OTT Architect" 
+                className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl object-cover object-top border-2 border-brand-cyan/40 shadow-[0_0_20px_rgba(0,240,255,0.25)] group-hover:scale-105 transition-transform duration-500"
+              />
+              <span className="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full bg-brand-black/90 border border-brand-cyan/50 text-[9px] font-mono text-brand-cyan font-bold tracking-wider uppercase backdrop-blur-md flex items-center gap-1 shadow-lg">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-ping" />
+                ACTIVE
+              </span>
+            </div>
 
-          <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "creative" && "border-brand-green/50 shadow-[0_0_20px_rgba(0,255,102,0.1)]")}>
-            <Layers className="w-8 h-8 text-brand-green" />
-            <h3 className="font-bold text-white text-xl">Creative Technologist</h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              My background in senior video editing and motion graphics directly informs my UX/UI decisions. I build systems that are intelligent, hardened, and visually intuitive.
-            </p>
-          </div>
-
-          <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "founder" && "border-brand-amber/50 shadow-[0_0_20px_rgba(255,191,0,0.15)]")}>
-            <div className="flex items-center gap-3">
-              <div title="Google Cloud" className="p-2 rounded-xl bg-white/5 border border-white/10 shrink-0 shadow-inner">
-                {/* @ts-ignore - React 19 SVGAttributes typing issue */}
-                <SiGooglecloud className="w-5 h-5 fill-current text-white" />
+            <div className="space-y-2 text-center sm:text-left flex-1">
+              <div className="text-xs font-mono text-brand-cyan tracking-wider uppercase flex items-center justify-center sm:justify-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-pulse" />
+                <span>Executive Profile</span>
               </div>
-              <div title="Amazon Web Services" className="p-2 rounded-xl bg-white/5 border border-white/10 shrink-0 shadow-inner">
-                {/* @ts-ignore - React 19 SVGAttributes typing issue */}
-                <FaAws className="w-5 h-5 fill-current text-white" />
+              <h3 className="font-display text-2xl font-bold text-white tracking-tight">Aniket Dhuri</h3>
+              <p className="text-xs text-gray-400 font-sans leading-relaxed">
+                Operating at the confluence of high-throughput cloud streaming systems, multi-agent AI architectures, and cinematic post-production.
+              </p>
+              <div className="flex flex-wrap gap-1.5 pt-1 justify-center sm:justify-start">
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono bg-white/5 border border-white/10 text-gray-300">Product Manager</span>
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan">AI Generalist</span>
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37]">OTT Architect</span>
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono bg-brand-violet/10 border border-brand-violet/30 text-brand-violet">Sr. Video Editor</span>
               </div>
             </div>
-            <h3 className="font-bold text-white text-xl">Cloud Resourcefulness</h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Secured and leveraged Google Cloud and AWS Activate credits to bootstrap cloud infrastructure and ship production-ready systems with zero initial infrastructure overhead.
-            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "founder" && "border-brand-cyan/50 shadow-[0_0_20px_rgba(0,240,255,0.1)]")}>
+              <User className="w-8 h-8 text-brand-cyan" />
+              <h3 className="font-bold text-white text-xl">Founder Mentality</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                I understand velocity. I know how to ship MVPs fast without sacrificing architecture, focusing on user impact over theoretical perfection.
+              </p>
+            </div>
+            
+            <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "recruiter" && "border-brand-violet/50 shadow-[0_0_20px_rgba(138,43,226,0.15)]")}>
+              <Cpu className="w-8 h-8 text-brand-violet" />
+              <h3 className="font-bold text-white text-xl">AI Generalist &amp; Full-Stack</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Versatile expertise across LLMs, multi-agent networks, React 19, Firebase, and OTT streaming architectures. I bridge AI capabilities with product utility.
+              </p>
+            </div>
+
+            <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "creative" && "border-brand-green/50 shadow-[0_0_20px_rgba(0,255,102,0.1)]")}>
+              <Layers className="w-8 h-8 text-brand-green" />
+              <h3 className="font-bold text-white text-xl">Creative Technologist</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                My background in senior video editing and motion graphics directly informs my UX/UI decisions. I build systems that are intelligent, hardened, and visually intuitive.
+              </p>
+            </div>
+
+            <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "founder" && "border-brand-amber/50 shadow-[0_0_20px_rgba(255,191,0,0.15)]")}>
+              <div className="flex items-center gap-3">
+                <div title="Google Cloud" className="p-2 rounded-xl bg-white/5 border border-white/10 shrink-0 shadow-inner">
+                  {/* @ts-ignore - React 19 SVGAttributes typing issue */}
+                  <SiGooglecloud className="w-5 h-5 fill-current text-white" />
+                </div>
+                <div title="Amazon Web Services" className="p-2 rounded-xl bg-white/5 border border-white/10 shrink-0 shadow-inner">
+                  {/* @ts-ignore - React 19 SVGAttributes typing issue */}
+                  <FaAws className="w-5 h-5 fill-current text-white" />
+                </div>
+              </div>
+              <h3 className="font-bold text-white text-xl">Cloud Resourcefulness</h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Secured and leveraged Google Cloud and AWS Activate credits to bootstrap cloud infrastructure and ship production-ready systems with zero initial infrastructure overhead.
+              </p>
+            </div>
           </div>
         </motion.div>
 

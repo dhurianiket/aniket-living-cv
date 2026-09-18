@@ -43,21 +43,28 @@ export function Header() {
 
         {/* Main Header Content */}
         <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3.5">
-          <div className="font-display font-bold text-white tracking-widest text-xs sm:text-sm uppercase flex items-center gap-2">
-            <span className={cn(
-              "w-2 h-2 rounded-full shrink-0", 
-              configStatus.isConfigured 
-                ? "bg-brand-cyan shadow-[0_0_8px_#00f0ff]" 
-                : "bg-brand-amber shadow-[0_0_8px_#ffbf00]",
-              !reduceMotion && "animate-pulse"
-            )} />
-            <span>Aniket Dhuri</span>
+          <a href="#hero" className="font-display font-bold text-white tracking-widest text-xs sm:text-sm uppercase flex items-center gap-2.5 group cursor-pointer">
+            <div className="relative">
+              <img 
+                src="/aniket-portrait.jpg" 
+                alt="Aniket Dhuri" 
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover object-top border border-brand-cyan/40 group-hover:border-brand-cyan shadow-[0_0_10px_rgba(0,240,255,0.2)] transition-all"
+              />
+              <span className={cn(
+                "absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full border border-brand-black shrink-0", 
+                configStatus.isConfigured 
+                  ? "bg-brand-cyan shadow-[0_0_8px_#00f0ff]" 
+                  : "bg-brand-amber shadow-[0_0_8px_#ffbf00]",
+                !reduceMotion && "animate-pulse"
+              )} />
+            </div>
+            <span className="group-hover:text-brand-cyan transition-colors">Aniket Dhuri</span>
             {import.meta.env.DEV && !configStatus.isConfigured && (
               <span className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono bg-brand-amber/10 text-brand-amber uppercase tracking-wider border border-brand-amber/20">
                 Offline Mode
               </span>
             )}
-          </div>
+          </a>
 
           <div className="hidden md:flex items-center gap-4">
             <button
