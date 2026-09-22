@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAppState, ViewMode } from "../AppStateContext";
-import { Briefcase, Rocket, Palette, Sparkles, Activity, MinusCircle, AlertTriangle, X, ShieldAlert, Key } from "lucide-react";
+import { Briefcase, Rocket, Palette, Sparkles, Activity, MinusCircle, AlertTriangle, X, ShieldAlert, Key, FileText } from "lucide-react";
 import { cn } from "../utils";
 import { getFirebaseConfigStatus } from "../lib/firebase";
 
@@ -96,6 +96,17 @@ export function Header() {
             >
               Aegis Playbook
             </button>
+
+            <a
+              href="/Aniket_Dhuri_Executive_Resume.pdf"
+              target="_blank"
+              download="Aniket_Dhuri_Executive_Resume.pdf"
+              className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 transition-all cursor-pointer shadow-[0_0_10px_rgba(212,175,55,0.15)]"
+              title="Download Executive Resume (PDF)"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#D4AF37]" />
+              <span>Resume (PDF)</span>
+            </a>
 
             <div className="w-px h-6 bg-white/10 mx-1" />
 
@@ -196,6 +207,16 @@ export function Header() {
             >
               <Sparkles className="w-4 h-4" />
             </button>
+            <a
+                href="/Aniket_Dhuri_Executive_Resume.pdf"
+                target="_blank"
+                download="Aniket_Dhuri_Executive_Resume.pdf"
+                aria-label="Download Resume PDF"
+                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 transition-all cursor-pointer"
+                title="Download Resume PDF"
+            >
+              <FileText className="w-4 h-4 text-[#D4AF37]" />
+            </a>
           </div>
         </div>
       </header>

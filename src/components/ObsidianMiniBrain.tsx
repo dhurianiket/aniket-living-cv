@@ -76,6 +76,7 @@ export function ObsidianMiniBrain() {
             <div><span className="text-brand-violet mr-2">›</span>education</div>
             <div><span className="text-brand-violet mr-2">›</span>certifications</div>
             <div><span className="text-brand-violet mr-2">›</span>contact</div>
+            <div><span className="text-brand-gold mr-2">›</span>resume (Download Official PDF)</div>
             <div><span className="text-brand-violet mr-2">›</span>survival-guide</div>
             <div><span className="text-brand-violet mr-2">›</span>playbook</div>
             <div><span className="text-brand-gold mr-2">›</span>case-study deoyani-movies</div>
@@ -154,6 +155,38 @@ export function ObsidianMiniBrain() {
         response = "I hold a Diploma in Electronics and Telecommunication Engineering (ETE) from S. H Jondhale Polytechnic. I also completed my Senior Secondary (Science) there in 2014.";
       } else if (lowerText === "contact") {
         response = "Initiate contact securely via dhurianiket@gmail.com (Personal) or aniket@aegishealthai.co.in (Work)";
+      } else if (lowerText === "resume" || lowerText === "cv" || lowerText === "download cv" || lowerText === "download resume") {
+        response = (
+          <div className="space-y-3 font-sans">
+            <span className="font-mono text-[10px] text-[#D4AF37] bg-[#D4AF37]/15 px-2 py-0.5 rounded tracking-widest uppercase border border-[#D4AF37]/30">
+              OFFICIAL CURRICULUM VITAE (PDF)
+            </span>
+            <div className="font-display font-bold text-base text-white">
+              Aniket Dhuri - Executive Resume (Top 1%)
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed font-sans">
+              Pristine 2-page executive resume covering Product Management, AI Generalist architectures, Deoyani Movies OTT, Aegis Health AI, and 5+ years of cinematic post-production &amp; 4K theatrical color grading.
+            </p>
+            <div className="flex gap-2 pt-1">
+              <a
+                href="/Aniket_Dhuri_Executive_Resume.pdf"
+                target="_blank"
+                download="Aniket_Dhuri_Executive_Resume.pdf"
+                className="px-4 py-2 bg-brand-cyan text-black font-semibold text-xs rounded-lg hover:bg-opacity-80 transition-all font-mono inline-flex items-center gap-2 cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.2)]"
+              >
+                Download PDF
+              </a>
+              <a
+                href="/Aniket_Dhuri_Executive_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 bg-white/10 text-white font-semibold text-xs rounded-lg hover:bg-white/20 transition-all font-mono inline-flex items-center gap-2 cursor-pointer"
+              >
+                Open in New Tab ↗
+              </a>
+            </div>
+          </div>
+        );
       } else if (lowerText === "survival-guide") {
         response = (
           <div className="space-y-3">

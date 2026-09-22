@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, ExternalLink, Send } from "lucide-react";
+import { Github, Linkedin, Mail, ExternalLink, Send, FileText, Download } from "lucide-react";
 
 export function ProofContact() {
   return (
@@ -44,6 +44,25 @@ export function ProofContact() {
           </p>
 
           <div className="space-y-4">
+            <a 
+              href="/Aniket_Dhuri_Executive_Resume.pdf" 
+              target="_blank" 
+              download="Aniket_Dhuri_Executive_Resume.pdf" 
+              className="flex items-center gap-4 p-4 glass-panel rounded-xl hover:bg-[#D4AF37]/5 hover:border-[#D4AF37]/40 hover:shadow-[0_0_25px_rgba(212,175,55,0.25)] transition-all duration-300 group cursor-pointer border border-[#D4AF37]/30 bg-[#D4AF37]/5"
+            >
+              <div className="p-3 bg-[#D4AF37]/15 rounded-lg group-hover:bg-[#D4AF37]/25 group-hover:scale-110 transition-all duration-300">
+                <FileText className="w-5 h-5 text-[#D4AF37]" />
+              </div>
+              <div>
+                <div className="text-sm font-medium text-white flex items-center gap-2">
+                  <span>Executive Resume (PDF)</span>
+                  <span className="px-1.5 py-0.5 rounded text-[9px] font-mono bg-[#D4AF37]/20 text-[#D4AF37] font-bold tracking-wider uppercase border border-[#D4AF37]/30">TOP 1% ARCHITECT</span>
+                </div>
+                <div className="text-xs font-mono text-gray-400">Download official 2-page print-ready Curriculum Vitae</div>
+              </div>
+              <Download className="w-4 h-4 text-[#D4AF37] ml-auto group-hover:translate-y-0.5 transition-transform" />
+            </a>
+
             <a href="mailto:dhurianiket@gmail.com" className="flex items-center gap-4 p-4 glass-panel rounded-xl hover:bg-brand-cyan/5 hover:border-brand-cyan/30 hover:shadow-[0_0_20px_rgba(0,240,255,0.2)] transition-all duration-300 group">
               <div className="p-3 bg-brand-cyan/10 rounded-lg group-hover:bg-brand-cyan/20 group-hover:scale-110 transition-all duration-300">
                 <Mail className="w-5 h-5 text-brand-cyan" />
