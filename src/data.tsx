@@ -210,6 +210,11 @@ export const projectsData: Project[] = [
 
 export const assistantPrompts: PromptChip[] = [
   {
+    id: "a_who_is_aniket",
+    text: "Who is Aniket Dhuri?",
+    response: "Aniket Dhuri is a Product Manager, AI Generalist, Chief OTT Architect, and Senior Video Editor with 5+ years of experience across Mumbai and Dubai. He architected the enterprise streaming OTT platform for Deoyani Movies Pvt Ltd (deoyanimovies.com) with Zero-Trust Multi-DRM, founded Aegis Health AI with multimodal report parsing, built ArthaDesk offline-first ERP, and directed 4K theatrical color grading and video editing for major films."
+  },
+  {
     id: "a_deoyani",
     text: "What is Deoyani Movies OTT?",
     response: "Deoyani Movies OTT (deoyanimovies.com) is an enterprise-grade Web & Mobile OTT platform I architected and developed for Deoyani Movies Pvt Ltd. It features Bunny Stream CDN, Widevine/FairPlay cbcs DRM, live Razorpay TVOD monetization, 30s sliding concurrency heartbeats, and a multilingual Gemini 3.6 Flash AI concierge."

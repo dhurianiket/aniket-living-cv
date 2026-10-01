@@ -217,8 +217,8 @@ export function ObsidianMiniBrain() {
     {
       id: "init",
       sender: "system",
-      text: "Connection established. I am the Obsidian Mini Brain, grounded in Aniket's complete portfolio via Google Gemini 3.6 Flash. Ask me anything, or type 'help' for terminal commands.",
-      rawText: "Connection established. I am the Obsidian Mini Brain, grounded in Aniket's complete portfolio via Google Gemini 3.6 Flash."
+      text: "Connection established. I am the Obsidian Mini Brain, grounded in Aniket's complete portfolio via Google Gemini 3.8 Flash. Ask me anything, or type 'help' for terminal commands.",
+      rawText: "Connection established. I am the Obsidian Mini Brain, grounded in Aniket's complete portfolio via Google Gemini 3.8 Flash."
     }
   ]);
   const [inputVal, setInputVal] = useState("");
@@ -253,8 +253,8 @@ export function ObsidianMiniBrain() {
       {
         id: Date.now().toString(),
         sender: "system",
-        text: "Terminal reset. Obsidian Mini Brain online with Google Gemini 3.6 Flash neural grounding. Ask anything about Aniket's OTT architecture, DRM, video editing, or projects.",
-        rawText: "Terminal reset. Obsidian Mini Brain online with Google Gemini 3.6 Flash neural grounding."
+        text: "Terminal reset. Obsidian Mini Brain online with Google Gemini 3.8 Flash neural grounding. Ask anything about Aniket's OTT architecture, DRM, video editing, or projects.",
+        rawText: "Terminal reset. Obsidian Mini Brain online with Google Gemini 3.8 Flash neural grounding."
       }
     ]);
   };
@@ -303,13 +303,68 @@ export function ObsidianMiniBrain() {
           <div><span className="text-brand-violet mr-2">›</span>case-study aegis-health-ai</div>
           <div><span className="text-brand-cyan mr-2">›</span>clear (Reset Terminal)</div>
           <div className="text-xs text-gray-400 pt-2 border-t border-white/5 mt-2">
-            💡 Or ask any open-ended question in English, Marathi, or Hindi! Gemini 3.6 Flash will answer with complete portfolio grounding.
+            💡 Or ask any open-ended question in English, Marathi, or Hindi! Gemini 3.8 Flash will answer with complete portfolio grounding.
           </div>
         </div>
       );
       setMessages(prev => [
         ...prev,
         { id: Date.now().toString() + "_sys", sender: "system", text: response, rawText: "Command: help" }
+      ]);
+      return;
+    }
+
+    if (lowerText === "about" || lowerText === "bio" || lowerText === "profile") {
+      const response = (
+        <div className="space-y-3 font-sans">
+          <span className="font-mono text-[10px] text-brand-cyan bg-brand-cyan/15 px-2 py-0.5 rounded tracking-widest uppercase border border-brand-cyan/30">
+            EXECUTIVE PROFILE // ANIKET DHURI
+          </span>
+          <div className="font-display font-bold text-base text-white">
+            Aniket Dhuri — AI Systems Architect, Full-Stack Engineer &amp; Lead OTT Architect
+          </div>
+          <p className="text-xs text-gray-300 leading-relaxed">
+            Based in Mumbai, India. Dual-core specialist combining deep AI systems engineering (Aegis Health AI, agent workflows, Google Gemini 3) with enterprise-scale media streaming architecture (Deoyani Movies OTT) and 5+ years of cinematic post-production.
+          </p>
+          <div className="p-3 rounded-lg bg-white/5 border border-white/10 space-y-2 text-xs text-gray-300">
+            <div>
+              <strong className="text-brand-gold">Chief Architect &amp; Lead OTT Systems Engineer:</strong>
+              <p className="text-gray-400 mt-0.5">Deoyani Movies Pvt Ltd (deoyanimovies.com) — Zero-trust DRM streaming (Bunny Stream + ClearKey), dynamic forensic watermark, 30s session locking, and live Razorpay TVOD.</p>
+            </div>
+            <div>
+              <strong className="text-brand-cyan">Founder &amp; AI Systems Architect:</strong>
+              <p className="text-gray-400 mt-0.5">Aegis Health AI — Edge medical AI inference, automated triage pipelines, and zero-leak LLM workflows.</p>
+            </div>
+            <div>
+              <strong className="text-brand-violet">Cinematic Video Editor &amp; 4K Colorist:</strong>
+              <p className="text-gray-400 mt-0.5">5+ years in feature film mastering, multi-camera documentary editing, DaVinci Resolve Studio color science.</p>
+            </div>
+          </div>
+          <div className="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+            <button
+              onClick={() => {
+                setCaseStudyTopic("deoyani");
+                setMiniBrainOpen(false);
+                setCaseStudyOpen(true);
+              }}
+              className="px-3 py-1.5 bg-brand-gold/15 hover:bg-brand-gold/25 text-brand-gold rounded border border-brand-gold/30 transition-all cursor-pointer"
+            >
+              Deoyani OTT Architecture →
+            </button>
+            <a
+              href="/Aniket_Dhuri_Executive_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 bg-brand-cyan/15 hover:bg-brand-cyan/25 text-brand-cyan rounded border border-brand-cyan/30 transition-all cursor-pointer"
+            >
+              View Official Resume (PDF) ↗
+            </a>
+          </div>
+        </div>
+      );
+      setMessages(prev => [
+        ...prev,
+        { id: Date.now().toString() + "_sys", sender: "system", text: response, rawText: "Aniket Dhuri Executive Profile & Architecture Overview" }
       ]);
       return;
     }
@@ -585,6 +640,66 @@ export function ObsidianMiniBrain() {
       if (match && match.response) {
         fallbackText = match.response;
         fallbackNode = match.response;
+      } else if (
+        lowerText.includes("who is aniket") ||
+        lowerText.includes("about aniket") ||
+        lowerText.includes("aniket dhuri") ||
+        lowerText.includes("who is he") ||
+        lowerText.includes("who are you") ||
+        lowerText.includes("tell me about aniket") ||
+        lowerText.includes("profile") ||
+        lowerText.includes("aniket") ||
+        lowerText === "about" ||
+        lowerText === "who is"
+      ) {
+        fallbackText = "Aniket Dhuri is an AI Systems Architect, Full-Stack Engineer, and Lead OTT Systems Architect based in Mumbai, India. He serves as Chief Architect at Deoyani Movies Pvt Ltd (deoyanimovies.com) and Founder at Aegis Health AI.";
+        fallbackNode = (
+          <div className="space-y-3 font-sans">
+            <span className="font-mono text-[10px] text-brand-cyan bg-brand-cyan/15 px-2 py-0.5 rounded tracking-widest uppercase border border-brand-cyan/30">
+              EXECUTIVE PROFILE // ANIKET DHURI
+            </span>
+            <div className="font-display font-bold text-base text-white">
+              Aniket Dhuri — AI Systems Architect, Full-Stack Engineer &amp; Lead OTT Architect
+            </div>
+            <p className="text-xs text-gray-300 leading-relaxed">
+              Based in Mumbai, India. Dual-core specialist combining deep AI systems engineering (Aegis Health AI, agent workflows, Google Gemini 3) with enterprise-scale media streaming architecture (Deoyani Movies OTT) and 5+ years of cinematic post-production.
+            </p>
+            <div className="p-3 rounded-lg bg-white/5 border border-white/10 space-y-2 text-xs text-gray-300">
+              <div>
+                <strong className="text-brand-gold">Chief Architect &amp; Lead OTT Systems Engineer:</strong>
+                <p className="text-gray-400 mt-0.5">Deoyani Movies Pvt Ltd (deoyanimovies.com) — Zero-trust DRM streaming (Bunny Stream + ClearKey), dynamic forensic watermark, 30s session locking, and live Razorpay TVOD.</p>
+              </div>
+              <div>
+                <strong className="text-brand-cyan">Founder &amp; AI Systems Architect:</strong>
+                <p className="text-gray-400 mt-0.5">Aegis Health AI — Edge medical AI inference, automated triage pipelines, and zero-leak LLM workflows.</p>
+              </div>
+              <div>
+                <strong className="text-brand-violet">Cinematic Video Editor &amp; 4K Colorist:</strong>
+                <p className="text-gray-400 mt-0.5">5+ years in feature film mastering, multi-camera documentary editing, DaVinci Resolve Studio color science.</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2 pt-1 font-mono text-xs">
+              <button
+                onClick={() => {
+                  setCaseStudyTopic("deoyani");
+                  setMiniBrainOpen(false);
+                  setCaseStudyOpen(true);
+                }}
+                className="px-3 py-1.5 bg-brand-gold/15 hover:bg-brand-gold/25 text-brand-gold rounded border border-brand-gold/30 transition-all cursor-pointer"
+              >
+                Deoyani OTT Architecture →
+              </button>
+              <a
+                href="/Aniket_Dhuri_Executive_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 bg-brand-cyan/15 hover:bg-brand-cyan/25 text-brand-cyan rounded border border-brand-cyan/30 transition-all cursor-pointer"
+              >
+                View Official Resume (PDF) ↗
+              </a>
+            </div>
+          </div>
+        );
       } else if (lowerText.includes("deoyani") || lowerText.includes("ott") || lowerText.includes("bindhast")) {
         fallbackText = "At Deoyani Movies Pvt Ltd, Aniket serves as Chief Architect, Lead OTT Systems Engineer & Sr. Video Editor. Engineered the direct-to-consumer theatrical OTT streaming ecosystem at deoyanimovies.com.";
         fallbackNode = (
@@ -664,7 +779,7 @@ export function ObsidianMiniBrain() {
               <div className="flex items-center gap-2 sm:gap-3">
                 <div className="hidden xs:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-mono text-[10px] tracking-wider uppercase">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span>GEMINI 3.6 FLASH ONLINE</span>
+                  <span>GEMINI 3.8 FLASH ONLINE</span>
                 </div>
                 <button
                   onClick={handleResetTerminal}
@@ -705,7 +820,7 @@ export function ObsidianMiniBrain() {
                           {msg.isAi ? (
                             <>
                               <Cpu className="w-3 h-3 text-brand-cyan" />
-                              <span className="font-mono text-[10px] tracking-widest uppercase text-brand-cyan">Gemini 3.6 Flash Neural Engine</span>
+                              <span className="font-mono text-[10px] tracking-widest uppercase text-brand-cyan">Gemini 3.8 Flash Neural Engine</span>
                             </>
                           ) : (
                             <>
