@@ -18,19 +18,9 @@ function SkillCard({ skill, activeSkill, setActiveSkill, highlighted }: any) {
 
   return (
     <motion.div
-      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
-      whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1 }}
-      animate={isActive && !reduceMotion ? {
-        boxShadow: isVioletCluster 
-          ? ['0 0 15px rgba(138,43,226,0.2)', '0 0 25px rgba(138,43,226,0.4)', '0 0 15px rgba(138,43,226,0.2)']
-          : ['0 0 15px rgba(0,240,255,0.2)', '0 0 25px rgba(0,240,255,0.4)', '0 0 15px rgba(0,240,255,0.2)'],
-      } : isActive && reduceMotion ? {
-        boxShadow: isVioletCluster ? '0 0 20px rgba(138,43,226,0.3)' : '0 0 20px rgba(0,240,255,0.3)'
-      } : {}}
-      transition={{
-        default: { duration: 0.4 },
-        boxShadow: !reduceMotion ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : { duration: 0.4 }
-      }}
+      initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
+      whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true }}
       onMouseEnter={() => {
         setHovered(true);
@@ -39,7 +29,7 @@ function SkillCard({ skill, activeSkill, setActiveSkill, highlighted }: any) {
       onMouseLeave={() => setHovered(false)}
       onClick={() => setActiveSkill(skill)}
       className={cn(
-        "cursor-pointer pr-4 pl-2 py-2 rounded-md glass-panel transition-all duration-300 border flex items-center justify-between gap-4 overflow-hidden relative",
+        "w-full sm:w-auto cursor-pointer pr-4 pl-2.5 py-2.5 rounded-xl glass-panel transition-[border-color,background-color] duration-200 border flex items-center justify-between gap-4 overflow-hidden relative",
         isActive ? activeShadow : inactiveShadow
       )}
     >
@@ -53,13 +43,13 @@ function SkillCard({ skill, activeSkill, setActiveSkill, highlighted }: any) {
         />
       )}
       
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 min-w-0">
         <SkillVisual id={skill.id} active={isActive} hovered={hovered} />
-        <span className="font-medium text-sm sm:text-base">{skill.name}</span>
+        <span className="font-medium text-sm sm:text-base text-left leading-snug">{skill.name}</span>
       </div>
       
       <span className={cn(
-        "w-2 h-2 rounded-full opacity-50",
+        "w-2 h-2 rounded-full opacity-60 shrink-0",
         highlighted ? "bg-brand-violet shadow-[0_0_8px_#8a2be2]" : "bg-brand-cyan shadow-[0_0_8px_#00f0ff]"
       )} />
     </motion.div>

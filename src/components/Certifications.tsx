@@ -40,12 +40,12 @@ export function Certifications() {
           {certificationsData.map((cert, index) => (
             <motion.div
               key={cert.id}
-              initial={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9, y: 20 }}
+              initial={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96, y: 16 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.38, delay: reduceMotion ? 0 : (index % 4) * 0.05, ease: [0.22, 1, 0.36, 1] }}
               whileHover={reduceMotion ? {} : { y: -5, transition: { duration: 0.2 } }}
-              className="relative p-[1px] group rounded-2xl overflow-hidden"
+              className="relative p-[1px] group rounded-2xl overflow-hidden will-change-[transform,opacity] transform-gpu"
             >
               {/* Animated gradient border */}
               <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-brand-cyan/20 to-brand-violet/20 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />

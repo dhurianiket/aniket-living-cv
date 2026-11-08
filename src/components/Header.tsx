@@ -42,9 +42,9 @@ export function Header() {
         )}
 
         {/* Main Header Content */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3.5">
-          <a href="#hero" className="font-display font-bold text-white tracking-widest text-xs sm:text-sm uppercase flex items-center gap-2.5 group cursor-pointer">
-            <div className="relative">
+        <div className="flex items-center justify-between px-3 sm:px-6 py-2.5 sm:py-3.5 gap-2">
+          <a href="#hero" className="font-display font-bold text-white tracking-wider sm:tracking-widest text-xs sm:text-sm uppercase flex items-center gap-2 group cursor-pointer shrink-0 min-w-0">
+            <div className="relative shrink-0">
               <img 
                 src="/aniket-portrait.jpg" 
                 alt="Aniket Dhuri" 
@@ -58,7 +58,7 @@ export function Header() {
                 !reduceMotion && "animate-pulse"
               )} />
             </div>
-            <span className="group-hover:text-brand-cyan transition-colors">Aniket Dhuri</span>
+            <span className="group-hover:text-brand-cyan transition-colors whitespace-nowrap">Aniket Dhuri</span>
             {import.meta.env.DEV && !configStatus.isConfigured && (
               <span className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[8px] font-mono bg-brand-amber/10 text-brand-amber uppercase tracking-wider border border-brand-amber/20">
                 Offline Mode
@@ -163,59 +163,59 @@ export function Header() {
           </div>
 
           {/* Mobile view buttons */}
-          <div className="flex md:hidden items-center gap-1 sm:gap-2">
+          <div className="flex md:hidden items-center gap-1 shrink-0">
             {/* Warning shortcut on mobile nav if unconfigured (DEV mode only) */}
             {import.meta.env.DEV && !configStatus.isConfigured && (
               <button
                 onClick={() => setShowWarningDetails(true)}
                 aria-label="Missing Keys Alert"
-                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-brand-amber/10 text-brand-amber border border-brand-amber/30 hover:bg-brand-amber/20 transition-all cursor-pointer animate-pulse mr-1"
+                className="flex items-center justify-center w-7 h-7 rounded-full bg-brand-amber/10 text-brand-amber border border-brand-amber/30 hover:bg-brand-amber/20 transition-colors cursor-pointer"
               >
-                <AlertTriangle className="w-4 h-4 text-brand-amber" />
+                <AlertTriangle className="w-3.5 h-3.5 text-brand-amber" />
               </button>
             )}
 
-            <div className="flex gap-1 p-1 glass-panel rounded-full mr-1 sm:mr-2">
+            <div className="flex gap-0.5 p-0.5 glass-panel rounded-full">
               {modes.map((m) => (
                 <button
                   key={m.id}
                   onClick={() => setMode(m.id)}
                   aria-label={`Switch to ${m.label} mode`}
                   className={cn(
-                    "flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-xs transition-all duration-300 cursor-pointer",
+                    "flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full text-xs transition-colors duration-200 cursor-pointer",
                     mode === m.id
-                      ? "bg-white/10 text-white shadow-[0_0_10px_rgba(255,255,255,0.05)]"
-                      : "text-gray-500 hover:text-gray-300 hover:bg-white/5"
+                      ? "bg-white/15 text-white"
+                      : "text-gray-500 hover:text-gray-300"
                   )}
                 >
-                  {m.icon || <div className="w-4 h-4 rounded-full border-2 border-current" />}
+                  {m.icon || <div className="w-3.5 h-3.5 rounded-full border-2 border-current" />}
                 </button>
               ))}
             </div>
 
             <button
-                onClick={() => setReduceMotion(!reduceMotion)}
-                aria-label={reduceMotion ? "Enable Motion" : "Reduce Motion"}
-                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-gray-500 hover:bg-white/5 transition-all cursor-pointer"
+              onClick={() => setReduceMotion(!reduceMotion)}
+              aria-label={reduceMotion ? "Enable Motion" : "Reduce Motion"}
+              className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full text-gray-400 hover:bg-white/5 transition-colors cursor-pointer"
             >
-              {reduceMotion ? <MinusCircle className="w-4 h-4" /> : <Activity className="w-4 h-4" />}
+              {reduceMotion ? <MinusCircle className="w-3.5 h-3.5" /> : <Activity className="w-3.5 h-3.5" />}
             </button>
             <button
-                onClick={() => setScanModalOpen(true)}
-                aria-label="Scan Profile"
-                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 hover:bg-brand-cyan/20 transition-all cursor-pointer"
+              onClick={() => setScanModalOpen(true)}
+              aria-label="Scan Profile"
+              className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 hover:bg-brand-cyan/20 transition-colors cursor-pointer"
             >
-              <Sparkles className="w-4 h-4" />
+              <Sparkles className="w-3.5 h-3.5" />
             </button>
             <a
-                href="/Aniket_Dhuri_Executive_Resume.pdf"
-                target="_blank"
-                download="Aniket_Dhuri_Executive_Resume.pdf"
-                aria-label="Download Resume PDF"
-                className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 transition-all cursor-pointer"
-                title="Download Resume PDF"
+              href="/Aniket_Dhuri_Executive_Resume.pdf"
+              target="_blank"
+              download="Aniket_Dhuri_Executive_Resume.pdf"
+              aria-label="Download Resume PDF"
+              className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#D4AF37]/10 text-[#D4AF37] border border-[#D4AF37]/30 hover:bg-[#D4AF37]/20 transition-colors cursor-pointer"
+              title="Download Resume PDF"
             >
-              <FileText className="w-4 h-4 text-[#D4AF37]" />
+              <FileText className="w-3.5 h-3.5 text-[#D4AF37]" />
             </a>
           </div>
         </div>

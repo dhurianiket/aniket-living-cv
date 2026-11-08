@@ -22,7 +22,7 @@ export function AchievementTicker() {
   return (
     <motion.div 
       style={{ opacity, y }}
-      className="fixed bottom-0 left-0 right-0 z-40 bg-brand-black/90 backdrop-blur-md border-t border-brand-cyan/20 overflow-hidden py-3 pointer-events-none shadow-[0_-10px_30px_rgba(0,240,255,0.05)]"
+      className="fixed bottom-0 left-0 right-0 z-40 bg-brand-black/90 backdrop-blur-md border-t border-brand-cyan/20 overflow-hidden py-3 pointer-events-none shadow-[0_-10px_30px_rgba(0,240,255,0.05)] will-change-[transform,opacity] transform-gpu"
     >
       <div className="flex whitespace-nowrap overflow-hidden relative">
         <motion.div
@@ -32,7 +32,7 @@ export function AchievementTicker() {
             ease: "linear",
             repeat: Infinity,
           }}
-          className="flex gap-16 px-8 items-center"
+          className="flex gap-16 px-8 items-center will-change-transform transform-gpu"
         >
           {/* Double the array for seamless loop */}
           {[...achievements, ...achievements].map((text, i) => (

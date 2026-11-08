@@ -58,26 +58,26 @@ export function HireMe() {
           </p>
         </div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence initial={false}>
             {sortedOfferings.map((offering, idx) => (
               <motion.div
                 key={offering.id}
-                layout={!reduceMotion}
-                initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 35 }}
+                layout={reduceMotion ? false : "position"}
+                initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ 
-                  duration: 0.8, 
-                  delay: reduceMotion ? 0 : idx * 0.12,
-                  ease: [0.16, 1, 0.3, 1]
+                  duration: 0.4, 
+                  delay: reduceMotion ? 0 : (idx % 3) * 0.06,
+                  ease: [0.22, 1, 0.36, 1]
                 }}
                 className={cn(
-                  "glass-panel p-6 rounded-2xl group hover:bg-brand-cyan/5 hover:border-brand-cyan/30 transition-all cursor-pointer flex flex-col h-full",
+                  "glass-panel p-6 rounded-2xl group hover:bg-brand-cyan/5 hover:border-brand-cyan/30 transition-[border-color,box-shadow,background-color] duration-200 cursor-pointer flex flex-col h-full will-change-[transform,opacity] transform-gpu",
                   idx === 0 && mode !== "default" ? "border-brand-cyan/50 shadow-[0_0_20px_rgba(0,240,255,0.1)]" : ""
                 )}
               >
-                <div className="mb-4 p-3 bg-white/5 rounded-xl w-fit group-hover:scale-110 transition-transform">
+                <div className="mb-4 p-3 bg-white/5 rounded-xl w-fit group-hover:scale-110 transition-transform transform-gpu">
                   {offering.icon}
                 </div>
                 <h3 className="font-bold text-lg mb-2 text-white group-hover:text-brand-cyan transition-colors">
@@ -95,12 +95,12 @@ export function HireMe() {
           </AnimatePresence>
           
           <motion.div
-            layout={!reduceMotion}
+            layout={reduceMotion ? false : "position"}
             initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="p-6 rounded-2xl border border-dashed border-white/20 flex flex-col items-center justify-center text-center gap-4 hover:bg-white/5 transition-all cursor-pointer"
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="p-6 rounded-2xl border border-dashed border-white/20 flex flex-col items-center justify-center text-center gap-4 hover:bg-white/5 transition-colors duration-200 cursor-pointer will-change-[transform,opacity] transform-gpu"
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
           >
             <h3 className="font-bold text-lg text-white">Something Else?</h3>
@@ -109,7 +109,7 @@ export function HireMe() {
               Contact Me
             </span>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ export function SkillVisual({ id, active, hovered }: VisualProps & { id: string 
   switch (id) {
     case "s1": // React & TypeScript
       return (
-        <div className="relative w-12 h-12 flex flex-col items-center justify-center bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner">
+        <div className="relative w-12 h-12 shrink-0 flex flex-col items-center justify-center bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner">
           <div className="font-mono text-[10px] leading-tight text-brand-cyan/70 self-start ml-2 mt-1">
             <motion.div animate={shouldAnimate ? { opacity: [0.3, 1, 0.3] } : {}} transition={{ duration: 2, repeat: Infinity }}>
               <span className="text-brand-violet">const</span> init = () =&gt; {'{'}
@@ -44,7 +44,7 @@ export function SkillVisual({ id, active, hovered }: VisualProps & { id: string 
 
     case "s2": // Firebase & Backend
       return (
-        <div className="relative w-12 h-12 flex flex-col items-center justify-center gap-[3px] bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner p-2 pr-3">
+        <div className="relative w-12 h-12 shrink-0 flex flex-col items-center justify-center gap-[3px] bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner p-2 pr-3">
           {[0, 1, 2].map((i) => (
             <motion.div
               key={i}
@@ -71,7 +71,7 @@ export function SkillVisual({ id, active, hovered }: VisualProps & { id: string 
 
     case "s3": // LLM Orchestration
       return (
-        <div className="relative w-12 h-12 flex items-center justify-center bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner">
+        <div className="relative w-12 h-12 shrink-0 flex items-center justify-center bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner">
           {/* Neural net background */}
           <motion.svg viewBox="0 0 40 40" className="w-full h-full absolute inset-0">
              {/* Lines */}
@@ -111,7 +111,7 @@ export function SkillVisual({ id, active, hovered }: VisualProps & { id: string 
 
     case "s4": // Medical Informatics
       return (
-        <div className="relative w-12 h-12 flex items-center justify-center bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner">
+        <div className="relative w-12 h-12 shrink-0 flex items-center justify-center bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner">
           <div className="w-7 h-8 border border-white/20 rounded-[3px] bg-black relative overflow-hidden flex flex-col gap-1 p-1.5">
             {/* Header block */}
             <div className="w-1/2 h-0.5 bg-brand-cyan/50 rounded-full mb-0.5" />
@@ -142,7 +142,7 @@ export function SkillVisual({ id, active, hovered }: VisualProps & { id: string 
 
     case "s5": // Video Editing
       return (
-        <div className="relative w-12 h-12 flex flex-col items-center justify-center gap-[2px] bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner p-1">
+        <div className="relative w-12 h-12 shrink-0 flex flex-col items-center justify-center gap-[2px] bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner p-1">
           {/* Timecode markers */}
           <div className="w-full h-1 flex justify-between px-1">
              {[...Array(5)].map((_, i) => <div key={i} className="w-[1px] h-[2px] bg-white/20" />)}
@@ -183,7 +183,7 @@ export function SkillVisual({ id, active, hovered }: VisualProps & { id: string 
 
     case "s6": // Creative Direction
       return (
-        <div className="relative w-12 h-12 flex items-center justify-center bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner">
+        <div className="relative w-12 h-12 shrink-0 flex items-center justify-center bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner">
           <motion.div
              animate={shouldAnimate ? { 
                borderRadius: ["20% 80%", "80% 20%", "50% 50%", "20% 80%"],
@@ -204,7 +204,7 @@ export function SkillVisual({ id, active, hovered }: VisualProps & { id: string 
 
     case "s7": // SEO & Digital Strategy
       return (
-        <div className="relative w-12 h-12 flex items-end justify-center gap-[2px] bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner p-2">
+        <div className="relative w-12 h-12 shrink-0 flex items-end justify-center gap-[2px] bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner p-2">
           {/* Grid background */}
           <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)', backgroundSize: '10px 10px' }} />
           
@@ -244,7 +244,7 @@ export function SkillVisual({ id, active, hovered }: VisualProps & { id: string 
 
     case "s8": // Workflow Automation
       return (
-        <div className="relative w-12 h-12 flex flex-col items-center justify-between bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner p-1">
+        <div className="relative w-12 h-12 shrink-0 flex flex-col items-center justify-between bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner p-1">
            {/* Connected Nodes Path */}
            <svg viewBox="0 0 40 40" className="absolute inset-0 w-full h-full opacity-50 z-0">
              <path d="M 20 8 L 20 18 L 10 25 L 10 32 M 20 18 L 30 25 L 30 32" fill="none" stroke="white" strokeWidth="1" strokeDasharray="2 2" />
@@ -284,6 +284,28 @@ export function SkillVisual({ id, active, hovered }: VisualProps & { id: string 
                 className="w-3 h-3 rounded-full border-[1.5px] border-white/20 z-10 bg-black"
               />
            </div>
+        </div>
+      );
+
+    case "s9": // OTT Video & DRM Infrastructure
+      return (
+        <div className="relative w-12 h-12 shrink-0 flex items-center justify-center bg-black/60 rounded border border-white/10 overflow-hidden shadow-inner">
+          {/* Encrypted stream rings */}
+          <motion.div
+            animate={shouldAnimate ? { scale: [0.85, 1.15, 0.85], opacity: [0.3, 0.7, 0.3] } : { opacity: 0.35 }}
+            transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute w-8 h-8 rounded-full border border-brand-cyan/40"
+          />
+          {/* DRM Play Shield */}
+          <div className="relative z-10 w-6 h-6 rounded bg-gradient-to-br from-brand-cyan/20 to-brand-violet/20 border border-brand-cyan/60 flex items-center justify-center shadow-[0_0_8px_rgba(0,240,255,0.25)]">
+            <div className="w-0 h-0 border-t-[4px] border-t-transparent border-l-[6px] border-l-brand-cyan border-b-[4px] border-b-transparent ml-0.5" />
+          </div>
+          {/* Lock indicator dot */}
+          <motion.div
+            animate={shouldAnimate ? { opacity: [1, 0.3, 1] } : {}}
+            transition={{ duration: 1.2, repeat: Infinity }}
+            className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_5px_#D4AF37]"
+          />
         </div>
       );
 

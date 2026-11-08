@@ -26,8 +26,20 @@ export function Hero() {
     return <Code className="w-4 h-4"/>;
   };
 
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px) and (pointer: fine)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const disable3D = reduceMotion || !isDesktop;
+
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (reduceMotion) return;
+    if (disable3D) return;
     const card = e.currentTarget;
     const box = card.getBoundingClientRect();
     const x = e.clientX - box.left - box.width / 2;
@@ -131,15 +143,15 @@ export function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="lg:col-span-7 space-y-4 relative"
           style={{
-            transform: reduceMotion 
+            transform: disable3D 
               ? "none" 
               : `rotateX(${rotateX * 0.3}deg) rotateY(${rotateY * 0.3}deg) translateZ(0px)`,
-            transformStyle: "preserve-3d",
-            transition: "transform 0.15s ease-out-back"
+            transformStyle: disable3D ? "flat" : "preserve-3d",
+            transition: "transform 0.15s ease-out"
           }}
         >
           {/* Subtle Background 3D Holographic Space Frame */}
-          {!reduceMotion && (
+          {!disable3D && (
             <div 
               className="absolute -left-12 sm:-left-24 top-[-20%] w-[120%] h-[140%] pointer-events-none -z-10 overflow-hidden opacity-35"
               style={{ 
@@ -165,27 +177,27 @@ export function Hero() {
             initial={reduceMotion ? { opacity: 1 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="flex items-center gap-2.5 mb-4 text-brand-cyan font-mono text-xs sm:text-sm tracking-widest uppercase bg-brand-cyan/5 border border-brand-cyan/20 px-3.5 py-1.5 rounded-full w-fit relative shadow-[0_0_15px_rgba(0,240,255,0.1)]"
+            className="flex items-center gap-2 sm:gap-2.5 mb-4 text-brand-cyan font-mono text-[10px] sm:text-sm tracking-wider sm:tracking-widest uppercase bg-brand-cyan/5 border border-brand-cyan/20 px-3 sm:px-3.5 py-1.5 rounded-full w-fit max-w-full relative shadow-[0_0_15px_rgba(0,240,255,0.1)]"
             style={{ 
-              transform: reduceMotion ? "none" : "translateZ(30px)",
-              transformStyle: "preserve-3d"
+              transform: disable3D ? "none" : "translateZ(30px)",
+              transformStyle: disable3D ? "flat" : "preserve-3d"
             }}
           >
             <img 
               src="/aniket-portrait.jpg" 
               alt="Aniket Dhuri" 
-              className="w-6 h-6 rounded-full object-cover object-top border border-brand-cyan/50 shrink-0 shadow-[0_0_8px_rgba(0,240,255,0.4)]"
+              className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover object-top border border-brand-cyan/50 shrink-0 shadow-[0_0_8px_rgba(0,240,255,0.4)]"
             />
             <Sparkles className="w-3.5 h-3.5 animate-pulse text-brand-cyan shrink-0" />
-            <span>SYSTEM.ONLINE // ANIKET DHURI</span>
+            <span className="truncate">SYSTEM.ONLINE // ANIKET DHURI</span>
             <span className="absolute -right-1 -top-1 w-2 h-2 rounded-full bg-brand-cyan animate-ping" />
           </motion.div>
 
           <h1 
-            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[1.05] transition-all relative select-text"
+            className="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[1.05] transition-colors relative select-text"
             style={{ 
-              transform: reduceMotion ? "none" : "translateZ(55px)",
-              textShadow: reduceMotion ? "none" : `${-rotateY * 0.35}px ${rotateX * 0.35}px 20px rgba(0, 240, 255, 0.15)`
+              transform: disable3D ? "none" : "translateZ(55px)",
+              textShadow: disable3D ? "none" : `${-rotateY * 0.35}px ${rotateX * 0.35}px 20px rgba(0, 240, 255, 0.15)`
             }}
           >
             I build <span className={cn("transition-colors", mode === "creative" ? "text-gradient-violet" : "text-gradient-cyan")}>Intelligent systems</span><br />
@@ -194,15 +206,15 @@ export function Hero() {
           
           <p 
             className="font-sans text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl mb-8 sm:mb-10 leading-relaxed font-normal"
-            style={{ transform: reduceMotion ? "none" : "translateZ(20px)" }}
+            style={{ transform: disable3D ? "none" : "translateZ(20px)" }}
           >
             I'm <span className="text-white font-medium">Aniket Dhuri</span> — a <span className="text-brand-cyan font-semibold">Product Manager</span>, <span className="text-brand-violet font-semibold">AI Generalist</span>, and <span className="text-[#D4AF37] font-semibold">Chief OTT Architect</span> based in India. 
             I architect intelligent platforms like Aegis Health AI, engineer high-throughput streaming systems like Deoyani Movies OTT, and craft hardened digital products.
           </p>
 
           <div 
-            className="flex flex-wrap gap-4 font-mono text-xs"
-            style={{ transform: reduceMotion ? "none" : "translateZ(40px)" }}
+            className="flex flex-wrap gap-3 sm:gap-4 font-mono text-xs"
+            style={{ transform: disable3D ? "none" : "translateZ(40px)" }}
           >
             <button 
               onClick={() => {
@@ -213,7 +225,7 @@ export function Hero() {
                   scrollTo("projects");
                 }
               }}
-              className="group relative px-6 py-3.5 bg-brand-black border border-brand-cyan text-brand-cyan overflow-hidden rounded-md transition-all hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] flex items-center gap-2 cursor-pointer font-bold tracking-wider"
+              className="group relative px-5 sm:px-6 py-3 sm:py-3.5 bg-brand-black border border-brand-cyan text-brand-cyan overflow-hidden rounded-md transition-all hover:shadow-[0_0_20px_rgba(0,240,255,0.3)] flex items-center gap-2 cursor-pointer font-bold tracking-wider"
             >
               <div className="absolute inset-0 bg-brand-cyan/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               <span className="relative flex items-center gap-2 z-10">
@@ -223,14 +235,14 @@ export function Hero() {
             
             <button 
               onClick={() => scrollTo("hire")}
-              className="px-6 py-3.5 bg-white text-black font-semibold rounded-md flex items-center gap-2 hover:bg-gray-200 transition-colors cursor-pointer"
+              className="px-5 sm:px-6 py-3 sm:py-3.5 bg-white text-black font-semibold rounded-md flex items-center gap-2 hover:bg-gray-200 transition-colors cursor-pointer"
             >
               <Zap className="w-4 h-4 hidden sm:block" /> Hire Me
             </button>
             
             <button 
               onClick={() => setMiniBrainOpen(true)}
-              className="group relative px-6 py-3.5 rounded-md overflow-hidden glass-panel border-white/5 hover:border-brand-violet/30 hover:shadow-[0_0_20px_rgba(138,43,226,0.2)] hover:bg-brand-violet/5 transition-all duration-300 flex items-center gap-3 cursor-pointer"
+              className="group relative px-5 sm:px-6 py-3 sm:py-3.5 rounded-md overflow-hidden glass-panel border-white/5 hover:border-brand-violet/30 hover:shadow-[0_0_20px_rgba(138,43,226,0.2)] hover:bg-brand-violet/5 transition-colors duration-300 flex items-center gap-3 cursor-pointer"
             >
                <motion.div
                  animate={reduceMotion ? {} : { y: [0, -3, 0] }}
@@ -258,7 +270,7 @@ export function Hero() {
           {/* Quick Access Anchor Pills */}
           <div 
             className="flex flex-wrap items-center gap-2 pt-6 border-t border-white/5 font-mono text-xs"
-            style={{ transform: reduceMotion ? "none" : "translateZ(25px)" }}
+            style={{ transform: disable3D ? "none" : "translateZ(25px)" }}
           >
             <span className="text-gray-500 uppercase tracking-wider mr-2 text-[10px]">Direct Entry Nodes:</span>
             <button

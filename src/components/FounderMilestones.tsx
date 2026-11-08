@@ -63,10 +63,11 @@ export function FounderMilestones() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-cyan/20 to-transparent" />
       
       <motion.div
-        initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
+        initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
         whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="will-change-[transform,opacity] transform-gpu"
       >
         <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start md:items-center">
           
@@ -89,12 +90,12 @@ export function FounderMilestones() {
             {milestones.map((milestone, idx) => (
               <motion.div
                 key={milestone.id}
-                initial={reduceMotion ? { opacity: 1 } : { opacity: 0, x: 20 }}
+                initial={reduceMotion ? { opacity: 1 } : { opacity: 0, x: 18 }}
                 whileInView={reduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: reduceMotion ? 0 : 0.1 * idx }}
+                transition={{ duration: 0.38, delay: reduceMotion ? 0 : 0.06 * idx, ease: [0.22, 1, 0.36, 1] }}
                 className={cn(
-                  "flex items-center gap-4 p-4 rounded-xl glass-panel border border-white/5 bg-white/5",
+                  "flex items-center gap-4 p-4 rounded-xl glass-panel border border-white/5 bg-white/5 will-change-[transform,opacity] transform-gpu",
                   mode === "recruiter" && "hover:border-brand-amber/30 transition-colors",
                   mode === "founder" && "border-brand-violet/20 hover:border-brand-violet/40 transition-colors bg-brand-violet/5",
                   "group overflow-hidden relative"

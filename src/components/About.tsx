@@ -1,66 +1,124 @@
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { User, Cpu, Layers } from "lucide-react";
 import { useAppState } from "../AppStateContext";
 import { cn } from "../utils";
 import { SiGooglecloud } from 'react-icons/si';
 import { FaAws } from 'react-icons/fa';
 
+const FAST_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 export function About() {
   const { mode, reduceMotion } = useAppState();
 
+  const narrativeContainerVariants: Variants = {
+    hidden: { opacity: reduceMotion ? 1 : 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: reduceMotion ? 0 : 0.06,
+      },
+    },
+  };
+
+  const bentoContainerVariants: Variants = {
+    hidden: { opacity: reduceMotion ? 1 : 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: reduceMotion ? 0 : 0.07,
+        delayChildren: reduceMotion ? 0 : 0.08,
+      },
+    },
+  };
+
+  const slideUpItemVariants: Variants = {
+    hidden: reduceMotion
+      ? { opacity: 1, y: 0 }
+      : { opacity: 0, y: 18 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.38,
+        ease: FAST_EASE,
+      },
+    },
+  };
+
   return (
-    <section id="about" className="relative py-32 px-6 sm:px-12 xl:px-24 z-10">
+    <section
+      id="about"
+      className="relative py-32 px-6 sm:px-12 xl:px-24 z-10 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:items-center">
         
         <motion.div 
-          initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex-1 space-y-8"
+          variants={narrativeContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="flex-1 space-y-8 will-change-[transform,opacity] transform-gpu"
         >
-          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight">
+          <motion.h2
+            variants={slideUpItemVariants}
+            className="font-display text-3xl sm:text-4xl font-bold tracking-tight will-change-[transform,opacity] transform-gpu"
+          >
             The <span className="text-gradient-violet">Architecture</span> of<br/>a Builder.
-          </h2>
+          </motion.h2>
           
           <div className="space-y-6 text-gray-300 font-sans leading-relaxed text-base sm:text-lg">
-            <p>
+            <motion.p variants={slideUpItemVariants} className="will-change-[transform,opacity] transform-gpu">
               I am Aniket Dhuri, a Product Manager, AI Generalist, and Chief Architect based in India. I operate at the intersection of complex software engineering, applied artificial intelligence, and high-end creative storytelling. 
               As a solo founder and systems builder, I don't just write code—I design, ship, and scale production platforms that solve real, painful problems.
-            </p>
-            <p className={cn("transition-all duration-500", (mode === "founder" || mode === "recruiter") && "text-brand-cyan")}>
+            </motion.p>
+            <motion.p
+              variants={slideUpItemVariants}
+              className={cn("transition-colors duration-300 will-change-[transform,opacity] transform-gpu", (mode === "founder" || mode === "recruiter") && "text-brand-cyan")}
+            >
               As Chief Architect and Lead OTT Systems Engineer at <strong className="text-white">Deoyani Movies</strong>, I architected the company's official direct-to-consumer OTT streaming platform (<a href="https://www.deoyanimovies.com" target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline font-mono text-sm">deoyanimovies.com</a>). I engineered the complete video delivery pipeline using Bunny Stream CDN, Widevine and FairPlay cbcs CENC DRM, 30s sliding session concurrency heartbeats, live Razorpay TVOD monetization, and a multilingual studio AI concierge powered by Google Gemini 3.6 Flash.
-            </p>
-            <p className={cn("transition-all duration-500", mode === "founder" && "text-brand-cyan")}>
+            </motion.p>
+            <motion.p
+              variants={slideUpItemVariants}
+              className={cn("transition-colors duration-300 will-change-[transform,opacity] transform-gpu", mode === "founder" && "text-brand-cyan")}
+            >
               My health-tech endeavor is <strong className="text-white">Aegis Health AI</strong>, 
               where I architected a full-stack platform transforming medical lab jargon into clear, structured insights using Google Gemini.
               I managed everything from the responsive React frontend to the secure Firebase backend.
-            </p>
-            <p className={cn("transition-all duration-500", mode === "creative" && "text-brand-violet")}>
+            </motion.p>
+            <motion.p
+              variants={slideUpItemVariants}
+              className={cn("transition-colors duration-300 will-change-[transform,opacity] transform-gpu", mode === "creative" && "text-brand-violet")}
+            >
               Before diving deep into AI and streaming architectures, I spent years directing post-production, 
               cinematic video editing, and digital strategy for global brands across Mumbai and Dubai. As a Senior Video Editor, I know how to make things work flawlessly under the hood, 
               and I know how to make them visually compelling on the surface.
-            </p>
-            <p>
+            </motion.p>
+            <motion.p variants={slideUpItemVariants} className="will-change-[transform,opacity] transform-gpu">
               My academic foundation includes a <strong className="text-white">Diploma in Electronics and Telecommunication Engineering</strong>, combined with diverse certifications across Digital Marketing, Ethical Hacking, Python, Full-Stack Development, and Advanced Video Editing, giving me a multidimensional approach to complex problem-solving.
-            </p>
+            </motion.p>
           </div>
         </motion.div>
 
         <motion.div 
-          initial={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex-1 flex flex-col gap-6"
+          variants={bentoContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="flex-1 flex flex-col gap-6 will-change-[transform,opacity] transform-gpu"
         >
           {/* Executive Founder Spotlight Card */}
-          <div className="glass-panel p-6 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden group shadow-[0_0_30px_rgba(0,240,255,0.06)] hover:border-brand-cyan/40 transition-all duration-500">
+          <motion.div
+            variants={slideUpItemVariants}
+            className="glass-panel p-6 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden group shadow-[0_0_30px_rgba(0,240,255,0.06)] hover:border-brand-cyan/40 transition-[border-color,box-shadow] duration-200 will-change-[transform,opacity] transform-gpu"
+          >
             <div className="relative shrink-0">
               <img 
                 src="/aniket-portrait.jpg" 
                 alt="Aniket Dhuri - Product Manager, AI Generalist & Chief OTT Architect" 
-                className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl object-cover object-top border-2 border-brand-cyan/40 shadow-[0_0_20px_rgba(0,240,255,0.25)] group-hover:scale-105 transition-transform duration-500"
+                width={128}
+                height={128}
+                decoding="async"
+                className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl object-cover object-top border-2 border-brand-cyan/40 shadow-[0_0_20px_rgba(0,240,255,0.25)] group-hover:scale-105 transition-transform duration-300 transform-gpu"
               />
               <span className="absolute -bottom-2 -right-2 px-2.5 py-0.5 rounded-full bg-brand-black/90 border border-brand-cyan/50 text-[9px] font-mono text-brand-cyan font-bold tracking-wider uppercase backdrop-blur-md flex items-center gap-1 shadow-lg">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-ping" />
@@ -84,34 +142,46 @@ export function About() {
                 <span className="px-2.5 py-0.5 rounded text-[10px] font-mono bg-brand-violet/10 border border-brand-violet/30 text-brand-violet">Sr. Video Editor</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "founder" && "border-brand-cyan/50 shadow-[0_0_20px_rgba(0,240,255,0.1)]")}>
+            <motion.div
+              variants={slideUpItemVariants}
+              className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-[border-color,box-shadow] duration-200 will-change-[transform,opacity] transform-gpu", mode === "founder" && "border-brand-cyan/50 shadow-[0_0_20px_rgba(0,240,255,0.1)]")}
+            >
               <User className="w-8 h-8 text-brand-cyan" />
               <h3 className="font-bold text-white text-xl">Founder Mentality</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
                 I understand velocity. I know how to ship MVPs fast without sacrificing architecture, focusing on user impact over theoretical perfection.
               </p>
-            </div>
+            </motion.div>
             
-            <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "recruiter" && "border-brand-violet/50 shadow-[0_0_20px_rgba(138,43,226,0.15)]")}>
+            <motion.div
+              variants={slideUpItemVariants}
+              className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-[border-color,box-shadow] duration-200 will-change-[transform,opacity] transform-gpu", mode === "recruiter" && "border-brand-violet/50 shadow-[0_0_20px_rgba(138,43,226,0.15)]")}
+            >
               <Cpu className="w-8 h-8 text-brand-violet" />
               <h3 className="font-bold text-white text-xl">AI Generalist &amp; Full-Stack</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
                 Versatile expertise across LLMs, multi-agent networks, React 19, Firebase, and OTT streaming architectures. I bridge AI capabilities with product utility.
               </p>
-            </div>
+            </motion.div>
 
-            <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "creative" && "border-brand-green/50 shadow-[0_0_20px_rgba(0,255,102,0.1)]")}>
+            <motion.div
+              variants={slideUpItemVariants}
+              className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-[border-color,box-shadow] duration-200 will-change-[transform,opacity] transform-gpu", mode === "creative" && "border-brand-green/50 shadow-[0_0_20px_rgba(0,255,102,0.1)]")}
+            >
               <Layers className="w-8 h-8 text-brand-green" />
               <h3 className="font-bold text-white text-xl">Creative Technologist</h3>
               <p className="text-sm text-gray-400 leading-relaxed">
                 My background in senior video editing and motion graphics directly informs my UX/UI decisions. I build systems that are intelligent, hardened, and visually intuitive.
               </p>
-            </div>
+            </motion.div>
 
-            <div className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-all duration-500", mode === "founder" && "border-brand-amber/50 shadow-[0_0_20px_rgba(255,191,0,0.15)]")}>
+            <motion.div
+              variants={slideUpItemVariants}
+              className={cn("glass-panel p-6 rounded-2xl flex flex-col gap-4 transition-[border-color,box-shadow] duration-200 will-change-[transform,opacity] transform-gpu", mode === "founder" && "border-brand-amber/50 shadow-[0_0_20px_rgba(255,191,0,0.15)]")}
+            >
               <div className="flex items-center gap-3">
                 <div title="Google Cloud" className="p-2 rounded-xl bg-white/5 border border-white/10 shrink-0 shadow-inner">
                   {/* @ts-ignore - React 19 SVGAttributes typing issue */}
@@ -126,7 +196,7 @@ export function About() {
               <p className="text-sm text-gray-400 leading-relaxed">
                 Secured and leveraged Google Cloud and AWS Activate credits to bootstrap cloud infrastructure and ship production-ready systems with zero initial infrastructure overhead.
               </p>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
 

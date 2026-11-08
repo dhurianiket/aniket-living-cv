@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useAppState } from "../AppStateContext";
 
 export function BackgroundParticles() {
@@ -7,46 +7,51 @@ export function BackgroundParticles() {
   const { reduceMotion } = useAppState();
 
   useEffect(() => {
-    // Only run on client
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
 
     const handleResize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const particles = useMemo(() => {
+    if (windowSize.width === 0) return [];
+    const count = reduceMotion ? 6 : 16;
+    return Array.from({ length: count }).map((_, i) => ({
+      id: i,
+      x: ((i * 137.5) % 100),
+      y: ((i * 73.1) % 100),
+      size: (i % 3) + 1.5,
+      duration: 14 + (i % 8) * 2,
+      delay: -(i * 1.3),
+    }));
+  }, [windowSize.width > 0, reduceMotion]);
+
   if (windowSize.width === 0) return null;
 
-  // Generate deterministic but random-looking particles
-  const particles = Array.from({ length: reduceMotion ? 10 : 40 }).map((_, i) => ({
-    id: i,
-    x: Math.random() * windowSize.width,
-    y: Math.random() * windowSize.height,
-    size: Math.random() * 3 + 1,
-    duration: Math.random() * 20 + 10,
-    delay: Math.random() * -20,
-  }));
-
   return (
-    <div className="fixed inset-0 pointer-events-none opacity-30 mix-blend-screen z-0">
+    <div className="fixed inset-0 pointer-events-none opacity-25 z-0 overflow-hidden">
       {particles.map((p) => (
         <motion.div
           key={p.id}
-          className="absolute rounded-full bg-brand-cyan shadow-[0_0_10px_#00f0ff]"
+          className="absolute rounded-full bg-brand-cyan will-change-transform"
           style={{
             width: p.size,
             height: p.size,
-            left: p.x,
-            top: p.y,
+            left: `${p.x}%`,
+            top: `${p.y}%`,
           }}
-          animate={reduceMotion ? { opacity: [0.1, 0.3, 0.1] } : {
-            y: [p.y, p.y - 100, p.y + 100, p.y],
-            x: [p.x, p.x + 50, p.x - 50, p.x],
-            opacity: [0.1, 0.5, 0.1],
-          }}
+          animate={
+            reduceMotion
+              ? { opacity: 0.2 }
+              : {
+                  y: [0, -40, 0],
+                  opacity: [0.15, 0.45, 0.15],
+                }
+          }
           transition={{
             duration: p.duration,
             repeat: Infinity,

@@ -4,6 +4,8 @@ import { projectsData } from "../data";
 import { useAppState } from "../AppStateContext";
 import { cn } from "../utils";
 
+const FAST_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 export function FeaturedProjects() {
   const { mode, reduceMotion, setCaseStudyOpen, setCaseStudyTopic } = useAppState();
 
@@ -30,37 +32,52 @@ export function FeaturedProjects() {
   });
 
   return (
-    <section id="projects" className="relative py-32 px-6 sm:px-12 xl:px-24 z-10 border-t border-white/5">
+    <section
+      id="projects"
+      className="relative py-32 px-6 sm:px-12 xl:px-24 z-10 border-t border-white/5 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-display text-4xl font-bold mb-4 tracking-tight">
-          Featured <span className="text-gradient-cyan">Systems</span>
-        </h2>
-        <p className="text-gray-400 font-mono text-sm max-w-xl mb-16">
-          A selection of end-to-end products, growth engines, and multimedia systems I've built.
-        </p>
+        <motion.div
+          initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.4, ease: FAST_EASE }}
+          className="mb-16 will-change-[transform,opacity] transform-gpu"
+        >
+          <h2 className="font-display text-4xl font-bold mb-4 tracking-tight">
+            Featured <span className="text-gradient-cyan">Systems</span>
+          </h2>
+          <p className="text-gray-400 font-mono text-sm max-w-xl">
+            A selection of end-to-end products, growth engines, and multimedia systems I've built.
+          </p>
+        </motion.div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <AnimatePresence>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <AnimatePresence initial={false}>
             {sortedProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                layout={!reduceMotion}
-                initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.95 }}
+                layout={reduceMotion ? false : "position"}
+                initial={
+                  reduceMotion
+                    ? { opacity: 1, y: 0 }
+                    : { opacity: 0, y: 20 }
+                }
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.96 }}
                 transition={{ 
-                  duration: 0.8, 
-                  delay: reduceMotion ? 0 : index * 0.15,
-                  ease: [0.16, 1, 0.3, 1]
+                  duration: 0.4, 
+                  delay: reduceMotion ? 0 : (index % 2) * 0.06,
+                  ease: FAST_EASE,
                 }}
                 className={cn(
-                  "glass-panel p-8 rounded-2xl group hover:border-brand-cyan/30 transition-all duration-500 relative overflow-hidden",
-                  // Add a subtle border glow if it matches the main mode priority
+                  "glass-panel p-8 rounded-2xl group hover:border-brand-cyan/30 transition-[border-color,box-shadow] duration-200 relative overflow-hidden will-change-[transform,opacity] transform-gpu",
                   index === 0 && mode !== "default" ? "border-brand-cyan/50 shadow-[0_0_30px_rgba(0,240,255,0.1)]" : ""
                 )}
               >
                 {/* Subtle background glow effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/0 via-transparent to-brand-violet/0 group-hover:from-brand-cyan/5 group-hover:to-brand-violet/5 transition-all duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/0 via-transparent to-brand-violet/0 group-hover:from-brand-cyan/5 group-hover:to-brand-violet/5 transition-colors duration-300" />
                 
                 <div className="relative z-10 flex flex-col h-full">
                   <div className="flex justify-between items-start mb-6">
@@ -68,12 +85,12 @@ export function FeaturedProjects() {
                       <span className="font-mono text-xs tracking-widest text-brand-cyan uppercase bg-brand-cyan/5 px-2 py-1 rounded inline-block mb-3">
                         {project.category}
                       </span>
-                      <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-brand-cyan transition-colors">
+                      <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-brand-cyan transition-colors duration-200">
                         {project.title}
                       </h3>
                     </div>
                     {project.link && (
-                      <a href={project.link} className="p-3 rounded-full bg-white/5 hover:bg-brand-cyan hover:text-black transition-colors shrink-0">
+                      <a href={project.link} className="p-3 rounded-full bg-white/5 hover:bg-brand-cyan hover:text-black transition-colors duration-200 shrink-0">
                         <ArrowUpRight className="w-5 h-5" />
                       </a>
                     )}
@@ -98,7 +115,7 @@ export function FeaturedProjects() {
                           setCaseStudyTopic("deoyani");
                           setCaseStudyOpen(true);
                         }}
-                        className="mt-4 px-4 py-2 bg-brand-cyan/10 hover:bg-brand-cyan/20 border border-brand-cyan/35 hover:border-brand-cyan/60 text-brand-cyan rounded-lg text-xs font-mono self-start flex items-center gap-1.5 transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.15)] cursor-pointer"
+                        className="mt-4 px-4 py-2 bg-brand-cyan/10 hover:bg-brand-cyan/20 border border-brand-cyan/35 hover:border-brand-cyan/60 text-brand-cyan rounded-lg text-xs font-mono self-start flex items-center gap-1.5 transition-colors duration-200 shadow-[0_0_15px_rgba(0,240,255,0.15)] cursor-pointer"
                       >
                         <Cpu className="w-3.5 h-3.5 text-brand-cyan" /> OTT Architecture &amp; DRM Blueprint
                       </button>
@@ -109,7 +126,7 @@ export function FeaturedProjects() {
                           setCaseStudyTopic("aegis");
                           setCaseStudyOpen(true);
                         }}
-                        className="mt-4 px-4 py-2 bg-brand-violet/10 hover:bg-brand-violet/20 border border-brand-violet/35 hover:border-brand-cyan/50 text-brand-cyan rounded-lg text-xs font-mono self-start flex items-center gap-1.5 transition-all duration-300 shadow-[0_0_15px_rgba(138,43,226,0.1)] cursor-pointer"
+                        className="mt-4 px-4 py-2 bg-brand-violet/10 hover:bg-brand-violet/20 border border-brand-violet/35 hover:border-brand-cyan/50 text-brand-cyan rounded-lg text-xs font-mono self-start flex items-center gap-1.5 transition-colors duration-200 shadow-[0_0_15px_rgba(138,43,226,0.1)] cursor-pointer"
                       >
                         <Cpu className="w-3.5 h-3.5 text-brand-cyan" /> Playbook &amp; Architecture Manual
                       </button>
@@ -127,7 +144,7 @@ export function FeaturedProjects() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
